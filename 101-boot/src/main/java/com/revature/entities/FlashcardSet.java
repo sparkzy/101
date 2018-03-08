@@ -22,15 +22,15 @@ public class FlashcardSet {
 	@GeneratedValue(generator = "fc_set_id_seq", strategy = GenerationType.AUTO)
 	private int fcSetId;
 
-	private int title;
+	private String title;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "subject_id")
-	private Subject subjectId;
+	private Subject subject;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	private Subject authorId;
+	@JoinColumn(name = "author_id")
+	private User author;
 
 	private int likes;
 
@@ -38,11 +38,11 @@ public class FlashcardSet {
 		super();
 	}
 
-	public FlashcardSet(int fcSetId, int title, Subject subjectId, Subject authorId, int likes) {
+	public FlashcardSet(int fcSetId,String title, Subject subject, User author, int likes) {
 		this.fcSetId = fcSetId;
 		this.title = title;
-		this.subjectId = subjectId;
-		this.authorId = authorId;
+		this.subject = subject;
+		this.author = author;
 		this.likes = likes;
 	}
 
@@ -54,28 +54,28 @@ public class FlashcardSet {
 		this.fcSetId = fcSetId;
 	}
 
-	public int getTitle() {
+	public String getTitle() {
 		return title;
 	}
 
-	public void setTitle(int title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	public Subject getSubjectId() {
-		return subjectId;
+	public Subject getSubject() {
+		return subject;
 	}
 
-	public void setSubjectId(Subject subjectId) {
-		this.subjectId = subjectId;
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 
-	public Subject getAuthorId() {
-		return authorId;
+	public User getAuthor() {
+		return author;
 	}
 
-	public void setAuthorId(Subject authorId) {
-		this.authorId = authorId;
+	public void setAuthor(User author) {
+		this.author = author;
 	}
 
 	public int getLikes() {
@@ -90,11 +90,11 @@ public class FlashcardSet {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((authorId == null) ? 0 : authorId.hashCode());
+		result = prime * result + ((author == null) ? 0 : author.hashCode());
 		result = prime * result + fcSetId;
 		result = prime * result + likes;
-		result = prime * result + ((subjectId == null) ? 0 : subjectId.hashCode());
-		result = prime * result + title;
+		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
 
@@ -107,28 +107,31 @@ public class FlashcardSet {
 		if (getClass() != obj.getClass())
 			return false;
 		FlashcardSet other = (FlashcardSet) obj;
-		if (authorId == null) {
-			if (other.authorId != null)
+		if (author == null) {
+			if (other.author != null)
 				return false;
-		} else if (!authorId.equals(other.authorId))
+		} else if (!author.equals(other.author))
 			return false;
 		if (fcSetId != other.fcSetId)
 			return false;
 		if (likes != other.likes)
 			return false;
-		if (subjectId == null) {
-			if (other.subjectId != null)
+		if (subject == null) {
+			if (other.subject != null)
 				return false;
-		} else if (!subjectId.equals(other.subjectId))
+		} else if (!subject.equals(other.subject))
 			return false;
-		if (title != other.title)
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "FlashcardSet [fcSetId=" + fcSetId + ", title=" + title + ", subjectId=" + subjectId + ", authorId="
-				+ authorId + ", likes=" + likes + "]";
+		return "FlashcardSet [fcSetId=" + fcSetId + ", title=" + title + ", subjectId=" + subject + ", author="
+				+ author + ", likes=" + likes + "]";
 	}
 }
