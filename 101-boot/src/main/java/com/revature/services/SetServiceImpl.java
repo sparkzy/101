@@ -19,7 +19,7 @@ import com.revature.repos.SetRepo;
 *
 */
 @Service
-public class SetServiceImpl implements SetService {
+public class SetServiceImpl implements ServiceInterface<FlashcardSet> {
 	
 	/************************************************************************************
 	 * Private fields
