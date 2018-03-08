@@ -23,17 +23,20 @@ public class Role {
 	@GeneratedValue(generator = "role_id_seq", strategy = GenerationType.AUTO)
 	private int roleId;
 
+	private String role;
+
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
-	private Set<Role> role;
+	private Set<User> users;
 
 	public Role() {
 		super();
 	}
 
-	public Role(int roleId, Set<Role> role) {
+	public Role(int roleId, String role, Set<User> users) {
 		this.roleId = roleId;
 		this.role = role;
+		this.users = users;
 	}
 
 	public int getRoleId() {
@@ -44,12 +47,20 @@ public class Role {
 		this.roleId = roleId;
 	}
 
-	public Set<Role> getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(Set<Role> role) {
+	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 
 	@Override
@@ -58,6 +69,7 @@ public class Role {
 		int result = 1;
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + roleId;
+		result = prime * result + ((users == null) ? 0 : users.hashCode());
 		return result;
 	}
 
@@ -77,11 +89,16 @@ public class Role {
 			return false;
 		if (roleId != other.roleId)
 			return false;
+		if (users == null) {
+			if (other.users != null)
+				return false;
+		} else if (!users.equals(other.users))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Role [roleId=" + roleId + ", role=" + role + "]";
+		return "Role [roleId=" + roleId + ", role=" + role + ", users=" + users + "]";
 	}
 }
