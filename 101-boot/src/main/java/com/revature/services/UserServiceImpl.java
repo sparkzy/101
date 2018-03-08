@@ -34,11 +34,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public void update(User user) {
 		userRepo.save(user);
 	}
 
 	@Override
+	@Transactional
 	public void deleteUserById(int id) {
 		userRepo.deleteById(id);
 	}

@@ -34,11 +34,13 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
+	@Transactional
 	public void update(Role role) {
 		roleRepo.save(role);
 	}
 
 	@Override
+	@Transactional
 	public void deleteRoleById(int id) {
 		roleRepo.deleteById(id);
 	}
