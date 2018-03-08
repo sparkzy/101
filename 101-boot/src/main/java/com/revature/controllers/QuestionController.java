@@ -3,8 +3,9 @@ package com.revature.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -17,6 +18,7 @@ import com.revature.services.QuestionService;
 
 @RestController
 @RequestMapping("questions")
+@CrossOrigin(origins="http://localhost:4200")
 public class QuestionController {
 
 	@Autowired
@@ -42,7 +44,7 @@ public class QuestionController {
 		qs.update(question);
 	}
 
-	@PatchMapping("id/{id}")
+	@DeleteMapping("id/{id}")
 	public void deleteQuestionById(@PathVariable int id) {
 		qs.deleteQuestionById(id);
 	}
