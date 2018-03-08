@@ -10,7 +10,7 @@ import com.revature.entities.User;
 import com.revature.repos.UserRepo;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements ServiceInterface<User> {
 
 	@Autowired
 	private UserRepo userRepo;
@@ -29,19 +29,19 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public User findByUserId(int id) {
-		return userRepo.findByUserId(id);
-	}
-
-	@Override
-	@Transactional
 	public void update(User user) {
 		userRepo.save(user);
 	}
 
 	@Override
 	@Transactional
-	public void deleteUserById(int id) {
+	public User findById(int id) {
+		return userRepo.findByUserId(id);
+	}
+
+	@Override
+	@Transactional
+	public void delete(int id) {
 		userRepo.deleteById(id);
 	}
 }

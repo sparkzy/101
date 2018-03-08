@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Role;
-import com.revature.services.RoleService;
+import com.revature.services.ServiceInterface;
 
 @RestController
 @RequestMapping("roles")
@@ -22,30 +22,30 @@ import com.revature.services.RoleService;
 public class RoleController {
 
 	@Autowired
-	private RoleService rs;
+	private ServiceInterface<Role> si;
 	
 	@GetMapping
 	public List<Role> findAll() {
-		return rs.findAll();
+		return si.findAll();
 	}
 	
 	@PostMapping
 	public Role createRole(@RequestBody Role role) {
-		return rs.save(role);
+		return si.save(role);
 	}
 	
 	@GetMapping("id/{id}")
 	public Role findByRoleId(@PathVariable int id) {
-		return rs.findByRoleId(id);
+		return si.findById(id);
 	}
 	
 	@PutMapping
 	public void updateRole(@RequestBody Role role) {
-		rs.update(role);
+		si.update(role);
 	}
 	
 	@DeleteMapping("id/{id}")
 	public void deleteRoleById(@PathVariable int id) {
-		rs.deleteRoleById(id);
+		si.delete(id);
 	}
 }

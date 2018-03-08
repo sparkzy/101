@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Question;
-import com.revature.services.QuestionService;
+import com.revature.services.ServiceInterface;
 
 @RestController
 @RequestMapping("questions")
@@ -22,30 +22,30 @@ import com.revature.services.QuestionService;
 public class QuestionController {
 
 	@Autowired
-	private QuestionService qs;
+	private ServiceInterface<Question> si;
 
 	@GetMapping
 	public List<Question> findAll() {
-		return qs.findAll();
+		return si.findAll();
 	}
 
 	@PostMapping
 	public Question createQuestion(@RequestBody Question question) {
-		return qs.save(question);
+		return si.save(question);
 	}
 
 	@GetMapping("id/{id}")
 	public Question findByQuestionId(@PathVariable int id) {
-		return qs.findByQuestionId(id);
+		return si.findById(id);
 	}
 
 	@PutMapping
 	public void updateQuestion(@RequestBody Question question) {
-		qs.update(question);
+		si.update(question);
 	}
 
 	@DeleteMapping("id/{id}")
 	public void deleteQuestionById(@PathVariable int id) {
-		qs.deleteQuestionById(id);
+		si.delete(id);
 	}
 }

@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.User;
-import com.revature.services.UserService;
+import com.revature.services.ServiceInterface;
 
 @RestController
 @RequestMapping("users")
@@ -22,30 +22,30 @@ import com.revature.services.UserService;
 public class UserController {
 
 	@Autowired
-	private UserService us;
+	private ServiceInterface<User> si;
 
 	@GetMapping
 	public List<User> findAll() {
-		return us.findAll();
+		return si.findAll();
 	}
 
 	@PostMapping
 	public User createUser(@RequestBody User user) {
-		return us.save(user);
+		return si.save(user);
 	}
 
 	@GetMapping("id/{id}")
 	public User findByUserId(@PathVariable int id) {
-		return us.findByUserId(id);
+		return si.findById(id);
 	}
 
 	@PutMapping
 	public void updateUser(@RequestBody User user) {
-		us.update(user);
+		si.update(user);
 	}
 
-	@PatchMapping("id/{id}")
+	@DeleteMapping("id/{id}")
 	public void deleteUserById(@PathVariable int id) {
-		us.deleteUserById(id);
+		si.delete(id);
 	}
 }

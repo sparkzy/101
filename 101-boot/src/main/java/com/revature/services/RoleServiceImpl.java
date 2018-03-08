@@ -10,7 +10,7 @@ import com.revature.entities.Role;
 import com.revature.repos.RoleRepo;
 
 @Service
-public class RoleServiceImpl implements RoleService {
+public class RoleServiceImpl implements ServiceInterface<Role> {
 
 	@Autowired
 	private RoleRepo roleRepo;
@@ -29,19 +29,19 @@ public class RoleServiceImpl implements RoleService {
 
 	@Override
 	@Transactional
-	public Role findByRoleId(int id) {
-		return roleRepo.findByRoleId(id);
-	}
-
-	@Override
-	@Transactional
 	public void update(Role role) {
 		roleRepo.save(role);
 	}
 
 	@Override
 	@Transactional
-	public void deleteRoleById(int id) {
+	public Role findById(int id) {
+		return roleRepo.findByRoleId(id);
+	}
+
+	@Override
+	@Transactional
+	public void delete(int id) {
 		roleRepo.deleteById(id);
 	}
 }
