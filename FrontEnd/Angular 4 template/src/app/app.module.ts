@@ -17,6 +17,7 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { ViewReimbursementComponent } from './components/view-reimbursement/view-reimbursement.component';
 import { AddReimbursementComponent } from './components/add-reimbursement/add-reimbursement.component';
 import { HomeComponent } from './components/home/home.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { HomeComponent } from './components/home/home.component';
     ViewReimbursementComponent,
     AddReimbursementComponent,
     HomeComponent,
+    RegisterComponent,
   ],
   providers: [
     LoggedInGuard,

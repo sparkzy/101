@@ -44,7 +44,7 @@ public class UserController {
 		return us.findById(id);
 	}
 
-	@PutMapping
+	@PutMapping("id/{id}")
 	public void updateUser(@RequestBody User user) {
 		us.update(user);
 	}

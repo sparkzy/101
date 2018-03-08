@@ -39,7 +39,7 @@ public class QuestionController {
 		return si.findById(id);
 	}
 
-	@PutMapping
+	@PutMapping("id/{id}")
 	public void updateQuestion(@RequestBody Question question) {
 		si.update(question);
 	}

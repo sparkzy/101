@@ -1,0 +1,8 @@
+<form (ngSubmit)="addUser(newUser)">
+  <input type="text" name="username" [(ngModel)]="newUser.username" placeholder="Username">
+  <input type="text" name="password" [(ngModel)]="newUser.password" placeholder="Password">
+  <input type="text" name="email" [(ngModel)]="newUser.email" placeholder="Email">
+  <input type="text" name="firstname" [(ngModel)]="newUser.firstname" placeholder="First Name">
+  <input type="text" name="lastname" [(ngModel)]="newUser.lastname" placeholder="Last Name">
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>

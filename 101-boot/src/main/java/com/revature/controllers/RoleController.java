@@ -39,7 +39,7 @@ public class RoleController {
 		return si.findById(id);
 	}
 	
-	@PutMapping
+	@PutMapping("id/{id}")
 	public void updateRole(@RequestBody Role role) {
 		si.update(role);
 	}
