@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -28,10 +28,9 @@ public class Post {
 
 	private String title;
 
-	@Column(name = "user_id")
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	private Set<User> authorId;
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "author_id")
+	private User author;
 
 	private String body;
 	private int likes;
@@ -48,11 +47,11 @@ public class Post {
 		super();
 	}
 
-	public Post(int postId, String title, Set<User> authorId, String body, int likes, Status statusId,
+	public Post(int postId, String title, User author, String body, int likes, Status statusId,
 			Set<Subject> subjects) {
 		this.postId = postId;
 		this.title = title;
-		this.authorId = authorId;
+		this.author = author;
 		this.body = body;
 		this.likes = likes;
 		this.statusId = statusId;
@@ -75,12 +74,12 @@ public class Post {
 		this.title = title;
 	}
 
-	public Set<User> getAuthorId() {
-		return authorId;
+	public User getAuthor() {
+		return author;
 	}
 
-	public void setAuthorId(Set<User> authorId) {
-		this.authorId = authorId;
+	public void setAuthor(User author) {
+		this.author = author;
 	}
 
 	public String getBody() {
@@ -119,7 +118,7 @@ public class Post {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((authorId == null) ? 0 : authorId.hashCode());
+		result = prime * result + ((author == null) ? 0 : author.hashCode());
 		result = prime * result + ((body == null) ? 0 : body.hashCode());
 		result = prime * result + likes;
 		result = prime * result + postId;
@@ -138,10 +137,10 @@ public class Post {
 		if (getClass() != obj.getClass())
 			return false;
 		Post other = (Post) obj;
-		if (authorId == null) {
-			if (other.authorId != null)
+		if (author == null) {
+			if (other.author != null)
 				return false;
-		} else if (!authorId.equals(other.authorId))
+		} else if (!author.equals(other.author))
 			return false;
 		if (body == null) {
 			if (other.body != null)
@@ -172,7 +171,7 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [postId=" + postId + ", title=" + title + ", authorId=" + authorId + ", body=" + body + ", likes="
+		return "Post [postId=" + postId + ", title=" + title + ", authord=" + author + ", body=" + body + ", likes="
 				+ likes + ", statusId=" + statusId + ", subjects=" + subjects + "]";
 	}
 }

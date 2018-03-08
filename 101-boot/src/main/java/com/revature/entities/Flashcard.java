@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -39,23 +39,23 @@ public class Flashcard {
 	@JoinTable(name = "101_FC_TO_SET", joinColumns = @JoinColumn(name = "FC_SET_ID"), inverseJoinColumns = @JoinColumn(name = "FLASHCARD_ID"))
 	private Set<FlashcardSet> fcSet;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "AUTHOR_ID")
-	private Set<User> user;
+	private User author;
 
 	public Flashcard() {
 		super();
 	}
 
 	public Flashcard(int flashcardId, int setId, String question, String answer, int authorId, Set<FlashcardSet> fcSet,
-			Set<User> user) {
+			User user) {
 		this.flashcardId = flashcardId;
 		this.setId = setId;
 		this.question = question;
 		this.answer = answer;
 		this.authorId = authorId;
 		this.fcSet = fcSet;
-		this.user = user;
+		this.author = user;
 	}
 
 	public int getFlashcardId() {
@@ -106,12 +106,12 @@ public class Flashcard {
 		this.fcSet = fcSet;
 	}
 
-	public Set<User> getUser() {
-		return user;
+	public User getAuthor() {
+		return author;
 	}
 
-	public void setUser(Set<User> user) {
-		this.user = user;
+	public void setAuthor(User author) {
+		this.author = author;
 	}
 
 	@Override
@@ -119,12 +119,12 @@ public class Flashcard {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((answer == null) ? 0 : answer.hashCode());
+		result = prime * result + ((author == null) ? 0 : author.hashCode());
 		result = prime * result + authorId;
 		result = prime * result + ((fcSet == null) ? 0 : fcSet.hashCode());
 		result = prime * result + flashcardId;
 		result = prime * result + ((question == null) ? 0 : question.hashCode());
 		result = prime * result + setId;
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
@@ -142,6 +142,11 @@ public class Flashcard {
 				return false;
 		} else if (!answer.equals(other.answer))
 			return false;
+		if (author == null) {
+			if (other.author != null)
+				return false;
+		} else if (!author.equals(other.author))
+			return false;
 		if (authorId != other.authorId)
 			return false;
 		if (fcSet == null) {
@@ -158,17 +163,12 @@ public class Flashcard {
 			return false;
 		if (setId != other.setId)
 			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "Flashcard [flashcardId=" + flashcardId + ", setId=" + setId + ", question=" + question + ", answer="
-				+ answer + ", authorId=" + authorId + ", fcSet=" + fcSet + ", user=" + user + "]";
+				+ answer + ", author=" + author + ", fcSet=" + fcSet + ", user=" + author + "]";
 	}
 }
