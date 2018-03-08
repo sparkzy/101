@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,39 +13,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.entities.User;
-import com.revature.services.UserService;
+import com.revature.entities.Question;
+import com.revature.services.QuestionService;
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("questions")
 @CrossOrigin(origins="http://localhost:4200")
-public class UserController {
+public class QuestionController {
 
 	@Autowired
-	private UserService us;
+	private QuestionService qs;
 
 	@GetMapping
-	public List<User> findAll() {
-		return us.findAll();
+	public List<Question> findAll() {
+		return qs.findAll();
 	}
 
 	@PostMapping
-	public User createUser(@RequestBody User user) {
-		return us.save(user);
+	public Question createQuestion(@RequestBody Question question) {
+		return qs.save(question);
 	}
 
 	@GetMapping("id/{id}")
-	public User findByUserId(@PathVariable int id) {
-		return us.findByUserId(id);
+	public Question findByQuestionId(@PathVariable int id) {
+		return qs.findByQuestionId(id);
 	}
 
 	@PutMapping
-	public void updateUser(@RequestBody User user) {
-		us.update(user);
+	public void updateQuestion(@RequestBody Question question) {
+		qs.update(question);
 	}
 
-	@PatchMapping("id/{id}")
-	public void deleteUserById(@PathVariable int id) {
-		us.deleteUserById(id);
+	@DeleteMapping("id/{id}")
+	public void deleteQuestionById(@PathVariable int id) {
+		qs.deleteQuestionById(id);
 	}
 }
