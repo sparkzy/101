@@ -162,11 +162,11 @@ public class SetServiceImpl implements ServiceInterface<FlashcardSet> {
 	 * 
 	 * @return FlashcardSet
 	 */
-//	@Override
-//	@Transactional
-//	public Set update(Set updatedFc) {
-//		return fcRepo.update(updatedFc);
-//	}
+	@Override
+	@Transactional
+	public void update(FlashcardSet updatedFc) {
+		setRepo.save(updatedFc);
+	}
 
 	/**
 	 * Call SetRepo's delete() method and delete a Set from the 101

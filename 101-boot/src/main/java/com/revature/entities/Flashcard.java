@@ -32,8 +32,8 @@ public class Flashcard {
 	private String question;
 	private String answer;
 
-	@Column(name = "AUTHOR_ID")
-	private int authorId;
+//	@Column(name = "AUTHOR_ID")
+//	private int authorId;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "101_FC_TO_SET", joinColumns = @JoinColumn(name = "FC_SET_ID"), inverseJoinColumns = @JoinColumn(name = "FLASHCARD_ID"))
@@ -47,13 +47,13 @@ public class Flashcard {
 		super();
 	}
 
-	public Flashcard(int flashcardId, int setId, String question, String answer, int authorId, Set<FlashcardSet> fcSet,
+	public Flashcard(int flashcardId, int setId, String question, String answer, User author, Set<FlashcardSet> fcSet,
 			User user) {
 		this.flashcardId = flashcardId;
 		this.setId = setId;
 		this.question = question;
 		this.answer = answer;
-		this.authorId = authorId;
+		this.author = author;
 		this.fcSet = fcSet;
 		this.author = user;
 	}
@@ -90,13 +90,13 @@ public class Flashcard {
 		this.answer = answer;
 	}
 
-	public int getAuthorId() {
-		return authorId;
-	}
-
-	public void setAuthorId(int authorId) {
-		this.authorId = authorId;
-	}
+//	public int getAuthorId() {
+//		return authorId;
+//	}
+//
+//	public void setAuthorId(int authorId) {
+//		this.authorId = authorId;
+//	}
 
 	public Set<FlashcardSet> getFcSet() {
 		return fcSet;
@@ -120,7 +120,7 @@ public class Flashcard {
 		int result = 1;
 		result = prime * result + ((answer == null) ? 0 : answer.hashCode());
 		result = prime * result + ((author == null) ? 0 : author.hashCode());
-		result = prime * result + authorId;
+//		result = prime * result + authorId;
 		result = prime * result + ((fcSet == null) ? 0 : fcSet.hashCode());
 		result = prime * result + flashcardId;
 		result = prime * result + ((question == null) ? 0 : question.hashCode());
@@ -147,8 +147,8 @@ public class Flashcard {
 				return false;
 		} else if (!author.equals(other.author))
 			return false;
-		if (authorId != other.authorId)
-			return false;
+//		if (authorId != other.authorId)
+//			return false;
 		if (fcSet == null) {
 			if (other.fcSet != null)
 				return false;
@@ -169,6 +169,6 @@ public class Flashcard {
 	@Override
 	public String toString() {
 		return "Flashcard [flashcardId=" + flashcardId + ", setId=" + setId + ", question=" + question + ", answer="
-				+ answer + ", author=" + author + ", fcSet=" + fcSet + ", user=" + author + "]";
+				+ answer + /*", authorId=" + authorId +*/ ", fcSet=" + fcSet + ", user=" + author + "]";
 	}
 }

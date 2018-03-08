@@ -6,12 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.FlashcardSet;
-import com.revature.services.SetService;
+import com.revature.services.ServiceInterface;
 
 /**
 * Set Controller for 101
@@ -28,7 +29,7 @@ public class SetController {
 	 * Private fields
 	 ************************************************************************************/
 	@Autowired
-	private SetService setService;
+	private ServiceInterface<FlashcardSet> setService;
 	
 	/************************************************************************************
 	 * Constructors
@@ -41,11 +42,11 @@ public class SetController {
 	}
 	
 	/**
-	 * Create new SetController with a pre-defined SetService
+	 * Create new SetController with a pre-defined ServiceInterface<FlashcardSet>
 	 * 
-	 * @param SetService setService
+	 * @param ServiceInterface<FlashcardSet> setService
 	 */
-	public SetController(SetService setService) {
+	public SetController(ServiceInterface<FlashcardSet> setService) {
 		super();
 		this.setService = setService;
 	}
@@ -92,18 +93,18 @@ public class SetController {
 	/**
 	 * Retrieve SetController.setService
 	 * 
-	 * @return SetService setService
+	 * @return ServiceInterface<FlashcardSet> setService
 	 */
-	public SetService getSetService() {
+	public ServiceInterface<FlashcardSet> getSetService() {
 		return setService;
 	}
 
 	/**
-	 * Set SetController.setService to a given SetService
+	 * Set SetController.setService to a given ServiceInterface<FlashcardSet>
 	 * 
-	 * @param SetService setService
+	 * @param ServiceInterface<FlashcardSet> setService
 	 */
-	public void setSetService(SetService setService) {
+	public void setSetService(ServiceInterface<FlashcardSet> setService) {
 		this.setService = setService;
 	}
 	
@@ -169,10 +170,10 @@ public class SetController {
 	 * 
 	 * @return Set
 	 */
-//	@PostMapping
-//	public Set findById(Set updatedSet) {
-//		return setService.update(updatedSet);
-//	}
+	@PutMapping
+	public void findById(@RequestBody FlashcardSet updatedSet) {
+		setService.update(updatedSet);
+	}
 	
 	/************************************************************************************
 	* Delete
