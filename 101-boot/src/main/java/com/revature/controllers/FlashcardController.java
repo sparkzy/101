@@ -6,12 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Flashcard;
-import com.revature.services.FlashcardService;
+import com.revature.services.ServiceInterface;
 
 /**
 * Flashcard Controller for 101
@@ -28,7 +29,7 @@ public class FlashcardController {
 	 * Private fields
 	 ************************************************************************************/
 	@Autowired
-	private FlashcardService fcService;
+	private ServiceInterface<Flashcard> fcService;
 	
 	/************************************************************************************
 	 * Constructors
@@ -41,11 +42,11 @@ public class FlashcardController {
 	}
 	
 	/**
-	 * Create new FlashcardController with a pre-defined FlashcardService
+	 * Create new FlashcardController with a pre-defined ServiceInterface<Flashcard>
 	 * 
-	 * @param FlashcardService fcService
+	 * @param ServiceInterface<Flashcard> fcService
 	 */
-	public FlashcardController(FlashcardService fcService) {
+	public FlashcardController(ServiceInterface<Flashcard> fcService) {
 		super();
 		this.fcService = fcService;
 	}
@@ -92,18 +93,18 @@ public class FlashcardController {
 	/**
 	 * Retrieve FlashcardController.fcService
 	 * 
-	 * @return FlashcardService fcService
+	 * @return ServiceInterface<Flashcard> fcService
 	 */
-	public FlashcardService getFcService() {
+	public ServiceInterface<Flashcard> getFcService() {
 		return fcService;
 	}
 
 	/**
 	 * Set FlashcardController.fcService to a given FlashcardService
 	 * 
-	 * @param FlashcardService fcService
+	 * @param ServiceInterface<Flashcard> fcService
 	 */
-	public void setFcService(FlashcardService fcService) {
+	public void setFcService(ServiceInterface<Flashcard> fcService) {
 		this.fcService = fcService;
 	}
 	
@@ -166,13 +167,11 @@ public class FlashcardController {
 	 * Flashcard
 	 * 
 	 * @param Flashcard updatedFc
-	 * 
-	 * @return Flashcard
 	 */
-//	@PostMapping
-//	public Flashcard findById(Flashcard updatedFc) {
-//		return fcService.update(updatedFc);
-//	}
+	@PutMapping
+	public void findById(Flashcard updatedFc) {
+		fcService.update(updatedFc);
+	}
 	
 	/************************************************************************************
 	* Delete

@@ -6,6 +6,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.revature.entities.Flashcard;
 import com.revature.repos.FlashcardRepo;
@@ -19,7 +21,7 @@ import com.revature.repos.FlashcardRepo;
 *
 */
 @Service
-public class FlashcardServiceImpl implements FlashcardService {
+public class FlashcardServiceImpl implements ServiceInterface<Flashcard> {
 	
 	/************************************************************************************
 	 * Private fields
@@ -123,6 +125,7 @@ public class FlashcardServiceImpl implements FlashcardService {
 	 */
 	@Override
 	@Transactional
+	@PostMapping
 	public Flashcard save(Flashcard newFc) {
 		return fcRepo.save(newFc);
 	}
@@ -159,14 +162,12 @@ public class FlashcardServiceImpl implements FlashcardService {
 	 * Flashcard
 	 * 
 	 * @param Flashcard updatedFc
-	 * 
-	 * @return Flashcard
 	 */
-//	@Override
-//	@Transactional
-//	public Flashcard update(Flashcard updatedFc) {
-//		return fcRepo.update(updatedFc);
-//	}
+	@Override
+	@Transactional
+	public void update(Flashcard updatedFc) {
+		fcRepo.save(updatedFc);
+	}
 
 	/**
 	 * Call FlashcardRepo's delete() method and delete a Flashcard from the 101
