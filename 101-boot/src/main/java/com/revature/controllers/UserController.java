@@ -43,6 +43,11 @@ public class UserController {
 	public User findByUserId(@PathVariable int id) {
 		return us.findById(id);
 	}
+	
+	@GetMapping("username/{username}")
+	public User findByUsername(@PathVariable String username) {
+		return us.findByUsername(username);
+	}
 
 	@PutMapping("id/{id}")
 	public void updateUser(@RequestBody User user) {

@@ -3,6 +3,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LoggedInGuard } from './guards/logged-in.guard';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
+import { SearchUserComponent } from './components/search-user/search-user.component';
 
 export const appRoutes: Routes = [
   {
@@ -16,6 +17,13 @@ export const appRoutes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [
+      LoggedInGuard
+    ]
+  },
+  {
+    path: 'searchusers',
+    component: SearchUserComponent,
     canActivate: [
       LoggedInGuard
     ]

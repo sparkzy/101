@@ -18,6 +18,7 @@ import { ViewReimbursementComponent } from './components/view-reimbursement/view
 import { AddReimbursementComponent } from './components/add-reimbursement/add-reimbursement.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
+import { SearchUserComponent } from './components/search-user/search-user.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { RegisterComponent } from './components/register/register.component';
     AddReimbursementComponent,
     HomeComponent,
     RegisterComponent,
+    SearchUserComponent,
   ],
   providers: [
     LoggedInGuard,
