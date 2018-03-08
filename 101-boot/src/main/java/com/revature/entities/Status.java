@@ -22,6 +22,7 @@ public class Status {
 	@SequenceGenerator(name = "status_id_seq", sequenceName = "status_id_seq")
 	@GeneratedValue(generator = "status_id_seq", strategy = GenerationType.AUTO)
 	private int statusId;
+	
 
 	@Column(name = "status_name")
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
