@@ -11,7 +11,7 @@ import com.revature.repos.UserRepo;
 
 @Service
 public class UserServiceImpl implements UserService {
-	
+
 	@Autowired
 	private UserRepo userRepo;
 
@@ -25,5 +25,21 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public User save(User user) {
 		return userRepo.save(user);
+	}
+
+	@Override
+	@Transactional
+	public User findByUserId(int id) {
+		return userRepo.findByUserId(id);
+	}
+
+	@Override
+	public void update(User user) {
+		userRepo.save(user);
+	}
+
+	@Override
+	public void deleteUserById(int id) {
+		userRepo.deleteById(id);
 	}
 }

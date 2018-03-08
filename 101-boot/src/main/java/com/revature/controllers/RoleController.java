@@ -12,38 +12,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.entities.User;
-import com.revature.services.UserService;
+import com.revature.entities.Role;
+import com.revature.services.RoleService;
 
 @RestController
-@RequestMapping("users")
-public class UserController {
+@RequestMapping("roles")
+public class RoleController {
 
 	@Autowired
-	private UserService us;
+	private RoleService rs;
 	
 	@GetMapping
-	public List<User> findAll() {
-		return us.findAll();
+	public List<Role> findAll() {
+		return rs.findAll();
 	}
 	
 	@PostMapping
-	public User createUser(@RequestBody User user) {
-		return us.save(user);
+	public Role createRole(@RequestBody Role role) {
+		return rs.save(role);
 	}
 	
 	@GetMapping("id/{id}")
-	public User findByUserId(@PathVariable int id) {
-		return us.findByUserId(id);
+	public Role findByRoleId(@PathVariable int id) {
+		return rs.findByRoleId(id);
 	}
 	
 	@PutMapping
-	public void updateUser(@RequestBody User user) {
-		us.update(user);
+	public void updateRole(@RequestBody Role role) {
+		rs.update(role);
 	}
 	
 	@PatchMapping("id/{id}")
-	public void deleteUserById(@PathVariable int id) {
-		us.deleteUserById(id);
+	public void deleteRoleById(@PathVariable int id) {
+		rs.deleteRoleById(id);
 	}
 }
