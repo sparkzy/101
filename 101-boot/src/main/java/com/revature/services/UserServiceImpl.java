@@ -10,7 +10,7 @@ import com.revature.entities.User;
 import com.revature.repos.UserRepo;
 
 @Service
-public class UserServiceImpl implements ServiceInterface<User> {
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepo userRepo;
@@ -43,5 +43,14 @@ public class UserServiceImpl implements ServiceInterface<User> {
 	@Transactional
 	public void delete(int id) {
 		userRepo.deleteById(id);
+	}
+
+	@Transactional
+	public User login(User user) {
+		if (user.getUsername().equals(userRepo.findByUsername(user.getUsername()).getUsername())
+				&& user.getPassword().equals(userRepo.findByUsername(user.getUsername()).getPassword())) {
+			return userRepo.findByUsername(user.getUsername());
+		}
+		return null;
 	}
 }

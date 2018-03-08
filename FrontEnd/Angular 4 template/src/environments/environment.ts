@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  context: 'http://localhost:8080/expense-reimbursement-system/'
+  context: 'http://localhost:8080/'
 };

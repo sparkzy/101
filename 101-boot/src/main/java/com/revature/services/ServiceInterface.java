@@ -30,5 +30,4 @@ public interface ServiceInterface<T> {
 	 * Delete
 	 ************************************************************************************/
 	void delete(int id);
-	
 }

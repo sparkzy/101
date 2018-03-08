@@ -11,9 +11,8 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 export class LoginComponent implements OnInit {
 
   credential = {
-    userName: '',
-    passWord: '',
-    roleId: 1
+    username: '',
+    password: ''
   };
 
   constructor(private client: HttpClient, private cookie: CookieService) { }
@@ -22,11 +21,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.client.post(`${environment.context}login`, this.credential,
-      { withCredentials: true })
+    this.client.post(`${environment.context}users/login`, this.credential)
       .subscribe(
         (succ: any) => {
-          alert(`${succ.userName}, you have successfully logged in.`);
+          alert(`${succ.username}, you have successfully logged in.`);
           this.cookie.putObject('user', succ);
 
         },
