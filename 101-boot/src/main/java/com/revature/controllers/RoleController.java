@@ -13,39 +13,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.entities.User;
+import com.revature.entities.Role;
 import com.revature.services.ServiceInterface;
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("roles")
 @CrossOrigin(origins="http://localhost:4200")
-public class UserController {
+public class RoleController {
 
 	@Autowired
-	private ServiceInterface<User> si;
-
+	private ServiceInterface<Role> si;
+	
 	@GetMapping
-	public List<User> findAll() {
+	public List<Role> findAll() {
 		return si.findAll();
 	}
-
+	
 	@PostMapping
-	public User createUser(@RequestBody User user) {
-		return si.save(user);
+	public Role createRole(@RequestBody Role role) {
+		return si.save(role);
 	}
-
+	
 	@GetMapping("id/{id}")
-	public User findByUserId(@PathVariable int id) {
+	public Role findByRoleId(@PathVariable int id) {
 		return si.findById(id);
 	}
-
+	
 	@PutMapping
-	public void updateUser(@RequestBody User user) {
-		si.update(user);
+	public void updateRole(@RequestBody Role role) {
+		si.update(role);
 	}
-
+	
 	@DeleteMapping("id/{id}")
-	public void deleteUserById(@PathVariable int id) {
+	public void deleteRoleById(@PathVariable int id) {
 		si.delete(id);
 	}
 }

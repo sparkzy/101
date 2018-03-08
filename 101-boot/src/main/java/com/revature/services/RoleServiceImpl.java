@@ -6,42 +6,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.revature.entities.User;
-import com.revature.repos.UserRepo;
+import com.revature.entities.Role;
+import com.revature.repos.RoleRepo;
 
 @Service
-public class UserServiceImpl implements ServiceInterface<User> {
+public class RoleServiceImpl implements ServiceInterface<Role> {
 
 	@Autowired
-	private UserRepo userRepo;
+	private RoleRepo roleRepo;
 
 	@Override
 	@Transactional
-	public List<User> findAll() {
-		return userRepo.findAll();
+	public List<Role> findAll() {
+		return roleRepo.findAll();
 	}
 
 	@Override
 	@Transactional
-	public User save(User user) {
-		return userRepo.save(user);
+	public Role save(Role role) {
+		return roleRepo.save(role);
 	}
 
 	@Override
 	@Transactional
-	public void update(User user) {
-		userRepo.save(user);
+	public void update(Role role) {
+		roleRepo.save(role);
 	}
 
 	@Override
 	@Transactional
-	public User findById(int id) {
-		return userRepo.findByUserId(id);
+	public Role findById(int id) {
+		return roleRepo.findByRoleId(id);
 	}
 
 	@Override
 	@Transactional
 	public void delete(int id) {
-		userRepo.deleteById(id);
+		roleRepo.deleteById(id);
 	}
 }
