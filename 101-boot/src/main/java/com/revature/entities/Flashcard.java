@@ -28,8 +28,8 @@ public class Flashcard {
 	private String question;
 	private String answer;
 
-	@Column(name = "AUTHOR_ID")
-	private int authorId;
+//	@Column(name = "AUTHOR_ID")
+//	private int authorId;
 
 //	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 //	@JoinColumn(name = "FC_SET_ID")
@@ -38,14 +38,9 @@ public class Flashcard {
 	@Column(name = "FC_SET_ID")
 	private int fcSetId;
 
-//	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	@JoinColumn(name = "USER_ID")
-//	private Set<User> author;
-
 	public Flashcard() {
 		super();
 	}
-
 	public Flashcard(int flashcardId, String question, String answer, int authorId, int fcSetId) {
 		super();
 		this.flashcardId = flashcardId;
@@ -81,8 +76,10 @@ public class Flashcard {
 				return false;
 		} else if (!answer.equals(other.answer))
 			return false;
-		if (authorId != other.authorId)
-			return false;
+		if (author == null) {
+			if (other.author != null)
+				return false;
+		} else if (!author.equals(other.author))
 		if (fcSetId != other.fcSetId)
 			return false;
 		if (flashcardId != other.flashcardId)
