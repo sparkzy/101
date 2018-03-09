@@ -170,7 +170,7 @@ public class FlashcardController {
 	 * @param Flashcard updatedFc
 	 */
 	@PutMapping
-	public void findById(@RequestBody Flashcard updatedFc) {
+	public void update(@RequestBody Flashcard updatedFc) {
 		fcService.update(updatedFc);
 	}
 	
