@@ -17,7 +17,7 @@ import com.revature.entities.Quiz;
 import com.revature.services.ServiceInterface;
 
 @RestController
-@RequestMapping("quiz")
+@RequestMapping("quizzes")
 @CrossOrigin(origins="http://localhost:4200")
 public class QuizController {
 
@@ -30,7 +30,7 @@ public class QuizController {
 	}
 	
 	@PostMapping
-	public Quiz createRole(@RequestBody Quiz quiz) {
+	public Quiz createQuiz(@RequestBody Quiz quiz) {
 		return si.save(quiz);
 	}
 	

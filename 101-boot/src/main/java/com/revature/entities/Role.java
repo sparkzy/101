@@ -18,15 +18,13 @@ public class Role {
 	private int roleId;
 
 	private String role;
-
+	
 	public Role() {
 		super();
 	}
-
+	
 	public Role(int roleId, String role) {
 		super();
-		this.roleId = roleId;
-		this.role = role;
 	}
 
 	@Override

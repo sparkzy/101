@@ -17,7 +17,6 @@ public class Subject {
 	@GeneratedValue(generator = "subject_id_seq", strategy = GenerationType.AUTO)
 	private int subjectId;
 
-
 	@Column(name = "subject_name")
 	private String subjectName;
 
@@ -30,7 +29,7 @@ public class Subject {
 		this.subjectId = subjectId;
 		this.subjectName = subjectName;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
