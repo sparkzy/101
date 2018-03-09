@@ -1,8 +1,5 @@
 package com.revature.entities;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,23 +21,19 @@ public class Post {
 	private int postId;
 
 	private String title;
-
-//	@Column(name = "user_id")
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "author_id")
 	private User author;
 
 	private String body;
 	private int likes = 0;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "status_id")
 	private Status status;
-
-//	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	@JoinColumn(name = "subject_id")
-//	private int subjectId;
-	 @ManyToOne(fetch = FetchType.LAZY)
+	
+	 @ManyToOne(fetch = FetchType.EAGER)
 	 @JoinColumn(name = "subject_id")
 	 private Subject subject;
 

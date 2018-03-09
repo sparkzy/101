@@ -1,6 +1,5 @@
 package com.revature.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,7 +28,7 @@ public class User {
 	@Column(name = "LAST_NAME")
 	private String lastname;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ROLE_ID")
 	private Role userRole;
 

@@ -183,7 +183,7 @@ public class FlashcardController {
 	 * 
 	 * @param int id
 	 */
-	@DeleteMapping("delete/{id}")
+	@DeleteMapping("id/{id}")
 	public void delete(@PathVariable int id) {
 		fcService.delete(id);
 	}

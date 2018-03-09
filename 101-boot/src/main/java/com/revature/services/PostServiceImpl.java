@@ -150,6 +150,7 @@ public class PostServiceImpl implements ServiceInterface<Post> {
 	@Override
 	@Transactional
 	public List<Post> findAll() {
+		System.out.println("######### SERVICE ##########");
 		return postRepo.findAll();
 	}
 

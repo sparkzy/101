@@ -19,9 +19,8 @@ public class Role {
 
 	private String role;
 
-//	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "userRole")
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userRole")
 //	@JsonIgnore
-////	@JoinColumn(name = "user_id")
 //	private Set<User> users;
 
 	public Role() {
