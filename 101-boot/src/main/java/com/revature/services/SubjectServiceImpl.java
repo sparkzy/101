@@ -45,7 +45,7 @@ public class SubjectServiceImpl implements ServiceInterface<Subject>{
 	@Override
 	@Transactional
 	public void delete(int id) {
-		subjectRepo.deletBysubjectId(id);
+		subjectRepo.deleteById(id);
 		
 	}
 	

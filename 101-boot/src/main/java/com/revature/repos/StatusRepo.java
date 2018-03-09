@@ -5,6 +5,6 @@ import com.revature.entities.Status;
 
 public interface StatusRepo  extends JpaRepository<Status, Integer>{
 	Status findBystatusId(int id);
-	Status deletBystatusId(int id);
+	Status deleteBystatusId(int id);
 
 }

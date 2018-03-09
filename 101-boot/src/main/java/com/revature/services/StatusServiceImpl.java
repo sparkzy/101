@@ -46,7 +46,7 @@ public class StatusServiceImpl implements ServiceInterface<Status> {
 	@Override
 	@Transactional
 	public void delete(int id) {
-		statRepo.deletBystatusId(id);
+		statRepo.deleteById(id);
 		
 	}
 

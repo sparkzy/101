@@ -10,7 +10,7 @@ public interface SubjectRepo extends JpaRepository<Subject, Integer> {
 	
 	
 	Subject findBysubjectId(int id);
-	Subject deletBysubjectId(int id);
+	Subject deleteBysubjectId(int id);
 
 	
 

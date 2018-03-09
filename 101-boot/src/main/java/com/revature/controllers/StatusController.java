@@ -41,7 +41,7 @@ public class StatusController {
 	public void updateStatus(@RequestBody Status stat) {
 		statService.update(stat);
 	}
-	@DeleteMapping
+	@DeleteMapping("id/{id}")
 	public void deleteStatus(@PathVariable int id) {
 		statService.delete(id);
 	}
