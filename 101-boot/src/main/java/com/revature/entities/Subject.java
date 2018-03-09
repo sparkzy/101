@@ -26,22 +26,20 @@ public class Subject {
 	private int subjectId;
 
 	@Column(name = "subject_name")
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "post_id")
-	private Set<Post> subjectName;
+	private String subjectName;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "101_post_to_subject", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "subject_id"))
-	private Set<Post> posts;
+//	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	@JoinColumn(name = "post_id")
+//	private Set<Post> posts;
 
 	public Subject() {
 		super();
 	}
 
-	public Subject(int subjectId, Set<Post> subjectName, Set<Post> posts) {
+	public Subject(int subjectId, String subjectName/*, Set<Post> posts*/) {
 		this.subjectId = subjectId;
 		this.subjectName = subjectName;
-		this.posts = posts;
+//		this.posts = posts;
 	}
 
 	public int getSubjectId() {
@@ -52,27 +50,27 @@ public class Subject {
 		this.subjectId = subjectId;
 	}
 
-	public Set<Post> getSubjectName() {
+	public String getSubjectName() {
 		return subjectName;
 	}
 
-	public void setSubjectName(Set<Post> subjectName) {
+	public void setSubjectName(String subjectName) {
 		this.subjectName = subjectName;
 	}
 
-	public Set<Post> getPosts() {
-		return posts;
-	}
-
-	public void setPosts(Set<Post> posts) {
-		this.posts = posts;
-	}
+//	public Set<Post> getPosts() {
+//		return posts;
+//	}
+//
+//	public void setPosts(Set<Post> posts) {
+//		this.posts = posts;
+//	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((posts == null) ? 0 : posts.hashCode());
+//		result = prime * result + ((posts == null) ? 0 : posts.hashCode());
 		result = prime * result + subjectId;
 		result = prime * result + ((subjectName == null) ? 0 : subjectName.hashCode());
 		return result;
@@ -87,11 +85,11 @@ public class Subject {
 		if (getClass() != obj.getClass())
 			return false;
 		Subject other = (Subject) obj;
-		if (posts == null) {
-			if (other.posts != null)
-				return false;
-		} else if (!posts.equals(other.posts))
-			return false;
+//		if (posts == null) {
+//			if (other.posts != null)
+//				return false;
+//		} else if (!posts.equals(other.posts))
+//			return false;
 		if (subjectId != other.subjectId)
 			return false;
 		if (subjectName == null) {
@@ -104,6 +102,6 @@ public class Subject {
 
 	@Override
 	public String toString() {
-		return "Subject [subjectId=" + subjectId + ", subjectName=" + subjectName + ", posts=" + posts + "]";
+		return "Subject [subjectId=" + subjectId + ", subjectName=" + subjectName + /*", posts=" + posts +*/ "]";
 	}
 }
