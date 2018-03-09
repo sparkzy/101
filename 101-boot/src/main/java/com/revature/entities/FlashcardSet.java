@@ -1,8 +1,5 @@
 package com.revature.entities;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -20,71 +17,32 @@ public class FlashcardSet {
 
 	@Id
 	@Column(name = "fc_set_id")
-	@SequenceGenerator(name = "fc_set_id_seq", sequenceName = "fc_set_id_seq")
+	@SequenceGenerator(name = "fc_set_id_seq", sequenceName = "fc_set_id_seq", allocationSize = 1)
 	@GeneratedValue(generator = "fc_set_id_seq", strategy = GenerationType.AUTO)
 	private int fcSetId;
 
 	private String title;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "subject_id")
-	private Set<Subject> subject;
+	private Subject subject;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	private Set<User> author;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "author_id")
+	private User author;
 
-	private int likes;
+	private int likes = 0;
 
 	public FlashcardSet() {
 		super();
 	}
 
-	public FlashcardSet(int fcSetId,String title, Set<Subject> subject, Set<User> author, int likes) {
+	public FlashcardSet(int fcSetId, String title, Subject subject, User author, int likes) {
+		super();
 		this.fcSetId = fcSetId;
 		this.title = title;
 		this.subject = subject;
 		this.author = author;
-		this.likes = likes;
-	}
-
-	public int getFcSetId() {
-		return fcSetId;
-	}
-
-	public void setFcSetId(int fcSetId) {
-		this.fcSetId = fcSetId;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public Set<Subject> getSubject() {
-		return subject;
-	}
-
-	public void setSet(Set<Subject> subject) {
-		this.subject = subject;
-	}
-
-	public Set<User> getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(Set<User> author) {
-		this.author = author;
-	}
-
-	public int getLikes() {
-		return likes;
-	}
-
-	public void setLikes(int likes) {
 		this.likes = likes;
 	}
 
@@ -131,9 +89,49 @@ public class FlashcardSet {
 		return true;
 	}
 
+	public int getFcSetId() {
+		return fcSetId;
+	}
+
+	public void setFcSetId(int fcSetId) {
+		this.fcSetId = fcSetId;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Subject getSubject() {
+		return subject;
+	}
+
+	public void setSubject(Subject subject) {
+		this.subject = subject;
+	}
+
+	public User getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(User author) {
+		this.author = author;
+	}
+
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
 	@Override
 	public String toString() {
-		return "FlashcardSet [fcSetId=" + fcSetId + ", title=" + title + ", subjectId=" + subject + ", author="
+		return "FlashcardSet [fcSetId=" + fcSetId + ", title=" + title + ", subject=" + subject + ", author="
 				+ author + ", likes=" + likes + "]";
 	}
 }

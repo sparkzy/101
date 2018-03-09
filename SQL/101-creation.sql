@@ -92,10 +92,11 @@ CREATE TABLE question
 (
     question_id NuMBER PRIMARY KEY,
     quiz_id NUMBER NOT NULL,
+    question VARCHAR2(200) NOT NULL,
     correct_answer VARCHAR(200) NOT NULL,
     wrong_answer_0 VARCHAR2(200) NOT NULL,
-    wrong_answer_1 VARCHAR2(200) NOT NULL,
-    wrong_answer_2 VARCHAR2(200) NOT NULL
+    wrong_answer_1 VARCHAR2(200),
+    wrong_answer_2 VARCHAR2(200)
 );
 
 CREATE TABLE fc_set

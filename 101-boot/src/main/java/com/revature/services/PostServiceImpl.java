@@ -90,7 +90,7 @@ public class PostServiceImpl implements ServiceInterface<Post> {
 	 * 
 	 * @return PostRepo fcRepo
 	 */
-	public PostRepo getFcRepo() {
+	public PostRepo getPostRepo() {
 		return postRepo;
 	}
 
@@ -99,7 +99,7 @@ public class PostServiceImpl implements ServiceInterface<Post> {
 	 * 
 	 * @param PostRepo fcRepo
 	 */
-	public void setFcRepo(PostRepo fcRepo) {
+	public void setPostRepo(PostRepo fcRepo) {
 		this.postRepo = fcRepo;
 	}
 	
@@ -123,8 +123,8 @@ public class PostServiceImpl implements ServiceInterface<Post> {
 	 */
 	@Override
 	@Transactional
-	public Post save(Post newFc) {
-		return postRepo.save(newFc);
+	public Post save(Post newPost) {
+		return postRepo.save(newPost);
 	}
 	
 	/**
@@ -150,7 +150,6 @@ public class PostServiceImpl implements ServiceInterface<Post> {
 	@Override
 	@Transactional
 	public List<Post> findAll() {
-		System.out.println("######### SERVICE ##########");
 		return postRepo.findAll();
 	}
 
@@ -160,13 +159,11 @@ public class PostServiceImpl implements ServiceInterface<Post> {
 	 * Post
 	 * 
 	 * @param Post updatedPost
-	 * 
-	 * @return Post
 	 */
 	@Override
 	@Transactional
-	public void update(Post updatedFc) {
-		postRepo.save(updatedFc);
+	public void update(Post updatedPost) {
+		postRepo.save(updatedPost);
 	}
 
 	/**
