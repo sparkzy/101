@@ -1,16 +1,10 @@
 package com.revature.entities;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,37 +13,20 @@ import javax.persistence.Table;
 public class Status {
 	@Id
 	@Column(name = "status_id")
-	@SequenceGenerator(name = "status_id_seq", sequenceName = "status_id_seq")
+	@SequenceGenerator(name = "status_id_seq", sequenceName = "status_id_seq", allocationSize = 1)
 	@GeneratedValue(generator = "status_id_seq", strategy = GenerationType.AUTO)
 	private int statusId;
-
+	
 	@Column(name = "status_name")
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "post_id")
-	private Set<Post> statusName;
+	private String statusName;
 
 	public Status() {
 		super();
 	}
 
-	public Status(int statusId, Set<Post> statusName) {
+	public Status(int statusId, String statusName) {
+		super();
 		this.statusId = statusId;
-		this.statusName = statusName;
-	}
-
-	public int getStatusId() {
-		return statusId;
-	}
-
-	public void setStatusId(int statusId) {
-		this.statusId = statusId;
-	}
-
-	public Set<Post> getStatusName() {
-		return statusName;
-	}
-
-	public void setStatusName(Set<Post> statusName) {
 		this.statusName = statusName;
 	}
 
@@ -79,6 +56,22 @@ public class Status {
 		} else if (!statusName.equals(other.statusName))
 			return false;
 		return true;
+	}
+
+	public int getStatusId() {
+		return statusId;
+	}
+
+	public void setStatusId(int statusId) {
+		this.statusId = statusId;
+	}
+
+	public String getStatusName() {
+		return statusName;
+	}
+
+	public void setStatusName(String statusName) {
+		this.statusName = statusName;
 	}
 
 	@Override

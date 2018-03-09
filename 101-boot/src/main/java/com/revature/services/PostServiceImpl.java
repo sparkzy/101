@@ -19,7 +19,7 @@ import com.revature.repos.PostRepo;
 *
 */
 @Service
-public class PostServiceImpl implements PostService {
+public class PostServiceImpl implements ServiceInterface<Post> {
 
 	/************************************************************************************
 	 * Private fields
@@ -162,11 +162,11 @@ public class PostServiceImpl implements PostService {
 	 * 
 	 * @return Post
 	 */
-//	@Override
-//	@Transactional
-//	public Post update(Post updatedFc) {
-//		return fcRepo.update(updatedFc);
-//	}
+	@Override
+	@Transactional
+	public void update(Post updatedFc) {
+		postRepo.save(updatedFc);
+	}
 
 	/**
 	 * Call PostRepo's delete() method and delete a Post from the 101

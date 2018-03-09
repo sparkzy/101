@@ -6,12 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Post;
-import com.revature.services.PostService;
+import com.revature.services.ServiceInterface;
 
 /**
 * Post Controller for 101
@@ -28,7 +29,7 @@ public class PostController {
 	 * Private fields
 	 ************************************************************************************/
 	@Autowired
-	private PostService postService;
+	private ServiceInterface<Post> postService;
 	
 	/************************************************************************************
 	 * Constructors
@@ -45,7 +46,7 @@ public class PostController {
 	 * 
 	 * @param PostService postService
 	 */
-	public PostController(PostService postService) {
+	public PostController(ServiceInterface<Post> postService) {
 		super();
 		this.postService = postService;
 	}
@@ -87,23 +88,23 @@ public class PostController {
 	}
 	
 	/************************************************************************************
-	 * Getters and Postters
+	 * Getters and Setters
 	 ************************************************************************************/
 	/**
 	 * Retrieve PostController.postService
 	 * 
-	 * @return PostService postService
+	 * @return ServiceInterface<Post> postService
 	 */
-	public PostService getPostService() {
+	public ServiceInterface<Post> getPostService() {
 		return postService;
 	}
 
 	/**
 	 * Post PostController.postService to a given PostService
 	 * 
-	 * @param PostService postService
+	 * @param ServiceInterface<Post> postService
 	 */
-	public void setPostService(PostService postService) {
+	public void setPostService(ServiceInterface<Post> postService) {
 		this.postService = postService;
 	}
 	
@@ -169,10 +170,10 @@ public class PostController {
 	 * 
 	 * @return Post
 	 */
-//	@PostMapping
-//	public Post findById(Post updatedPost) {
-//		return postService.update(updatedPost);
-//	}
+	@PutMapping
+	public void findById(Post updatedPost) {
+		postService.update(updatedPost);
+	}
 	
 	/************************************************************************************
 	* Delete
