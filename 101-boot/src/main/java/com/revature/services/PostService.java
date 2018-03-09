@@ -2,29 +2,31 @@ package com.revature.services;
 
 import java.util.List;
 
+import com.revature.entities.Post;
+
 /**
-* Generic Service Interface for 101
+* Post Service Interface for 101
 * 
 * @author Bobby McGetrick
 *
 */
-public interface ServiceInterface<T> {
+public interface PostService {
 
 	/************************************************************************************
 	 * Create
 	 ************************************************************************************/
-	T save(T newT);
+	Post save(Post newPost);
 	
 	/************************************************************************************
 	 * Retrieve
 	 ************************************************************************************/
-	T findById(int id);
-	List<T> findAll();
+	Post findById(int id);
+	List<Post> findAll();
 	
 	/************************************************************************************
 	 * Update
 	 ************************************************************************************/
-	void update(T updatedT);
+	void update(Post updatedPost);
 	
 	/************************************************************************************
 	 * Delete

@@ -2,29 +2,31 @@ package com.revature.services;
 
 import java.util.List;
 
+import com.revature.entities.Flashcard;
+
 /**
-* Generic Service Interface for 101
+* Flashcard Service Interface for 101
 * 
 * @author Bobby McGetrick
 *
 */
-public interface ServiceInterface<T> {
+public interface FlashcardService {
 
 	/************************************************************************************
 	 * Create
 	 ************************************************************************************/
-	T save(T newT);
+	Flashcard save(Flashcard newFc);
 	
 	/************************************************************************************
 	 * Retrieve
 	 ************************************************************************************/
-	T findById(int id);
-	List<T> findAll();
+	Flashcard findById(int id);
+	List<Flashcard> findAll();
 	
 	/************************************************************************************
 	 * Update
 	 ************************************************************************************/
-	void update(T updatedT);
+//	Flashcard update(Flashcard updatedFc);
 	
 	/************************************************************************************
 	 * Delete

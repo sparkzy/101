@@ -6,4 +6,6 @@ import com.revature.entities.User;
 
 public interface UserRepo extends JpaRepository<User, Integer> {
 	User findByUserId(int id);
+	
+	User findByUsername(String username);
 }

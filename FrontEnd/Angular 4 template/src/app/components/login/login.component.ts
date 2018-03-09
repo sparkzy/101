@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -11,9 +11,8 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 export class LoginComponent implements OnInit {
 
   credential = {
-    userName: '',
-    passWord: '',
-    roleId: 1
+    username: '',
+    password: ''
   };
 
   constructor(private client: HttpClient, private cookie: CookieService) { }
@@ -22,12 +21,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.client.post(`${environment.context}login`, this.credential,
-      { withCredentials: true })
+    this.client.post(`${environment.context}users/login`, this.credential)
       .subscribe(
         (succ: any) => {
-          alert(`${succ.userName}, you have successfully logged in.`);
-          this.cookie.putObject('user', succ);
+          alert(`${succ.username}, you have successfully logged in.`);
+          this.cookie.set('user', succ);
 
         },
         (err) => {
