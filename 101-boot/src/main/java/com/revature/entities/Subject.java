@@ -17,12 +17,16 @@ public class Subject {
 	@GeneratedValue(generator = "subject_id_seq", strategy = GenerationType.AUTO)
 	private int subjectId;
 
-
 	@Column(name = "subject_name")
 	private String subjectName;
 
 	public Subject() {
 		super();
+	}
+
+	public Subject(int subjectId, String subjectName) {
+		this.subjectId = subjectId;
+		this.subjectName = subjectName;
 	}
 
 	public int getSubjectId() {
@@ -41,17 +45,6 @@ public class Subject {
 		this.subjectName = subjectName;
 	}
 
-	public Subject(int subjectId, String subjectName) {
-		super();
-		this.subjectId = subjectId;
-		this.subjectName = subjectName;
-	}
-
-	@Override
-	public String toString() {
-		return "Subject [subjectId=" + subjectId + ", subjectName=" + subjectName + "]";
-	}
-  
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -78,22 +71,6 @@ public class Subject {
 		} else if (!subjectName.equals(other.subjectName))
 			return false;
 		return true;
-  }
-
-	public int getSubjectId() {
-		return subjectId;
-	}
-
-	public void setSubjectId(int subjectId) {
-		this.subjectId = subjectId;
-	}
-
-	public String getSubjectName() {
-		return subjectName;
-	}
-
-	public void setSubjectName(String subjectName) {
-		this.subjectName = subjectName;
 	}
 
 	@Override
