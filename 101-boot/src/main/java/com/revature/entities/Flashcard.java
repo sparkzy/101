@@ -5,9 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -27,66 +24,23 @@ public class Flashcard {
 	@Column(name = "AUTHOR_ID")
 	private int authorId;
 
-//	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	@JoinColumn(name = "FC_SET_ID")
-//	private Set<FlashcardSet> fcSet;
-	
+	// @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	// @JoinColumn(name = "FC_SET_ID")
+	// private Set<FlashcardSet> fcSet;
+
 	@Column(name = "FC_SET_ID")
 	private int fcSetId;
 
 	public Flashcard() {
 		super();
 	}
-  
+
 	public Flashcard(int flashcardId, String question, String answer, int authorId, int fcSetId) {
-		super();
 		this.flashcardId = flashcardId;
 		this.question = question;
 		this.answer = answer;
 		this.authorId = authorId;
 		this.fcSetId = fcSetId;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((answer == null) ? 0 : answer.hashCode());
-		result = prime * result + authorId;
-		result = prime * result + fcSetId;
-		result = prime * result + flashcardId;
-		result = prime * result + ((question == null) ? 0 : question.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Flashcard other = (Flashcard) obj;
-		if (answer == null) {
-			if (other.answer != null)
-				return false;
-		} else if (!answer.equals(other.answer))
-			return false;
-		if (author == null) {
-			if (other.author != null)
-				return false;
-		} else if (!author.equals(other.author))
-		if (fcSetId != other.fcSetId)
-			return false;
-		if (flashcardId != other.flashcardId)
-			return false;
-		if (question == null) {
-			if (other.question != null)
-				return false;
-		} else if (!question.equals(other.question))
-			return false;
-		return true;
 	}
 
 	public int getFlashcardId() {
@@ -130,8 +84,48 @@ public class Flashcard {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((answer == null) ? 0 : answer.hashCode());
+		result = prime * result + authorId;
+		result = prime * result + fcSetId;
+		result = prime * result + flashcardId;
+		result = prime * result + ((question == null) ? 0 : question.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Flashcard other = (Flashcard) obj;
+		if (answer == null) {
+			if (other.answer != null)
+				return false;
+		} else if (!answer.equals(other.answer))
+			return false;
+		if (authorId != other.authorId)
+			return false;
+		if (fcSetId != other.fcSetId)
+			return false;
+		if (flashcardId != other.flashcardId)
+			return false;
+		if (question == null) {
+			if (other.question != null)
+				return false;
+		} else if (!question.equals(other.question))
+			return false;
+		return true;
+	}
+
+	@Override
 	public String toString() {
-		return "Flashcard [flashcardId=" + flashcardId + ", question=" + question + ", answer="
-				+ answer + ", authorId=" + authorId + ", fcSetId=" + fcSetId + "]";
+		return "Flashcard [flashcardId=" + flashcardId + ", question=" + question + ", answer=" + answer + ", authorId="
+				+ authorId + ", fcSetId=" + fcSetId + "]";
 	}
 }

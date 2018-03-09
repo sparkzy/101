@@ -14,38 +14,48 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.User;
-import com.revature.services.ServiceInterface;
+import com.revature.services.UserService;
 
 @RestController
 @RequestMapping("users")
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
 	@Autowired
-	private ServiceInterface<User> si;
+	private UserService us;
 
 	@GetMapping
 	public List<User> findAll() {
-		return si.findAll();
+		return us.findAll();
 	}
 
 	@PostMapping
 	public User createUser(@RequestBody User user) {
-		return si.save(user);
+		return us.save(user);
+	}
+
+	@PostMapping("/login")
+	public User login(@RequestBody User user) {
+		return us.login(user);
 	}
 
 	@GetMapping("id/{id}")
 	public User findByUserId(@PathVariable int id) {
-		return si.findById(id);
+		return us.findById(id);
 	}
 
-	@PutMapping
+	@GetMapping("username/{username}")
+	public User findByUsername(@PathVariable String username) {
+		return us.findByUsername(username);
+	}
+
+	@PutMapping("id/{id}")
 	public void updateUser(@RequestBody User user) {
-		si.update(user);
+		us.update(user);
 	}
 
 	@DeleteMapping("id/{id}")
 	public void deleteUserById(@PathVariable int id) {
-		si.delete(id);
+		us.delete(id);
 	}
 }
