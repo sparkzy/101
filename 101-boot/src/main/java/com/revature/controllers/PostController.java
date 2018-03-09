@@ -156,7 +156,6 @@ public class PostController {
 	 */
 	@GetMapping
 	public List<Post> findAll() {
-		System.out.println("######### CONTROLLER ##########");
 		return postService.findAll();
 	}
 	

@@ -1,8 +1,5 @@
 package com.revature.entities;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -20,32 +17,75 @@ import javax.persistence.Table;
 public class Quiz {
 	@Id
 	@Column(name = "quiz_id")
-	@SequenceGenerator(name = "quiz_id_seq", sequenceName = "quiz_id_seq")
+	@SequenceGenerator(name = "quiz_id_seq", sequenceName = "quiz_id_seq", allocationSize = 1)
 	@GeneratedValue(generator = "quiz_id_seq", strategy = GenerationType.AUTO)
 	private int quizId;
 
-	@Column(name = "subject_id")
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "subject_id")
-	private Set<Subject> subjectId;
+	private Subject subject;
 
 	private int likes;
 	private String title;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	private User authorId;
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "author_id")
+	private User author;
 
 	public Quiz() {
 		super();
 	}
 
-	public Quiz(int quizId, Set<Subject> subjectId, int likes, String title, User authorId) {
+	public Quiz(int quizId, Subject subjectId, int likes, String title, User author) {
+		super();
 		this.quizId = quizId;
-		this.subjectId = subjectId;
+		this.subject = subjectId;
 		this.likes = likes;
 		this.title = title;
-		this.authorId = authorId;
+		this.author = author;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((author == null) ? 0 : author.hashCode());
+		result = prime * result + likes;
+		result = prime * result + quizId;
+		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Quiz other = (Quiz) obj;
+		if (author == null) {
+			if (other.author != null)
+				return false;
+		} else if (!author.equals(other.author))
+			return false;
+		if (likes != other.likes)
+			return false;
+		if (quizId != other.quizId)
+			return false;
+		if (subject == null) {
+			if (other.subject != null)
+				return false;
+		} else if (!subject.equals(other.subject))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
 	}
 
 	public int getQuizId() {
@@ -56,12 +96,12 @@ public class Quiz {
 		this.quizId = quizId;
 	}
 
-	public Set<Subject> getSubjectId() {
-		return subjectId;
+	public Subject getSubject() {
+		return subject;
 	}
 
-	public void setSubjectId(Set<Subject> subjectId) {
-		this.subjectId = subjectId;
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 
 	public int getLikes() {
@@ -80,60 +120,17 @@ public class Quiz {
 		this.title = title;
 	}
 
-	public User getAuthorId() {
-		return authorId;
+	public User getAuthor() {
+		return author;
 	}
 
-	public void setAuthorId(User authorId) {
-		this.authorId = authorId;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((authorId == null) ? 0 : authorId.hashCode());
-		result = prime * result + likes;
-		result = prime * result + quizId;
-		result = prime * result + ((subjectId == null) ? 0 : subjectId.hashCode());
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Quiz other = (Quiz) obj;
-		if (authorId == null) {
-			if (other.authorId != null)
-				return false;
-		} else if (!authorId.equals(other.authorId))
-			return false;
-		if (likes != other.likes)
-			return false;
-		if (quizId != other.quizId)
-			return false;
-		if (subjectId == null) {
-			if (other.subjectId != null)
-				return false;
-		} else if (!subjectId.equals(other.subjectId))
-			return false;
-		if (title == null) {
-			if (other.title != null)
-				return false;
-		} else if (!title.equals(other.title))
-			return false;
-		return true;
+	public void setAuthor(User author) {
+		this.author = author;
 	}
 
 	@Override
 	public String toString() {
-		return "Quiz [quizId=" + quizId + ", subjectId=" + subjectId + ", likes=" + likes + ", title=" + title
-				+ ", authorId=" + authorId + "]";
+		return "Quiz [quizId=" + quizId + ", subject=" + subject + ", likes=" + likes + ", title=" + title
+				+ ", authorId=" + author + "]";
 	}
 }
