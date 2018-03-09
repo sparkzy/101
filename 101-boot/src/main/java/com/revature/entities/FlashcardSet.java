@@ -1,5 +1,7 @@
 package com.revature.entities;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -24,13 +26,13 @@ public class FlashcardSet {
 
 	private String title;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "subject_id")
-	private Subject subject;
+	private Set<Subject> subject;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "author_id")
-	private User author;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	private Set<User> author;
 
 	private int likes;
 
@@ -38,7 +40,7 @@ public class FlashcardSet {
 		super();
 	}
 
-	public FlashcardSet(int fcSetId,String title, Subject subject, User author, int likes) {
+	public FlashcardSet(int fcSetId,String title, Set<Subject> subject, Set<User> author, int likes) {
 		this.fcSetId = fcSetId;
 		this.title = title;
 		this.subject = subject;
@@ -62,19 +64,19 @@ public class FlashcardSet {
 		this.title = title;
 	}
 
-	public Subject getSubject() {
+	public Set<Subject> getSubject() {
 		return subject;
 	}
 
-	public void setSubject(Subject subject) {
+	public void setSet(Set<Subject> subject) {
 		this.subject = subject;
 	}
 
-	public User getAuthor() {
+	public Set<User> getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(User author) {
+	public void setAuthor(Set<User> author) {
 		this.author = author;
 	}
 

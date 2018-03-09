@@ -1,5 +1,7 @@
 package com.revature.entities;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -29,16 +31,16 @@ public class User {
 	@Column(name = "LAST_NAME")
 	private String lastname;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "ROLE_ID")
-	private Role userRole;
+	private Set<Role> userRole;
 
 	public User() {
 		super();
 	}
 
 	public User(int userId, String username, String password, String email, String firstname, String lastname,
-			Role userRole) {
+			Set<Role> userRole) {
 		this.userId = userId;
 		this.username = username;
 		this.password = password;
@@ -96,11 +98,11 @@ public class User {
 		this.lastname = lastname;
 	}
 
-	public Role getUserRole() {
+	public Set<Role> getUserRole() {
 		return userRole;
 	}
 
-	public void setUserRole(Role userRole) {
+	public void setUserRole(Set<Role> userRole) {
 		this.userRole = userRole;
 	}
 

@@ -1,18 +1,10 @@
 package com.revature.entities;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -22,40 +14,78 @@ public class Flashcard {
 
 	@Id
 	@Column(name = "flashcard_id")
-	@SequenceGenerator(name = "FLASHCARD_ID_SEQ", sequenceName = "FLASHCARD_ID_SEQ")
-	@GeneratedValue(generator = "FLASHCARD_ID_SEQ", strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "flashcard_id_seq", sequenceName = "flashcard_id_seq", allocationSize = 1)
+	@GeneratedValue(generator = "flashcard_id_seq", strategy = GenerationType.AUTO)
 	private int flashcardId;
-
-	@Column(name = "FC_SET_ID")
-	private int setId;
 
 	private String question;
 	private String answer;
 
-//	@Column(name = "AUTHOR_ID")
-//	private int authorId;
+	@Column(name = "AUTHOR_ID")
+	private int authorId;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "101_FC_TO_SET", joinColumns = @JoinColumn(name = "FC_SET_ID"), inverseJoinColumns = @JoinColumn(name = "FLASHCARD_ID"))
-	private Set<FlashcardSet> fcSet;
+//	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	@JoinColumn(name = "FC_SET_ID")
+//	private Set<FlashcardSet> fcSet;
+	
+	@Column(name = "FC_SET_ID")
+	private int fcSetId;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "AUTHOR_ID")
-	private User author;
+//	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	@JoinColumn(name = "USER_ID")
+//	private Set<User> author;
 
 	public Flashcard() {
 		super();
 	}
 
-	public Flashcard(int flashcardId, int setId, String question, String answer, User author, Set<FlashcardSet> fcSet,
-			User user) {
+	public Flashcard(int flashcardId, String question, String answer, int authorId, int fcSetId) {
+		super();
 		this.flashcardId = flashcardId;
-		this.setId = setId;
 		this.question = question;
 		this.answer = answer;
-		this.author = author;
-		this.fcSet = fcSet;
-		this.author = user;
+		this.authorId = authorId;
+		this.fcSetId = fcSetId;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((answer == null) ? 0 : answer.hashCode());
+		result = prime * result + authorId;
+		result = prime * result + fcSetId;
+		result = prime * result + flashcardId;
+		result = prime * result + ((question == null) ? 0 : question.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Flashcard other = (Flashcard) obj;
+		if (answer == null) {
+			if (other.answer != null)
+				return false;
+		} else if (!answer.equals(other.answer))
+			return false;
+		if (authorId != other.authorId)
+			return false;
+		if (fcSetId != other.fcSetId)
+			return false;
+		if (flashcardId != other.flashcardId)
+			return false;
+		if (question == null) {
+			if (other.question != null)
+				return false;
+		} else if (!question.equals(other.question))
+			return false;
+		return true;
 	}
 
 	public int getFlashcardId() {
@@ -64,14 +94,6 @@ public class Flashcard {
 
 	public void setFlashcardId(int flashcardId) {
 		this.flashcardId = flashcardId;
-	}
-
-	public int getSetId() {
-		return setId;
-	}
-
-	public void setSetId(int setId) {
-		this.setId = setId;
 	}
 
 	public String getQuestion() {
@@ -90,85 +112,25 @@ public class Flashcard {
 		this.answer = answer;
 	}
 
-//	public int getAuthorId() {
-//		return authorId;
-//	}
-//
-//	public void setAuthorId(int authorId) {
-//		this.authorId = authorId;
-//	}
-
-	public Set<FlashcardSet> getFcSet() {
-		return fcSet;
+	public int getAuthorId() {
+		return authorId;
 	}
 
-	public void setFcSet(Set<FlashcardSet> fcSet) {
-		this.fcSet = fcSet;
+	public void setAuthorId(int authorId) {
+		this.authorId = authorId;
 	}
 
-	public User getAuthor() {
-		return author;
+	public int getFcSetId() {
+		return fcSetId;
 	}
 
-	public void setAuthor(User author) {
-		this.author = author;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((answer == null) ? 0 : answer.hashCode());
-		result = prime * result + ((author == null) ? 0 : author.hashCode());
-//		result = prime * result + authorId;
-		result = prime * result + ((fcSet == null) ? 0 : fcSet.hashCode());
-		result = prime * result + flashcardId;
-		result = prime * result + ((question == null) ? 0 : question.hashCode());
-		result = prime * result + setId;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Flashcard other = (Flashcard) obj;
-		if (answer == null) {
-			if (other.answer != null)
-				return false;
-		} else if (!answer.equals(other.answer))
-			return false;
-		if (author == null) {
-			if (other.author != null)
-				return false;
-		} else if (!author.equals(other.author))
-			return false;
-//		if (authorId != other.authorId)
-//			return false;
-		if (fcSet == null) {
-			if (other.fcSet != null)
-				return false;
-		} else if (!fcSet.equals(other.fcSet))
-			return false;
-		if (flashcardId != other.flashcardId)
-			return false;
-		if (question == null) {
-			if (other.question != null)
-				return false;
-		} else if (!question.equals(other.question))
-			return false;
-		if (setId != other.setId)
-			return false;
-		return true;
+	public void setFcSetId(int fcSetId) {
+		this.fcSetId = fcSetId;
 	}
 
 	@Override
 	public String toString() {
-		return "Flashcard [flashcardId=" + flashcardId + ", setId=" + setId + ", question=" + question + ", answer="
-				+ answer + /*", authorId=" + authorId +*/ ", fcSet=" + fcSet + ", user=" + author + "]";
+		return "Flashcard [flashcardId=" + flashcardId + ", question=" + question + ", answer="
+				+ answer + ", authorId=" + authorId + ", fcSetId=" + fcSetId + "]";
 	}
 }
