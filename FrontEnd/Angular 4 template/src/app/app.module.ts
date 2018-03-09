@@ -33,7 +33,7 @@ import { SearchUserComponent } from './components/search-user/search-user.compon
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    SearchUserComponent,
+    SearchUserComponent
   ],
   providers: [
     LoggedInGuard,
