@@ -1,8 +1,5 @@
 package com.revature.entities;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,10 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -22,41 +16,95 @@ import javax.persistence.Table;
 public class Post {
 	@Id
 	@Column(name = "post_id")
-	@SequenceGenerator(name = "post_id_seq", sequenceName = "post_id_seq")
+	@SequenceGenerator(name = "post_id_seq", sequenceName = "post_id_seq", allocationSize = 1)
 	@GeneratedValue(generator = "post_id_seq", strategy = GenerationType.AUTO)
 	private int postId;
 
 	private String title;
-
-	@Column(name = "user_id")
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	private Set<User> authorId;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "author_id")
+	private User author;
 
 	private String body;
-	private int likes;
+	private int likes = 0;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "status_id")
-	private Status statusId;
-
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "101_post_to_subject", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "subject_id"))
-	private Set<Subject> subjects;
+	private Status status;
+	
+	 @ManyToOne(fetch = FetchType.EAGER)
+	 @JoinColumn(name = "subject_id")
+	 private Subject subject;
 
 	public Post() {
 		super();
 	}
 
-	public Post(int postId, String title, Set<User> authorId, String body, int likes, Status statusId,
-			Set<Subject> subjects) {
+	public Post(int postId, String title, User author, String body, int likes, Status status, Subject subject) {
+		super();
 		this.postId = postId;
 		this.title = title;
-		this.authorId = authorId;
+		this.author = author;
 		this.body = body;
 		this.likes = likes;
-		this.statusId = statusId;
-		this.subjects = subjects;
+		this.status = status;
+		this.subject = subject;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((author == null) ? 0 : author.hashCode());
+		result = prime * result + ((body == null) ? 0 : body.hashCode());
+		result = prime * result + likes;
+		result = prime * result + postId;
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Post other = (Post) obj;
+		if (author == null) {
+			if (other.author != null)
+				return false;
+		} else if (!author.equals(other.author))
+			return false;
+		if (body == null) {
+			if (other.body != null)
+				return false;
+		} else if (!body.equals(other.body))
+			return false;
+		if (likes != other.likes)
+			return false;
+		if (postId != other.postId)
+			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
+			return false;
+		if (subject == null) {
+			if (other.subject != null)
+				return false;
+		} else if (!subject.equals(other.subject))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
 	}
 
 	public int getPostId() {
@@ -75,12 +123,12 @@ public class Post {
 		this.title = title;
 	}
 
-	public Set<User> getAuthorId() {
-		return authorId;
+	public User getAuthor() {
+		return author;
 	}
 
-	public void setAuthorId(Set<User> authorId) {
-		this.authorId = authorId;
+	public void setAuthor(User author) {
+		this.author = author;
 	}
 
 	public String getBody() {
@@ -99,80 +147,25 @@ public class Post {
 		this.likes = likes;
 	}
 
-	public Status getStatusId() {
-		return statusId;
+	public Status getStatus() {
+		return status;
 	}
 
-	public void setStatusId(Status statusId) {
-		this.statusId = statusId;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
-	public Set<Subject> getSubjects() {
-		return subjects;
+	public Subject getSubject() {
+		return subject;
 	}
 
-	public void setSubjects(Set<Subject> subjects) {
-		this.subjects = subjects;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((authorId == null) ? 0 : authorId.hashCode());
-		result = prime * result + ((body == null) ? 0 : body.hashCode());
-		result = prime * result + likes;
-		result = prime * result + postId;
-		result = prime * result + ((statusId == null) ? 0 : statusId.hashCode());
-		result = prime * result + ((subjects == null) ? 0 : subjects.hashCode());
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Post other = (Post) obj;
-		if (authorId == null) {
-			if (other.authorId != null)
-				return false;
-		} else if (!authorId.equals(other.authorId))
-			return false;
-		if (body == null) {
-			if (other.body != null)
-				return false;
-		} else if (!body.equals(other.body))
-			return false;
-		if (likes != other.likes)
-			return false;
-		if (postId != other.postId)
-			return false;
-		if (statusId == null) {
-			if (other.statusId != null)
-				return false;
-		} else if (!statusId.equals(other.statusId))
-			return false;
-		if (subjects == null) {
-			if (other.subjects != null)
-				return false;
-		} else if (!subjects.equals(other.subjects))
-			return false;
-		if (title == null) {
-			if (other.title != null)
-				return false;
-		} else if (!title.equals(other.title))
-			return false;
-		return true;
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 
 	@Override
 	public String toString() {
-		return "Post [postId=" + postId + ", title=" + title + ", authorId=" + authorId + ", body=" + body + ", likes="
-				+ likes + ", statusId=" + statusId + ", subjects=" + subjects + "]";
+		return "Post [postId=" + postId + ", title=" + title + ", author=" + author + ", body=" + body + ", likes="
+				+ likes + ", status=" + status + ", subject=" + subject + "]";
 	}
 }

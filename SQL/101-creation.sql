@@ -61,7 +61,8 @@ CREATE TABLE post
     body VARCHAR2(2000),
 --    content BLOB,
     likes NUMBER,
-    status_id NUMBER NOT NULL
+    status_id NUMBER NOT NULL,
+    subject_id NUMBER NOT NULL
 --    first_comment NUMBER
 );
 
@@ -157,6 +158,9 @@ ALTER TABLE users ADD CONSTRAINT role_id_fk_auth
 **/
 ALTER TABLE post ADD CONSTRAINT post_author_id_fk_auth
     FOREIGN KEY (author_id) REFERENCES users (user_id) ON DELETE CASCADE;
+
+ALTER TABLE post ADD CONSTRAINT post_subject_id_fk_auth
+    FOREIGN KEY (subject_id) REFERENCES subject (subject_id) ON DELETE CASCADE;
     
 /**
 * quiz
