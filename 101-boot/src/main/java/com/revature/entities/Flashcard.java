@@ -1,11 +1,7 @@
 package com.revature.entities;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,8 +24,8 @@ public class Flashcard {
 	private String question;
 	private String answer;
 
-//	@Column(name = "AUTHOR_ID")
-//	private int authorId;
+	@Column(name = "AUTHOR_ID")
+	private int authorId;
 
 //	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 //	@JoinColumn(name = "FC_SET_ID")
@@ -41,6 +37,7 @@ public class Flashcard {
 	public Flashcard() {
 		super();
 	}
+  
 	public Flashcard(int flashcardId, String question, String answer, int authorId, int fcSetId) {
 		super();
 		this.flashcardId = flashcardId;
