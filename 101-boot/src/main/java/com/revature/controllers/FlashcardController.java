@@ -3,6 +3,7 @@ package com.revature.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -169,7 +170,7 @@ public class FlashcardController {
 	 * @param Flashcard updatedFc
 	 */
 	@PutMapping
-	public void findById(Flashcard updatedFc) {
+	public void findById(@RequestBody Flashcard updatedFc) {
 		fcService.update(updatedFc);
 	}
 	
@@ -182,8 +183,8 @@ public class FlashcardController {
 	 * 
 	 * @param int id
 	 */
-	@GetMapping("delete/{id}")
-	public void delete(int id) {
+	@DeleteMapping("delete/{id}")
+	public void delete(@PathVariable int id) {
 		fcService.delete(id);
 	}
 	
