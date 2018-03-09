@@ -78,4 +78,5 @@ public class Status {
 	public String toString() {
 		return "Status [statusId=" + statusId + ", statusName=" + statusName + "]";
 	}
+  
 }
