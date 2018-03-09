@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -31,14 +34,10 @@ public class Flashcard {
 	@Column(name = "FC_SET_ID")
 	private int fcSetId;
 
-//	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	@JoinColumn(name = "USER_ID")
-//	private Set<User> author;
-
 	public Flashcard() {
 		super();
 	}
-
+  
 	public Flashcard(int flashcardId, String question, String answer, int authorId, int fcSetId) {
 		super();
 		this.flashcardId = flashcardId;
@@ -74,8 +73,10 @@ public class Flashcard {
 				return false;
 		} else if (!answer.equals(other.answer))
 			return false;
-		if (authorId != other.authorId)
-			return false;
+		if (author == null) {
+			if (other.author != null)
+				return false;
+		} else if (!author.equals(other.author))
 		if (fcSetId != other.fcSetId)
 			return false;
 		if (flashcardId != other.flashcardId)
