@@ -12,62 +12,62 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.entities.Flashcard;
+import com.revature.entities.Post;
 import com.revature.services.ServiceInterface;
 
 /**
-* Flashcard Controller for 101
-* Parses requests for 101 Flashcards
+* Post Controller for 101
+* Parses requests for 101 Posts
 * 
 * @author Bobby McGetrick
 *
 */
 @RestController
-@RequestMapping("flashcards")
-public class FlashcardController {
-
+@RequestMapping("posts")
+public class PostController {
+	
 	/************************************************************************************
 	 * Private fields
 	 ************************************************************************************/
 	@Autowired
-	private ServiceInterface<Flashcard> fcService;
+	private ServiceInterface<Post> postService;
 	
 	/************************************************************************************
 	 * Constructors
 	 ************************************************************************************/
 	/**
-	 * Create new FlashcardController
+	 * Create new PostController
 	 */
-	public FlashcardController() {
+	public PostController() {
 		super();
 	}
 	
 	/**
-	 * Create new FlashcardController with a pre-defined ServiceInterface<Flashcard>
+	 * Create new PostController with a pre-defined PostService
 	 * 
-	 * @param ServiceInterface<Flashcard> fcService
+	 * @param PostService postService
 	 */
-	public FlashcardController(ServiceInterface<Flashcard> fcService) {
+	public PostController(ServiceInterface<Post> postService) {
 		super();
-		this.fcService = fcService;
+		this.postService = postService;
 	}
 	 
 	/************************************************************************************
 	 * hashCode() and equals()
 	 ************************************************************************************/
 	/**
-	 * Generate FlashcardController hash code
+	 * Generate PostController hash code
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((fcService == null) ? 0 : fcService.hashCode());
+		result = prime * result + ((postService == null) ? 0 : postService.hashCode());
 		return result;
 	}
 
 	/**
-	 * Check if FlashcardController is equivalent to another Object
+	 * Check if PostController is equivalent to another Object
 	 *
 	 * @param Object obj
 	 */
@@ -79,11 +79,11 @@ public class FlashcardController {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		FlashcardController other = (FlashcardController) obj;
-		if (fcService == null) {
-			if (other.fcService != null)
+		PostController other = (PostController) obj;
+		if (postService == null) {
+			if (other.postService != null)
 				return false;
-		} else if (!fcService.equals(other.fcService))
+		} else if (!postService.equals(other.postService))
 			return false;
 		return true;
 	}
@@ -92,100 +92,104 @@ public class FlashcardController {
 	 * Getters and Setters
 	 ************************************************************************************/
 	/**
-	 * Retrieve FlashcardController.fcService
+	 * Retrieve PostController.postService
 	 * 
-	 * @return ServiceInterface<Flashcard> fcService
+	 * @return ServiceInterface<Post> postService
 	 */
-	public ServiceInterface<Flashcard> getFcService() {
-		return fcService;
+	public ServiceInterface<Post> getPostService() {
+		return postService;
 	}
 
 	/**
-	 * Set FlashcardController.fcService to a given FlashcardService
+	 * Post PostController.postService to a given PostService
 	 * 
-	 * @param ServiceInterface<Flashcard> fcService
+	 * @param ServiceInterface<Post> postService
 	 */
-	public void setFcService(ServiceInterface<Flashcard> fcService) {
-		this.fcService = fcService;
+	public void setPostService(ServiceInterface<Post> postService) {
+		this.postService = postService;
 	}
 	
 	/************************************************************************************
 	* toString()
 	************************************************************************************/
 	public String toString() {
-		return "FlashcardController [fcService=" + this.fcService + "]";
+		return "PostController [postService=" + this.postService + "]";
 	}
 	
 	/************************************************************************************
 	* Create
 	************************************************************************************/
 	/**
-	 * Call FlashcardService's save() method and insert the given Flashcard into the 101
-	 * database as a new Flascard
+	 * Call PostService's save() method and insert the given Post into the 101
+	 * database as a new Post
 	 * 
-	 * @param Flashcard newFc
+	 * @param Post newPost
 	 * 
-	 * @return Flashcard
+	 * @return Post
 	 */
 	@PostMapping
-	public Flashcard save(@RequestBody Flashcard newFc) {
-		return fcService.save(newFc);
+	public Post save(@RequestBody Post newPost) {
+		return postService.save(newPost);
 	}
 	
 	/************************************************************************************
 	* Read
 	************************************************************************************/
 	/**
-	 * Call FlashcardService's findById() method and return a Flashcard from the 101
-	 * database with the corresponding flashcard_id
+	 * Call PostService's findById() method and return a Post from the 101
+	 * database with the corresponding post_id
 	 * 
 	 * @param int id
 	 * 
-	 * @return Flashcard
+	 * @return Post
 	 */
 	@GetMapping("id/{id}")
-	public Flashcard findById(@PathVariable int id) {
-		return fcService.findById(id);
+	public Post findById(@PathVariable int id) {
+		return postService.findById(id);
 	}
 	
 	/**
-	 * Call FlashcardService's findAll() method and return a List of all Flashcards in
+	 * Call PostService's findAll() method and return a List of all Posts in
 	 * the 101 database
 	 * 
-	 * @return List<Flashcard>
+	 * @return List<Post>
 	 */
 	@GetMapping
-	public List<Flashcard> findAll() {
-		return fcService.findAll();
+	public List<Post> findAll() {
+		System.out.println("######### CONTROLLER ##########");
+		return postService.findAll();
 	}
 	
 	/************************************************************************************
 	* Update
 	************************************************************************************/
 	/**
-	 * Call FlashcardService's update() method and update a Flashcard from the 101
-	 * database with the corresponding flashcard_id with the data from the given
-	 * Flashcard
+	 * Call PostService's update() method and update a Post from the 101
+	 * database with the corresponding post_id with the data from the given
+	 * Post
 	 * 
-	 * @param Flashcard updatedFc
+	 * @param Post updatedPost
+	 * 
+	 * @return Post
 	 */
 	@PutMapping
-	public void update(@RequestBody Flashcard updatedFc) {
-		fcService.update(updatedFc);
+	public void findById(@RequestBody Post updatedPost) {
+		postService.update(updatedPost);
 	}
 	
 	/************************************************************************************
 	* Delete
 	************************************************************************************/
 	/**
-	 * Call FlashcardService's delete() method and delete a Flashcard from the 101
-	 * database with the corresponding flashcard_id
+	 * Call PostService's delete() method and delete a Post from the 101
+	 * database with the corresponding post_id with the data from the given
+	 * Post
 	 * 
 	 * @param int id
 	 */
 	@DeleteMapping("id/{id}")
 	public void delete(@PathVariable int id) {
-		fcService.delete(id);
+		postService.delete(id);
 	}
-	
+
 }
