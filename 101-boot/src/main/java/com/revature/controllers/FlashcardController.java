@@ -12,62 +12,62 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.entities.FlashcardSet;
+import com.revature.entities.Flashcard;
 import com.revature.services.ServiceInterface;
 
 /**
-* Set Controller for 101
-* Parses requests for 101 Sets
+* Flashcard Controller for 101
+* Parses requests for 101 Flashcards
 * 
 * @author Bobby McGetrick
 *
 */
 @RestController
-@RequestMapping("sets")
-public class SetController {
+@RequestMapping("flashcards")
+public class FlashcardController {
 
 	/************************************************************************************
 	 * Private fields
 	 ************************************************************************************/
 	@Autowired
-	private ServiceInterface<FlashcardSet> setService;
+	private ServiceInterface<Flashcard> fcService;
 	
 	/************************************************************************************
 	 * Constructors
 	 ************************************************************************************/
 	/**
-	 * Create new SetController
+	 * Create new FlashcardController
 	 */
-	public SetController() {
+	public FlashcardController() {
 		super();
 	}
 	
 	/**
-	 * Create new SetController with a pre-defined ServiceInterface<FlashcardSet>
+	 * Create new FlashcardController with a pre-defined ServiceInterface<Flashcard>
 	 * 
-	 * @param ServiceInterface<FlashcardSet> setService
+	 * @param ServiceInterface<Flashcard> fcService
 	 */
-	public SetController(ServiceInterface<FlashcardSet> setService) {
+	public FlashcardController(ServiceInterface<Flashcard> fcService) {
 		super();
-		this.setService = setService;
+		this.fcService = fcService;
 	}
 	 
 	/************************************************************************************
 	 * hashCode() and equals()
 	 ************************************************************************************/
 	/**
-	 * Generate SetController hash code
+	 * Generate FlashcardController hash code
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((setService == null) ? 0 : setService.hashCode());
+		result = prime * result + ((fcService == null) ? 0 : fcService.hashCode());
 		return result;
 	}
 
 	/**
-	 * Check if SetController is equivalent to another Object
+	 * Check if FlashcardController is equivalent to another Object
 	 *
 	 * @param Object obj
 	 */
@@ -79,11 +79,11 @@ public class SetController {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SetController other = (SetController) obj;
-		if (setService == null) {
-			if (other.setService != null)
+		FlashcardController other = (FlashcardController) obj;
+		if (fcService == null) {
+			if (other.fcService != null)
 				return false;
-		} else if (!setService.equals(other.setService))
+		} else if (!fcService.equals(other.fcService))
 			return false;
 		return true;
 	}
@@ -92,103 +92,100 @@ public class SetController {
 	 * Getters and Setters
 	 ************************************************************************************/
 	/**
-	 * Retrieve SetController.setService
+	 * Retrieve FlashcardController.fcService
 	 * 
-	 * @return ServiceInterface<FlashcardSet> setService
+	 * @return ServiceInterface<Flashcard> fcService
 	 */
-	public ServiceInterface<FlashcardSet> getSetService() {
-		return setService;
+	public ServiceInterface<Flashcard> getFcService() {
+		return fcService;
 	}
 
 	/**
-	 * Set SetController.setService to a given ServiceInterface<FlashcardSet>
+	 * Set FlashcardController.fcService to a given FlashcardService
 	 * 
-	 * @param ServiceInterface<FlashcardSet> setService
+	 * @param ServiceInterface<Flashcard> fcService
 	 */
-	public void setSetService(ServiceInterface<FlashcardSet> setService) {
-		this.setService = setService;
+	public void setFcService(ServiceInterface<Flashcard> fcService) {
+		this.fcService = fcService;
 	}
 	
 	/************************************************************************************
 	* toString()
 	************************************************************************************/
 	public String toString() {
-		return "SetController [setService=" + this.setService + "]";
+		return "FlashcardController [fcService=" + this.fcService + "]";
 	}
 	
 	/************************************************************************************
 	* Create
 	************************************************************************************/
 	/**
-	 * Call SetService's save() method and insert the given Set into the 101
-	 * database as a new FlashcardSet
+	 * Call FlashcardService's save() method and insert the given Flashcard into the 101
+	 * database as a new Flascard
 	 * 
-	 * @param FlashcardSet newSet
+	 * @param Flashcard newFc
 	 * 
-	 * @return FlashcardSet
+	 * @return Flashcard
 	 */
 	@PostMapping
-	public FlashcardSet save(@RequestBody FlashcardSet newSet) {
-		return setService.save(newSet);
+	public Flashcard save(@RequestBody Flashcard newFc) {
+		return fcService.save(newFc);
 	}
 	
 	/************************************************************************************
 	* Read
 	************************************************************************************/
 	/**
-	 * Call SetService's findById() method and return a Set from the 101
-	 * database with the corresponding set_id
+	 * Call FlashcardService's findById() method and return a Flashcard from the 101
+	 * database with the corresponding flashcard_id
 	 * 
 	 * @param int id
 	 * 
-	 * @return FlashcardSet
+	 * @return Flashcard
 	 */
 	@GetMapping("id/{id}")
-	public FlashcardSet findById(@PathVariable int id) {
-		return setService.findById(id);
+	public Flashcard findById(@PathVariable int id) {
+		return fcService.findById(id);
 	}
 	
 	/**
-	 * Call SetService's findAll() method and return a List of all Sets in
+	 * Call FlashcardService's findAll() method and return a List of all Flashcards in
 	 * the 101 database
 	 * 
-	 * @return List<Set>
+	 * @return List<Flashcard>
 	 */
 	@GetMapping
-	public List<FlashcardSet> findAll() {
-		return setService.findAll();
+	public List<Flashcard> findAll() {
+		return fcService.findAll();
 	}
 	
 	/************************************************************************************
 	* Update
 	************************************************************************************/
 	/**
-	 * Call SetService's update() method and update a Set from the 101
-	 * database with the corresponding set_id with the data from the given
-	 * Set
+	 * Call FlashcardService's update() method and update a Flashcard from the 101
+	 * database with the corresponding flashcard_id with the data from the given
+	 * Flashcard
 	 * 
-	 * @param Set updatedSet
-	 * 
-	 * @return Set
+	 * @param Flashcard updatedFc
 	 */
 	@PutMapping
-	public void update(@RequestBody FlashcardSet updatedSet) {
-		setService.update(updatedSet);
+	public void update(@RequestBody Flashcard updatedFc) {
+		fcService.update(updatedFc);
 	}
 	
 	/************************************************************************************
 	* Delete
 	************************************************************************************/
 	/**
-	 * Call SetService's delete() method and delete a Set from the 101
-	 * database with the corresponding set_id with the data from the given
-	 * Set
+	 * Call FlashcardService's delete() method and delete a Flashcard from the 101
+	 * database with the corresponding flashcard_id
 	 * 
 	 * @param int id
 	 */
-	@DeleteMapping("id/{id}")
+	@DeleteMapping("delete/{id}")
 	public void delete(@PathVariable int id) {
-		setService.delete(id);
+		fcService.delete(id);
 	}
 	
 }
