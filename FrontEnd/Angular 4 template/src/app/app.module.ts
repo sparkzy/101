@@ -11,11 +11,8 @@ import { NavComponent } from './nav/nav.component';
 
 import { appRoutes } from './routes';
 import { LoginComponent } from './components/login/login.component';
-import { UsersComponent } from './components/users/users.component';
 import { LoggedInGuard } from './guards/logged-in.guard';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
-import { ViewReimbursementComponent } from './components/view-reimbursement/view-reimbursement.component';
-import { AddReimbursementComponent } from './components/add-reimbursement/add-reimbursement.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SearchUserComponent } from './components/search-user/search-user.component';
@@ -34,9 +31,6 @@ import { SearchUserComponent } from './components/search-user/search-user.compon
     AppComponent,
     NavComponent,
     LoginComponent,
-    UsersComponent,
-    ViewReimbursementComponent,
-    AddReimbursementComponent,
     HomeComponent,
     RegisterComponent,
     SearchUserComponent,
