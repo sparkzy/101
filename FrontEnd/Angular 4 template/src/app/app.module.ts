@@ -12,7 +12,7 @@ import { NavComponent } from './nav/nav.component';
 import { appRoutes } from './routes';
 import { LoginComponent } from './components/login/login.component';
 import { LoggedInGuard } from './guards/logged-in.guard';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CookieService } from 'ngx-cookie-service';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SearchUserComponent } from './components/search-user/search-user.component';

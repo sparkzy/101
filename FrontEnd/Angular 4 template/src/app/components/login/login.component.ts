@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (succ: any) => {
           alert(`${succ.username}, you have successfully logged in.`);
-          this.cookie.putObject('user', succ);
+          this.cookie.set('user', succ);
 
         },
         (err) => {
