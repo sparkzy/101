@@ -16,6 +16,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SearchUserComponent } from './components/search-user/search-user.component';
+import { FlashcardSetComponent } from './components/flashcard-set/flashcard-set.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { SearchUserComponent } from './components/search-user/search-user.compon
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    SearchUserComponent
+    SearchUserComponent,
+    FlashcardSetComponent
   ],
   providers: [
     LoggedInGuard,
