@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
@@ -17,6 +17,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { SearchUserComponent } from './components/search-user/search-user.component';
 import { FlashcardSetComponent } from './components/flashcard-set/flashcard-set.component';
 import { CookieService } from 'ngx-cookie-service';
+import { FlashcardSetCreateComponent } from './components/flashcard-set-create/flashcard-set-create.component';
+import { FlashcardSetSearchComponent } from './components/flashcard-set-search/flashcard-set-search.component';
 
 
 @NgModule({
@@ -35,11 +37,14 @@ import { CookieService } from 'ngx-cookie-service';
     HomeComponent,
     RegisterComponent,
     SearchUserComponent,
-    FlashcardSetComponent
+    FlashcardSetComponent,
+    FlashcardSetCreateComponent,
+    FlashcardSetSearchComponent
   ],
   providers: [
     LoggedInGuard,
-    CookieService
+    CookieService,
+    NgbDropdown
   ],
   bootstrap: [AppComponent]
 })

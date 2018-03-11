@@ -3,6 +3,7 @@ package com.revature.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.FlashcardSet;
 import com.revature.services.ServiceInterface;
+import com.revature.services.SetServiceImpl;
 
 /**
 * Set Controller for 101
@@ -24,6 +26,7 @@ import com.revature.services.ServiceInterface;
 */
 @RestController
 @RequestMapping("sets")
+@CrossOrigin(origins = "http://localhost:4200")
 public class SetController {
 
 	/************************************************************************************
@@ -31,6 +34,8 @@ public class SetController {
 	 ************************************************************************************/
 	@Autowired
 	private ServiceInterface<FlashcardSet> setService;
+	@Autowired
+	private SetServiceImpl ssi = new SetServiceImpl();
 	
 	/************************************************************************************
 	 * Constructors
@@ -152,11 +157,22 @@ public class SetController {
 	 * Call SetService's findAll() method and return a List of all Sets in
 	 * the 101 database
 	 * 
-	 * @return List<Set>
+	 * @return List<FlashcardSet>
 	 */
 	@GetMapping
 	public List<FlashcardSet> findAll() {
 		return setService.findAll();
+	}
+	
+	/**
+	 * Call SetService's findByTitle() method and return a Sets with the corresponding title
+	 * in the 101 database
+	 * 
+	 * @return FlashcardSet
+	 */
+	@GetMapping("title/{title}")
+	public FlashcardSet findByTitle(@PathVariable String title) {
+		return ssi.findByTitle(title);
 	}
 	
 	/************************************************************************************

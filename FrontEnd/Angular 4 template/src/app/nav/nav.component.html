@@ -19,12 +19,17 @@
       <li class="nav-item active">
         <a class="nav-link" routerLink="/searchusers">Search</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/flashcards">Flashcards</a>
+      <li ngbDropdown class="d-inline-block">
+        <a class="nav-link dropdown" id="dropdownBasic1" ngbDropdownToggle>Flashcards</a>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <!-- <button class="dropdown-item" routerLink="/flashcards/create">Create new Set</button> -->
+          <button class="dropdown-item" routerLink="/flashcards/search">Search for a Set</button>
+        </div>
       </li>
     </ul>
     <li class="nav-item active">
       <button class="btn btn-primary" (click)="logout()">Logout</button>
+      <a class="nav-link" routerLink="/home"></a>
     </li>
   </div>
 </nav>

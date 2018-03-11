@@ -1,0 +1,14 @@
+<form (ngSubmit)="addUser(newUser)">
+  <input type="text" name="title" [(ngModel)]="newSet.title" placeholder="Set Title">
+  <select [(ngModel)]="newSet.subjectId" name="subjectId" class="form-control">
+    <option *ngFor="let s of (subjects)" [ngValue]="s.subjectId">{{ s.subjectName }}</option>
+  </select>
+  <button class="btn btn-primary" type="submit">Submit</button>
+  <br>
+  <label for="flashcard">Add flashcards</label>
+  <button class="btn btn" (click)="addNewFlashcard()" type="button">+ New Flashcard</button>
+  <div name="flashcards" *ngFor="let f of (newFlashcards); let i = index;">
+    <input type="text" name="question" [(ngModel)]="newFlashcard[i].question" placeholder="Question">
+    <input type="text" name="answer" [(ngModel)]="newFlashcard[i].answer" placeholder="Answer">
+  </div>
+</form>

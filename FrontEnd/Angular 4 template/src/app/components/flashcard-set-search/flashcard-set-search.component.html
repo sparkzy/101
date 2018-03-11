@@ -1,0 +1,20 @@
+<form (ngSubmit)="searchSet(newFcSet)">
+  <label for="title">Search by title</label>
+  <input type="text" name="title" [(ngModel)]="newFcSet.title" placeholder="Title">
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+<form (ngSubmit)="searchSet(newFcSet)">
+  <label for="title">Search by subject</label>
+  <div class="form-group">
+    <select [(ngModel)]="subjects.id" name="subject" class="form-control">
+      <option *ngFor="let s of (subjects)" [ngValue]="s.id">{{ s.name }}</option>
+    </select>
+  </div>
+  <input type="text" name="title" [(ngModel)]="newFcSet.subjectId" placeholder="Title">
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+<p>
+  {{flashcardSets?.title}}
+</p>
