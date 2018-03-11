@@ -26,7 +26,7 @@ export const appRoutes: Routes = [
     path: 'searchusers',
     component: SearchUserComponent,
     canActivate: [
-     // LoggedInGuard
+     LoggedInGuard
     ]
   },
   {
