@@ -20,7 +20,7 @@ export class FlashcardSetComponent implements OnInit {
   constructor(private client: HttpClient, private cookie: CookieService) { }
 
   ngOnInit() {
-    console.log(JSON.parse(this.cookie.get('user')));
+    console.log(JSON.parse(this.cookie.get('user')).userId);
     this.client.get(`${environment.context}/subjects`)
       .subscribe(
         (succ: any) => {
@@ -30,7 +30,7 @@ export class FlashcardSetComponent implements OnInit {
   }
 
   addNewFlashcard() {
-    this.newFlashcards.push(new Flashcard);
+    this.newFlashcards.push(new Flashcard(0, 0, '', '', JSON.parse(this.cookie.get('user')).userId));
   }
 
 }
