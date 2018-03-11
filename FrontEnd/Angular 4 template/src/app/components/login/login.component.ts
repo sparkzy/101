@@ -23,10 +23,8 @@ export class LoginComponent implements OnInit {
   login() {
     this.client.post(`${environment.context}users/login`, this.credential)
       .subscribe(
-        (succ: any) => {
-          alert(`${succ.username}, you have successfully logged in.`);
-          this.cookie.set('user', succ);
-
+        (succ: Object) => {
+          this.cookie.set('user', JSON.stringify(succ));
         },
         (err) => {
           alert('Failed to log in.');
