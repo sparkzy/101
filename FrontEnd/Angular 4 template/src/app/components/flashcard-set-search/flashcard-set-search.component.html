@@ -8,7 +8,7 @@
   <label for="title">Search by subject</label>
   <div class="form-group">
     <select [(ngModel)]="subjects.id" name="subject" class="form-control">
-      <option *ngFor="let s of (subjects)" [ngValue]="s.id">{{ s.name }}</option>
+      <option *ngFor="let s of subjects" [ngValue]="s.id">{{ s.name }}</option>
     </select>
   </div>
   <input type="text" name="title" [(ngModel)]="newFcSet.subjectId" placeholder="Title">

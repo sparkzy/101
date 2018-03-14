@@ -1,15 +1,20 @@
+import { Subject } from './subject';
+import { User } from './user';
+import { Flashcard } from './flashcard';
+
 export class FlashcardSet {
-    id: number;
-    subjectId: number;
+    fcSetId: number;
+    subject: Subject;
     title: string;
     likes: number;
-    authorId: number;
+    author: User;
 
-    constructor(id: number = 0, subjectId: number = 0, title: string = '', likes: number = 0, authorId: number = 0) {
-        this.id = id;
-        this.subjectId = subjectId;
+    constructor(id: number = 0, subjectId: number = 0, subject: Subject = new Subject, title: string = '',
+        likes: number = 0, authorId: number = 0, author: User = new User) {
+        this.fcSetId = id;
+        this.subject = subject;
         this.title = title;
         this.likes = likes;
-        this.authorId = authorId;
+        this.author = author;
     }
 }

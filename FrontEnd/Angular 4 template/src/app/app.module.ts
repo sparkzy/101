@@ -19,6 +19,8 @@ import { FlashcardSetComponent } from './components/flashcard-set/flashcard-set.
 import { CookieService } from 'ngx-cookie-service';
 import { FlashcardSetCreateComponent } from './components/flashcard-set-create/flashcard-set-create.component';
 import { FlashcardSetSearchComponent } from './components/flashcard-set-search/flashcard-set-search.component';
+import { FlashcardSetViewAllComponent } from './components/flashcard-set-view-all/flashcard-set-view-all.component';
+import { FlashcardSetViewComponent } from './components/flashcard-set-view/flashcard-set-view.component';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { FlashcardSetSearchComponent } from './components/flashcard-set-search/f
     SearchUserComponent,
     FlashcardSetComponent,
     FlashcardSetCreateComponent,
-    FlashcardSetSearchComponent
+    FlashcardSetSearchComponent,
+    FlashcardSetViewAllComponent,
+    FlashcardSetViewComponent
   ],
   providers: [
     LoggedInGuard,

@@ -134,6 +134,7 @@ public class SetController {
 	 */
 	@PostMapping
 	public FlashcardSet save(@RequestBody FlashcardSet newSet) {
+		System.out.println("#######  + " + newSet.getAuthor() + " #######");
 		return setService.save(newSet);
 	}
 	

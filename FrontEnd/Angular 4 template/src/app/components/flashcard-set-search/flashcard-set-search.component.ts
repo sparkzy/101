@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { FlashcardSet } from '../../beans/flashcardSet';
 import { environment } from '../../../environments/environment';
 import { Subject } from '../../beans/subject';
+import { User } from '../../beans/user';
 
 @Component({
   selector: 'app-flashcard-set-search',
@@ -15,11 +16,11 @@ export class FlashcardSetSearchComponent implements OnInit {
   subjects: any;
 
   newFcSet: FlashcardSet = {
-    id: 0,
-    subjectId: 0,
+    fcSetId: 0,
+    subject: new Subject,
     title: '',
     likes: 0,
-    authorId: 0
+    author: new User
   };
 
   constructor(private client: HttpClient) { }
@@ -32,7 +33,7 @@ export class FlashcardSetSearchComponent implements OnInit {
           console.log(this.subjects);
         },
         (err) => {
-          alert('failed to get any subjects')
+          alert('failed to get any subjects');
         }
       );
   }

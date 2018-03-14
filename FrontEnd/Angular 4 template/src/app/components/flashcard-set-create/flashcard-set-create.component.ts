@@ -5,6 +5,7 @@ import { Subject } from '../../beans/subject';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-flashcard-set',
@@ -17,10 +18,9 @@ export class FlashcardSetCreateComponent implements OnInit {
   subjects: Array<Subject>;
   newSet: FlashcardSet = new FlashcardSet;
 
-  constructor(private client: HttpClient, private cookie: CookieService) { }
+  constructor(private client: HttpClient, private cookie: CookieService, private router: Router) { }
 
   ngOnInit() {
-    console.log(JSON.parse(this.cookie.get('user')).userId);
     this.client.get(`${environment.context}/subjects`)
       .subscribe(
         (succ: any) => {
@@ -30,7 +30,38 @@ export class FlashcardSetCreateComponent implements OnInit {
   }
 
   addNewFlashcard() {
-    this.newFlashcards.push(new Flashcard(0, 0, '', '', JSON.parse(this.cookie.get('user')).userId));
+    this.newFlashcards.push(new Flashcard(0, 0, new FlashcardSet, '', '', JSON.parse(this.cookie.get('user'))));
+  }
+
+  addNewSet() {
+    this.newSet.author = JSON.parse(this.cookie.get('user'));
+    // console.log(this.newSet);
+    this.client.post(`${environment.context}/sets`, this.newSet)
+      .subscribe(
+        (succ: any) => {
+          this.newSet = succ;
+          this.newFlashcards.forEach(element => {
+            console.log(this.newSet);
+            element.fcSet = this.newSet;
+            element.author = this.newSet.author;
+            this.postFc(element);
+            this.router.navigate(['/view']);
+        },
+        (err) => {
+          alert('Failed to create set');
+        }
+      );
+    });
+  }
+
+  postFc(fc: Flashcard) {
+    console.log(fc.fcSet);
+    this.client.post(`${environment.context}/flashcards`, fc)
+      .subscribe(
+        (err) => {
+          alert('Failed to add flashcard');
+        }
+      );
   }
 
 }
