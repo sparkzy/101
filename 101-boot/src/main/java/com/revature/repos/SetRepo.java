@@ -6,4 +6,6 @@ import com.revature.entities.FlashcardSet;
 
 public interface SetRepo extends JpaRepository<FlashcardSet, Integer> {
 	FlashcardSet findByFcSetId(int id);
+
+	FlashcardSet findByTitle(String title);
 }

@@ -126,6 +126,7 @@ public class FlashcardServiceImpl implements ServiceInterface<Flashcard> {
 	@Transactional
 	@PostMapping
 	public Flashcard save(Flashcard newFc) {
+		System.out.println("########## " + newFc + " ##########");
 		return fcRepo.save(newFc);
 	}
 	

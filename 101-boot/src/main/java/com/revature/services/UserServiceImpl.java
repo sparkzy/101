@@ -47,9 +47,12 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	public User login(User user) {
-		if (user.getUsername().equals(userRepo.findByUsername(user.getUsername()).getUsername())
-				&& user.getPassword().equals(userRepo.findByUsername(user.getUsername()).getPassword())) {
-			return userRepo.findByUsername(user.getUsername());
+		String username = user.getUsername();
+		String password = user.getPassword();
+		User dbUser = userRepo.findByUsername(username);
+		if (username.equals(dbUser.getUsername())
+				&& password.equals(dbUser.getPassword())) {
+			return dbUser;
 		}
 		return null;
 	}

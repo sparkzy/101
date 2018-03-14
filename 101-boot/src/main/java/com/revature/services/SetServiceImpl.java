@@ -179,5 +179,19 @@ public class SetServiceImpl implements ServiceInterface<FlashcardSet> {
 	public void delete(int id) {
 		setRepo.deleteById(id);
 	}
+	
+	/************************************************************************************
+	* Methods
+	************************************************************************************/
+	/**
+	 * Call SetRepo's findByTitle() method and return a Set wit the corresponding title
+	 * in the 101 database
+	 * 
+	 * @return FlashcardSet
+	 */
+	@Transactional
+	public FlashcardSet findByTitle(String title) {
+		return setRepo.findByTitle(title);
+	}
 
 }

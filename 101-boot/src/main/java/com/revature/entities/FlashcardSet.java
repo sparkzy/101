@@ -21,6 +21,7 @@ public class FlashcardSet {
 	@GeneratedValue(generator = "fc_set_id_seq", strategy = GenerationType.AUTO)
 	private int fcSetId;
 
+	@Column(name = "title")
 	private String title;
 
 	@ManyToOne(fetch = FetchType.EAGER)
