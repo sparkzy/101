@@ -21,6 +21,7 @@ import { FlashcardSetCreateComponent } from './components/flashcard-set-create/f
 import { FlashcardSetSearchComponent } from './components/flashcard-set-search/flashcard-set-search.component';
 import { FlashcardSetViewAllComponent } from './components/flashcard-set-view-all/flashcard-set-view-all.component';
 import { FlashcardSetViewComponent } from './components/flashcard-set-view/flashcard-set-view.component';
+import { QuizComponent } from './components/quiz/quiz.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { FlashcardSetViewComponent } from './components/flashcard-set-view/flash
     FlashcardSetCreateComponent,
     FlashcardSetSearchComponent,
     FlashcardSetViewAllComponent,
-    FlashcardSetViewComponent
+    FlashcardSetViewComponent,
+    QuizComponent
   ],
   providers: [
     LoggedInGuard,

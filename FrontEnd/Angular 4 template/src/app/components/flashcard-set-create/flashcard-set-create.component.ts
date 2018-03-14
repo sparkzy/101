@@ -35,29 +35,28 @@ export class FlashcardSetCreateComponent implements OnInit {
 
   addNewSet() {
     this.newSet.author = JSON.parse(this.cookie.get('user'));
-    // console.log(this.newSet);
     this.client.post(`${environment.context}/sets`, this.newSet)
       .subscribe(
         (succ: any) => {
           this.newSet = succ;
           this.newFlashcards.forEach(element => {
-            console.log(this.newSet);
             element.fcSet = this.newSet;
             element.author = this.newSet.author;
             this.postFc(element);
             this.router.navigate(['/view']);
-        },
-        (err) => {
-          alert('Failed to create set');
-        }
-      );
-    });
+          },
+            (err) => {
+              alert('Failed to create set');
+            }
+          );
+        });
   }
 
   postFc(fc: Flashcard) {
-    console.log(fc.fcSet);
     this.client.post(`${environment.context}/flashcards`, fc)
       .subscribe(
+        (succ: any) => {
+        },
         (err) => {
           alert('Failed to add flashcard');
         }
