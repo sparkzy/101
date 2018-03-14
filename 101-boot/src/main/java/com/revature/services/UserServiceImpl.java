@@ -51,11 +51,22 @@ public class UserServiceImpl implements UserService {
 				&& user.getPassword().equals(userRepo.findByUsername(user.getUsername()).getPassword())) {
 			return userRepo.findByUsername(user.getUsername());
 		}
+
+		// if (user.equals(userRepo.findByUsernameAndPassword(user.getUsername(),
+		// user.getPassword()))) {
+		// return userRepo.findByUsernameAndPassword(user.getUsername(),
+		// user.getPassword());
+		// }
 		return null;
 	}
 
 	@Override
 	public User findByUsername(String username) {
 		return userRepo.findByUsername(username);
+	}
+
+	@Override
+	public User findByUsernameAndPassword(String username, String password) {
+		return userRepo.findByUsernameAndPassword(username, password);
 	}
 }
