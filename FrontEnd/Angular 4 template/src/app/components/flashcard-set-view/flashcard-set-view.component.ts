@@ -38,4 +38,8 @@ export class FlashcardSetViewComponent implements OnInit {
       );
   }
 
+  // view(set: FlashcardSet) {
+
+  // }
+
 }

@@ -6,13 +6,25 @@
         <button>Asc</button>
         <button>Desc</button>
       </th>
-      <th scope="cole">Subject</th>
-      <th scope="cole">Author</th>
-      <th scope="cole">Likes</th>
+      <th scope="cole">
+        Subject
+        <button>Asc</button>
+        <button>Desc</button>
+      </th>
+      <th scope="cole">
+        Author
+        <button>Asc</button>
+        <button>Desc</button>
+      </th>
+      <th scope="cole">
+        Likes
+        <button>Asc</button>
+        <button>Desc</button>
+      </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let s of sets">
+    <tr *ngFor="let s of sets" (click)="view(s)">
       <td>{{ s.title }}</td>
       <td>{{ s.subject.subjectName }}</td>
       <td>{{ s.author.username }}</td>
