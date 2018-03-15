@@ -29,7 +29,7 @@ public class Flashcard {
 	 @JoinColumn(name = "author_id")
 	 private User author;
 
-	 @ManyToOne(fetch = FetchType.EAGER)
+	 @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	 @JoinColumn(name = "FC_SET_ID")
 	 private FlashcardSet fcSet;
 
