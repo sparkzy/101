@@ -1,3 +1,22 @@
-<p>
-  flashcard-set-view works!
-</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="cole">
+        Title
+        <button>Asc</button>
+        <button>Desc</button>
+      </th>
+      <th scope="cole">Subject</th>
+      <th scope="cole">Author</th>
+      <th scope="cole">Likes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let s of sets">
+      <td>{{ s.title }}</td>
+      <td>{{ s.subject.subjectName }}</td>
+      <td>{{ s.author.username }}</td>
+      <td>{{ s.likes }}</td>
+    </tr>
+  </tbody>
+</table>
