@@ -48,7 +48,7 @@ import { QuizDeleteComponent } from './components/quiz-delete/quiz-delete.compon
     QuizComponent,
     QuizCreateComponent,
     QuizUpdateComponent,
-    QuizDeleteComponent
+    QuizDeleteComponent,
     FlashcardSetViewComponent
   ],
   providers: [
