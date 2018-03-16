@@ -1,3 +1,18 @@
-<p>
-  quiz-delete works!
-</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Likes</th>
+      <th scope="col">Author</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let quiz of quizzes">
+      <td>{{quiz.title}}</td>
+      <td>{{quiz.subject}}</td>
+      <td>{{quiz.likes}}</td>
+      <td>{{quiz.author}}</td>
+    </tr>
+  </tbody>
+</table>
