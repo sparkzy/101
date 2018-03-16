@@ -188,7 +188,7 @@ ALTER TABLE fc_set ADD CONSTRAINT set_author_id_fk_auth
 * flashcard
 **/
 ALTER TABLE flashcard ADD CONSTRAINT fc_set_id_fk_auth
-    FOREIGN KEY (fc_set_id) REFERENCES subject (subject_id) ON DELETE CASCADE;
+    FOREIGN KEY (fc_set_id) REFERENCES fc_set (fc_set_id) ON DELETE CASCADE;
 
 ALTER TABLE flashcard ADD CONSTRAINT fc_author_id_fk_auth
     FOREIGN KEY (author_id) REFERENCES users (user_id) ON DELETE CASCADE;

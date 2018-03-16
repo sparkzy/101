@@ -33,6 +33,10 @@ export class FlashcardSetCreateComponent implements OnInit {
     this.newFlashcards.push(new Flashcard(0, 0, new FlashcardSet, '', '', JSON.parse(this.cookie.get('user'))));
   }
 
+  removeNewFlashcard() {
+    this.newFlashcards.pop();
+  }
+
   addNewSet() {
     this.newSet.author = JSON.parse(this.cookie.get('user'));
     this.client.post(`${environment.context}/sets`, this.newSet)
@@ -43,24 +47,37 @@ export class FlashcardSetCreateComponent implements OnInit {
             element.fcSet = this.newSet;
             element.author = this.newSet.author;
             this.postFc(element);
-            this.router.navigate(['/view']);
-          },
-            (err) => {
-              alert('Failed to create set');
-            }
+          }
           );
         });
+        this.router.navigateByUrl('flashcards/view');
   }
 
   postFc(fc: Flashcard) {
     this.client.post(`${environment.context}/flashcards`, fc)
       .subscribe(
         (succ: any) => {
+          console.log('added fc');
+
         },
         (err) => {
           alert('Failed to add flashcard');
         }
       );
+  }
+
+  checkSubmit() {
+    let bool = false;
+    if (this.newSet.title === '' || this.newSet.subject.id === 0 ) {
+      bool = true;
+    } else {
+      this.newFlashcards.forEach(element => {
+        if (element.answer === '' || element.question === '') {
+          bool = true;
+        }
+      });
+    }
+    return bool;
   }
 
 }
