@@ -1,5 +1,6 @@
 package com.revature.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,14 +22,14 @@ public class Quiz {
 	@GeneratedValue(generator = "quiz_id_seq", strategy = GenerationType.AUTO)
 	private int quizId;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "subject_id")
 	private Subject subject;
 
 	private int likes;
 	private String title;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "author_id")
 	private User author;
 

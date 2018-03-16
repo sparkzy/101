@@ -20,6 +20,10 @@ import { CookieService } from 'ngx-cookie-service';
 import { FlashcardSetCreateComponent } from './components/flashcard-set-create/flashcard-set-create.component';
 import { FlashcardSetSearchComponent } from './components/flashcard-set-search/flashcard-set-search.component';
 import { FlashcardSetViewComponent } from './components/flashcard-set-view/flashcard-set-view.component';
+import { QuizComponent } from './components/quiz/quiz.component';
+import { QuizCreateComponent } from './components/quiz-create/quiz-create.component';
+import { QuizUpdateComponent } from './components/quiz-update/quiz-update.component';
+import { QuizDeleteComponent } from './components/quiz-delete/quiz-delete.component';
 
 @NgModule({
   imports: [
@@ -40,6 +44,11 @@ import { FlashcardSetViewComponent } from './components/flashcard-set-view/flash
     FlashcardSetComponent,
     FlashcardSetCreateComponent,
     FlashcardSetSearchComponent,
+    FlashcardSetViewComponent,
+    QuizComponent,
+    QuizCreateComponent,
+    QuizUpdateComponent,
+    QuizDeleteComponent
     FlashcardSetViewComponent
   ],
   providers: [

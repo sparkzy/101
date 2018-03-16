@@ -9,6 +9,10 @@ import { FlashcardSetComponent } from './components/flashcard-set/flashcard-set.
 import { FlashcardSetCreateComponent } from './components/flashcard-set-create/flashcard-set-create.component';
 import { FlashcardSetSearchComponent } from './components/flashcard-set-search/flashcard-set-search.component';
 import { FlashcardSetViewComponent } from './components/flashcard-set-view/flashcard-set-view.component';
+import { QuizComponent } from './components/quiz/quiz.component';
+import { QuizCreateComponent } from './components/quiz-create/quiz-create.component';
+import { QuizUpdateComponent } from './components/quiz-update/quiz-update.component';
+import { QuizDeleteComponent } from './components/quiz-delete/quiz-delete.component';
 
 export const appRoutes: Routes = [
   {
@@ -58,6 +62,36 @@ export const appRoutes: Routes = [
           LoggedInGuard
         ]
       }],
+    canActivate: [
+      LoggedInGuard
+    ]
+  },
+  {
+    path: 'quiz',
+    component: QuizComponent,
+    children: [
+      {
+        path: 'create',
+        component: QuizCreateComponent,
+        canActivate: [
+          LoggedInGuard
+        ]
+      },
+      {
+        path: 'update',
+        component: QuizUpdateComponent,
+        canActivate: [
+          LoggedInGuard
+        ]
+      },
+      {
+        path: 'delete',
+        component: QuizDeleteComponent,
+        canActivate: [
+          LoggedInGuard
+        ]
+      }
+    ],
     canActivate: [
       LoggedInGuard
     ]

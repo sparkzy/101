@@ -1,6 +1,5 @@
 package com.revature.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,13 +24,13 @@ public class Flashcard {
 	private String question;
 	private String answer;
 	
-	 @ManyToOne(fetch = FetchType.EAGER)
-	 @JoinColumn(name = "author_id")
-	 private User author;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "author_id")
+	private User author;
 
-	 @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	 @JoinColumn(name = "FC_SET_ID")
-	 private FlashcardSet fcSet;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "FC_SET_ID")
+	private FlashcardSet fcSet;
 
 	public Flashcard() {
 		super();

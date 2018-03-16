@@ -58,6 +58,7 @@ export class FlashcardSetCreateComponent implements OnInit {
       .subscribe(
         (succ: any) => {
           console.log('added fc');
+
         },
         (err) => {
           alert('Failed to add flashcard');
