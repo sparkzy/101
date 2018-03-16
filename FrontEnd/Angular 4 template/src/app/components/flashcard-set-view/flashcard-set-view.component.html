@@ -1,30 +1,34 @@
+<input type="text" [(ngModel)]="titleFilter" placeholder="title">
+<input type="text" [(ngModel)]="authorFilter" placeholder="author">
+<input type="text" [(ngModel)]="subjectFilter" placeholder="subject">
+
 <table class="table">
   <thead>
     <tr>
       <th scope="cole">
         Title
-        <button>Asc</button>
-        <button>Desc</button>
+        <button class="btn" (click)="sort('title')">Asc</button>
+        <button class="btn" (click)="sort('-title')">Desc</button>
       </th>
       <th scope="cole">
         Subject
-        <button>Asc</button>
-        <button>Desc</button>
+        <!-- <button class="btn" (click)="sort('subject.subjectName')">Asc</button>
+        <button class="btn" (click)="sort('-subject.subjectName')">Desc</button> -->
       </th>
       <th scope="cole">
         Author
-        <button>Asc</button>
-        <button>Desc</button>
+        <!-- <button class="btn" (click)="sort('author.username')">Asc</button>
+        <button class="btn" (click)="sort('-author.username')">Desc</button> -->
       </th>
       <th scope="cole">
         Likes
-        <button>Asc</button>
-        <button>Desc</button>
+        <button class="btn" (click)="sort('likes')">Asc</button>
+        <button class="btn" (click)="sort('-likes')">Desc</button>
       </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let s of sets" (click)="view(s)">
+    <tr *ngFor="let s of (sets | filter:'title':titleFilter | setAuthor:authorFilter | setSubject:subjectFilter)" (click)="view(s)">
       <td>{{ s.title }}</td>
       <td>{{ s.subject.subjectName }}</td>
       <td>{{ s.author.username }}</td>

@@ -3,6 +3,7 @@ import { Subject } from '../../beans/subject';
 import { FlashcardSet } from '../../beans/flashcardSet';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { DynamicSortService } from '../../services/dynamic-sort.service';
 
 @Component({
   selector: 'app-flashcard-set-view',
@@ -13,15 +14,17 @@ export class FlashcardSetViewComponent implements OnInit {
 
   subjects: Array<Subject>;
   sets: Array<FlashcardSet>;
+  titleFilter: string;
+  authorFilter: string;
+  subjectFilter: string;
 
-  constructor(private client: HttpClient) { }
+  constructor(private client: HttpClient, private sorter: DynamicSortService) { }
 
   ngOnInit() {
     this.client.get(`${environment.context}/sets`)
       .subscribe(
         (succ: any) => {
           this.sets = succ;
-          console.log(this.sets);
         },
         (err: any) => {
           alert('Failed to get sets');
@@ -38,8 +41,8 @@ export class FlashcardSetViewComponent implements OnInit {
       );
   }
 
-  // view(set: FlashcardSet) {
-
-  // }
+  sort(property: string) {
+    this.sorter.arraySort(this.sets, property);
+  }
 
 }

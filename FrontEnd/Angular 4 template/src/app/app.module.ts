@@ -20,6 +20,11 @@ import { CookieService } from 'ngx-cookie-service';
 import { FlashcardSetCreateComponent } from './components/flashcard-set-create/flashcard-set-create.component';
 import { FlashcardSetSearchComponent } from './components/flashcard-set-search/flashcard-set-search.component';
 import { FlashcardSetViewComponent } from './components/flashcard-set-view/flashcard-set-view.component';
+import { DynamicSortService } from './services/dynamic-sort.service';
+import { SetTitlePipe } from './pipes/set-title.pipe';
+import { SetAuthorPipe } from './pipes/set-author.pipe';
+import { SetSubjectPipe } from './pipes/set-subject.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   imports: [
@@ -40,12 +45,17 @@ import { FlashcardSetViewComponent } from './components/flashcard-set-view/flash
     FlashcardSetComponent,
     FlashcardSetCreateComponent,
     FlashcardSetSearchComponent,
-    FlashcardSetViewComponent
+    FlashcardSetViewComponent,
+    SetTitlePipe,
+    SetAuthorPipe,
+    SetSubjectPipe,
+    FilterPipe
   ],
   providers: [
     LoggedInGuard,
     CookieService,
-    NgbDropdown
+    NgbDropdown,
+    DynamicSortService
   ],
   bootstrap: [AppComponent]
 })
