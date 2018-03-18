@@ -54,12 +54,10 @@ import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
     SearchUserComponent,
     FlashcardSetComponent,
     FlashcardSetCreateComponent,
-    FlashcardSetSearchComponent,
-    FlashcardSetViewAllComponent,
     FlashcardSetViewComponent,
     PostComponent,
     SubjectsComponent,
-    SearchpostComponent
+    SearchpostComponent,
     FlashcardSetViewComponent,
     SetAuthorPipe,
     SetSubjectPipe,

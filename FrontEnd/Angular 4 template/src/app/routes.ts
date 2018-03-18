@@ -9,7 +9,6 @@ import { FlashcardSet } from './beans/flashcardSet';
 import { FlashcardSetComponent } from './components/flashcard-set/flashcard-set.component';
 import { FlashcardSetCreateComponent } from './components/flashcard-set-create/flashcard-set-create.component';
 import { FlashcardSetViewComponent } from './components/flashcard-set-view/flashcard-set-view.component';
-import { FlashcardSetViewAllComponent } from './components/flashcard-set-view-all/flashcard-set-view-all.component';
 import { PostComponent } from './compoment/post/post.component';
 import { SubjectsComponent } from './components/subjects/subjects.component';
 import { SearchpostComponent } from './components/searchpost/searchpost.component';
