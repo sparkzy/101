@@ -1,4 +1,4 @@
-<form (ngSubmit)="addNewQuiz(newQuiz)">
+<!-- <form (ngSubmit)="addNewQuiz(newQuiz)">
   <input type="text" name="title" [(ngModel)]="newQuiz.title" placeholder="Title">
   <select [(ngModel)]="newQuiz.subject" name="subjectId" class="form-control">
     <option *ngFor="let s of (subjects)" [ngValue]="s">{{ s.subjectName }}</option>
@@ -14,4 +14,55 @@
     <input type="text" name="wrongAnswer3" [(ngModel)]="q.wrongAnswer3" [(value)]="q.wrongAnswer3" placeholder="Wrong Answer 3">
   </div>
   <button class="btn btn-primary" type="submit">Submit</button>
-</form>
+</form> -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+    </div>
+    <div class="col-sm">
+      <form (ngSubmit)="addNewQuiz(newQuiz)">
+        <div id="create">
+          <h3>Create a Quiz</h3>
+        </div>
+        <div id="create">
+          <input type="text" name="title" [(ngModel)]="newQuiz.title" placeholder="Title">
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+        <div id="create">
+          <select [(ngModel)]="newQuiz.subject" name="subjectId" class="form-control">
+            <option *ngFor="let s of (subjects)" [ngValue]="s">{{ s.subjectName }}</option>
+          </select>
+        </div>
+        <div id="create">
+          <button class="btn btn" (click)="addNewQuestion()" type="button">+ Question</button>
+          <button class="btn btn" (click)="removeNewQuestion()" type="button">- Question</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm">
+    </div>
+  </div>
+  <div id="create" class="row" *ngFor="let q of newQuestions">
+    <div class="col-sm">
+      Q:
+      <input type="text" name="question" [(ngModel)]="q.question" [(value)]="q.question" placeholder="Question">
+    </div>
+    <div class="col-sm">
+      CA:
+      <input type="text" name="correctAnswer" [(ngModel)]="q.correctAnswer" [(value)]="q.correctAnswer" placeholder="Correct Answer">
+    </div>
+    <div class="col-sm">
+      WA1:
+      <input type="text" name="wrongAnswer1" [(ngModel)]="q.wrongAnswer1" [(value)]="q.wrongAnswer1" placeholder="Wrong Answer 1">
+    </div>
+    <div class="col-sm">
+      WA2:
+      <input type="text" name="wrongAnswer2" [(ngModel)]="q.wrongAnswer2" [(value)]="q.wrongAnswer2" placeholder="Wrong Answer 2">
+    </div>
+    <div class="col-sm">
+      WA3:
+      <input type="text" name="wrongAnswer3" [(ngModel)]="q.wrongAnswer3" [(value)]="q.wrongAnswer3" placeholder="Wrong Answer 3">
+    </div>
+  </div>
+</div>

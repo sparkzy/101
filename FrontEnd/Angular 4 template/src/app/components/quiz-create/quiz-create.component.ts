@@ -33,6 +33,10 @@ export class QuizCreateComponent implements OnInit {
     this.newQuestions.push(new Question(0, new Quiz, '', '', '', '', ''));
   }
 
+  removeNewQuestion() {
+    this.newQuestions.pop();
+  }
+
   addNewQuiz() {
     this.newQuiz.author = JSON.parse(this.cookie.get('user'));
     this.client.post(`${environment.context}/quizzes`, this.newQuiz)
