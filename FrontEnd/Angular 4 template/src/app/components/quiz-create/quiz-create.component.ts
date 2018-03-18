@@ -41,9 +41,8 @@ export class QuizCreateComponent implements OnInit {
           this.newQuiz = succ;
           this.newQuestions.forEach(element => {
             element.quiz = this.newQuiz;
-            console.log(element);
             this.postQuestion(element);
-            this.router.navigate(['/view']);
+            this.router.navigateByUrl('quiz/view');
           },
             (err) => {
               alert('Failed to create set');

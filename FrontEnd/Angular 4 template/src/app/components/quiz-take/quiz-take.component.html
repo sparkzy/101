@@ -1,0 +1,21 @@
+<button (click)="prev()">&lt;</button>
+<div *ngFor="let q of questions; let i = index;">
+  <div *ngIf="i === idx">
+    <h3>{{ q.question }}</h3>
+    <button (click)="answer(q.correctAnswer)">{{ q.correctAnswer }}</button>
+    <button (click)="answer(q.wrongAnswer1)">{{ q.wrongAnswer1 }}</button>
+    <button (click)="answer(q.wrongAnswer2)" *ngIf="q.wrongAnswer2">{{ q.wrongAnswer2 }}</button>
+    <button (click)="answer(q.wrongAnswer3)" *ngIf="q.wrongAnswer3">{{ q.wrongAnswer3 }}</button>
+    <div *ngIf="ans === q.correctAnswer && ans">
+      <p>Correct!</p>
+    </div>
+    <div *ngIf="ans !== q.correctAnswer && ans">
+      <p>Incorrect!</p>
+    </div>
+  </div>
+</div>
+<button (click)="next()">&gt;</button>
+<button (click)="like()">Like</button>
+<button (click)="share()">Share</button>
+<button *ngIf="userId === authorId" (click)="edit()">Edit</button>
+<button *ngIf="userId === authorId" (click)="delete()">Delete</button>

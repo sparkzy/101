@@ -10,7 +10,7 @@ import com.revature.entities.Question;
 import com.revature.repos.QuestionRepo;
 
 @Service
-public class QuestionServiceImpl implements ServiceInterface<Question> {
+public class QuestionServiceImpl implements QuestionService {
 
 	@Autowired
 	private QuestionRepo questionRepo;
@@ -37,6 +37,12 @@ public class QuestionServiceImpl implements ServiceInterface<Question> {
 	@Transactional
 	public Question findById(int id) {
 		return questionRepo.findByQuestionId(id);
+	}
+	
+	@Override
+	@Transactional
+	public List<Question> findByQuizId(int id) {
+		return questionRepo.findByQuizQuizId(id);
 	}
 
 	@Override

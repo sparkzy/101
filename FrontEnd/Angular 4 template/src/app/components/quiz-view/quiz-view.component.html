@@ -2,7 +2,7 @@
     <div class="row" id="create">
       <div class="col"></div>
       <div class="col" id="title">
-        <h3>View Quizes</h3>
+        <h3>View Quizzes</h3>
       </div>
       <div class="col"></div>
     </div>
@@ -45,13 +45,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let q of (quizez | filter:'title':titleFilter | setAuthor:authorFilter | setSubject:subjectFilter)" (click)="view(s)">
-        <td>{{ s.title }}</td>
-        <td>{{ s.subject.subjectName }}</td>
-        <td>{{ s.author.username }}</td>
-        <td>{{ s.likes }}</td>
+      <tr *ngFor="let q of (quizzes | filter:'title':titleFilter | quizAuthor:authorFilter | quizSubject:subjectFilter)" (click)="view(q)">
+        <td>{{ q.title }}</td>
+        <td>{{ q.subject.subjectName }}</td>
+        <td>{{ q.author.username }}</td>
+        <td>{{ q.likes }}</td>
         <td>
-          <button class="btn" (click)="like(s)" appClickStopPropagation>Like</button>
+          <button class="btn" (click)="like(q)" appClickStopPropagation>Like</button>
         </td>
       </tr>
     </tbody>
