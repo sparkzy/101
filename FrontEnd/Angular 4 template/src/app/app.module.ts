@@ -19,13 +19,9 @@ import { FlashcardSetComponent } from './components/flashcard-set/flashcard-set.
 import { CookieService } from 'ngx-cookie-service';
 import { FlashcardSetCreateComponent } from './components/flashcard-set-create/flashcard-set-create.component';
 import { FlashcardSetViewComponent } from './components/flashcard-set-view/flashcard-set-view.component';
-<<<<<<< HEAD
 import { PostComponent } from './compoment/post/post.component';
 import { SubjectsComponent } from './components/subjects/subjects.component';
 import { SearchpostComponent } from './components/searchpost/searchpost.component';
-
-
-=======
 import { DynamicSortService } from './services/dynamic-sort.service';
 import { SetAuthorPipe } from './pipes/set-author.pipe';
 import { SetSubjectPipe } from './pipes/set-subject.pipe';
@@ -39,7 +35,6 @@ import { QuizComponent } from './components/quiz/quiz.component';
 import { QuizCreateComponent } from './components/quiz-create/quiz-create.component';
 import { QuizUpdateComponent } from './components/quiz-update/quiz-update.component';
 import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
->>>>>>> d44c9711713cf5ae8fc2c25491c9c06fa943bf08
 
 @NgModule({
   imports: [
@@ -59,14 +54,12 @@ import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
     SearchUserComponent,
     FlashcardSetComponent,
     FlashcardSetCreateComponent,
-<<<<<<< HEAD
     FlashcardSetSearchComponent,
     FlashcardSetViewAllComponent,
     FlashcardSetViewComponent,
     PostComponent,
     SubjectsComponent,
     SearchpostComponent
-=======
     FlashcardSetViewComponent,
     SetAuthorPipe,
     SetSubjectPipe,
@@ -78,7 +71,6 @@ import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
     QuizCreateComponent,
     QuizUpdateComponent,
     QuizViewComponent
->>>>>>> d44c9711713cf5ae8fc2c25491c9c06fa943bf08
   ],
   providers: [
     LoggedInGuard,
