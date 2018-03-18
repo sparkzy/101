@@ -1,6 +1,5 @@
 <form (ngSubmit)="updateSet(set)">
   <input type="text" name="title" [(ngModel)]="set.title" placeholder="Set Title">
-  <!-- <button class="btn btn-primary" type="submit" *ngIf="newSet.title !== '' && newSet.subject.id !== 0">Submit</button> -->
   <button class="btn btn-primary" type="submit" [disabled]="checkSubmit()">Submit</button>
   <button class="btn btn-danger" *ngIf="userId === authorId" (click)="delete()">Delete Set</button>
   <p>Curret subject: {{ set.subject.subjectName }}</p>

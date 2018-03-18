@@ -96,15 +96,16 @@ export class FlashcardSetEditComponent implements OnInit {
   }
 
   deleteFc(fcId: number) {
-    this.setTracker.setId = this.set.fcSetId;
+    // this.setTracker.setId = this.set.fcSetId;
     if (this.userId !== this.authorId) {
       return;
     } else {
-      console.log(fcId);
       this.client.delete(`${environment.context}flashcards/id/${fcId}`)
         .subscribe(
+          (succ: any) => {
+          },
           (err: any) => {
-            alert('failed to delete');
+            // alert('failed to delete');
           }
         );
     }
@@ -116,6 +117,8 @@ export class FlashcardSetEditComponent implements OnInit {
     } else {
       this.client.delete(`${environment.context}sets/id/${this.setTracker.setId}`)
         .subscribe(
+          (succ: any) => {
+          },
           (err: any) => {
             alert('failed to delete');
           }
@@ -123,6 +126,8 @@ export class FlashcardSetEditComponent implements OnInit {
       this.flashcards.forEach(fc => {
         this.client.delete(`${environment.context}flashcards/id/${fc.flashcardId}`)
           .subscribe(
+            (succ: any) => {
+            },
             (err: any) => {
               alert('failed to delete fcs');
             }

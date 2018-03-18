@@ -18,6 +18,8 @@ import { QuizComponent } from './components/quiz/quiz.component';
 import { QuizCreateComponent } from './components/quiz-create/quiz-create.component';
 import { QuizUpdateComponent } from './components/quiz-update/quiz-update.component';
 import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
+import { QuizTakeComponent } from './components/quiz-take/quiz-take.component';
+import { HasQuizGuard } from './guards/has-quiz.guard';
 
 export const appRoutes: Routes = [
   {
@@ -116,12 +118,20 @@ export const appRoutes: Routes = [
         path: 'update',
         component: QuizUpdateComponent,
         canActivate: [
-          LoggedInGuard
+          LoggedInGuard,
+          HasQuizGuard
         ]
       },
       {
         path: 'view',
         component: QuizViewComponent,
+        canActivate: [
+          LoggedInGuard
+        ]
+      },
+      {
+        path: 'take/:id',
+        component: QuizTakeComponent,
         canActivate: [
           LoggedInGuard
         ]

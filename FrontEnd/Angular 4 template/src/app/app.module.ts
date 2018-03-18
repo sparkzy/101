@@ -35,6 +35,11 @@ import { QuizComponent } from './components/quiz/quiz.component';
 import { QuizCreateComponent } from './components/quiz-create/quiz-create.component';
 import { QuizUpdateComponent } from './components/quiz-update/quiz-update.component';
 import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
+import { QuizAuthorPipe } from './pipes/quiz-author.pipe';
+import { QuizSubjectPipe } from './pipes/quiz-subject.pipe';
+import { QuizTakeComponent } from './components/quiz-take/quiz-take.component';
+import { QuizTrackerService } from './services/quiz-tracker.service';
+import { HasQuizGuard } from './guards/has-quiz.guard';
 
 @NgModule({
   imports: [
@@ -68,7 +73,10 @@ import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
     QuizComponent,
     QuizCreateComponent,
     QuizUpdateComponent,
-    QuizViewComponent
+    QuizViewComponent,
+    QuizAuthorPipe,
+    QuizSubjectPipe,
+    QuizTakeComponent
   ],
   providers: [
     LoggedInGuard,
@@ -76,7 +84,9 @@ import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
     NgbDropdown,
     DynamicSortService,
     SetTrackerService,
-    HasSetGuard
+    HasSetGuard,
+    QuizTrackerService,
+    HasQuizGuard
   ],
   bootstrap: [AppComponent]
 })
