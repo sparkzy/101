@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,6 +27,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (succ: Object) => {
           this.cookie.set('user', JSON.stringify(succ));
+          console.log(JSON.stringify(succ));
         },
         (err) => {
           alert('Failed to log in.');

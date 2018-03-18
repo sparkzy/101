@@ -10,8 +10,24 @@ import { FlashcardSetCreateComponent } from './components/flashcard-set-create/f
 import { FlashcardSetSearchComponent } from './components/flashcard-set-search/flashcard-set-search.component';
 import { FlashcardSetViewComponent } from './components/flashcard-set-view/flashcard-set-view.component';
 import { FlashcardSetViewAllComponent } from './components/flashcard-set-view-all/flashcard-set-view-all.component';
+import { PostComponent } from './compoment/post/post.component';
+import { SubjectsComponent } from './components/subjects/subjects.component';
+import { SearchpostComponent } from './components/searchpost/searchpost.component';
 
 export const appRoutes: Routes = [
+  {
+    path: 'post-search',
+    component: SearchpostComponent
+
+  },
+  {
+    path: 'subject',
+    component: SubjectsComponent
+  },
+  {
+    path: 'post',
+    component: PostComponent
+  },
   {
     path: 'login',
     component: LoginComponent

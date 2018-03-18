@@ -1,9 +1,9 @@
 export class Subject {
-    id: number;
-    name: string;
+    subjectName: string;
+    subjectId: number;
 
-    constructor(id: number = 0, name: string = '') {
-        this.id = id;
-        this.name = name;
+    constructor(subjectName: string = '', subjectId: number = 0) {
+        this.subjectName = subjectName;
+        this.subjectId = subjectId;
     }
 }
