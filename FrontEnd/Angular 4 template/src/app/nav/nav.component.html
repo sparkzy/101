@@ -26,6 +26,14 @@
           <button class="dropdown-item" routerLink="/flashcards/view">View Sets</button>
         </div>
       </li>
+      <li ngbDropdown class="d-inline-block">
+        <a class="nav-link dropdown" id="dropdownBasic1" ngbDropdownToggle>Quizzes</a>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button class="dropdown-item" routerLink="/quiz/create">Create new Quiz</button>
+          <button class="dropdown-item" routerLink="/quiz/update">Update a Quiz</button>
+          <button class="dropdown-item" routerLink="/quiz/delete">Delete a Quiz</button>
+        </div>
+      </li>
     </ul>
     <li class="nav-item active">
       <button class="btn btn-primary" (click)="logout()">Logout</button>

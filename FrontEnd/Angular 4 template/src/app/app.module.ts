@@ -27,6 +27,10 @@ import { FlashcardsViewComponent } from './components/flashcards-view/flashcards
 import { SetTrackerService } from './services/set-tracker.service';
 import { HasSetGuard } from './guards/has-set.guard';
 import { FlashcardSetEditComponent } from './components/flashcard-set-edit/flashcard-set-edit.component';
+import { QuizComponent } from './components/quiz/quiz.component';
+import { QuizCreateComponent } from './components/quiz-create/quiz-create.component';
+import { QuizUpdateComponent } from './components/quiz-update/quiz-update.component';
+import { QuizDeleteComponent } from './components/quiz-delete/quiz-delete.component';
 
 @NgModule({
   imports: [
@@ -51,7 +55,11 @@ import { FlashcardSetEditComponent } from './components/flashcard-set-edit/flash
     SetSubjectPipe,
     FilterPipe,
     FlashcardsViewComponent,
-    FlashcardSetEditComponent
+    FlashcardSetEditComponent,
+    QuizComponent,
+    QuizCreateComponent,
+    QuizUpdateComponent,
+    QuizDeleteComponent
   ],
   providers: [
     LoggedInGuard,
