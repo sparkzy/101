@@ -36,6 +36,7 @@ import { QuizAuthorPipe } from './pipes/quiz-author.pipe';
 import { QuizSubjectPipe } from './pipes/quiz-subject.pipe';
 import { QuizTakeComponent } from './components/quiz-take/quiz-take.component';
 import { QuizTrackerService } from './services/quiz-tracker.service';
+import { HasQuizGuard } from './guards/has-quiz.guard';
 
 @NgModule({
   imports: [
@@ -77,7 +78,8 @@ import { QuizTrackerService } from './services/quiz-tracker.service';
     DynamicSortService,
     SetTrackerService,
     HasSetGuard,
-    QuizTrackerService
+    QuizTrackerService,
+    HasQuizGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -66,10 +66,10 @@ export class QuizUpdateComponent implements OnInit {
           this.newQuestions.forEach(element => {
             element.quiz = this.quiz;
             this.postFc(element);
-            this.router.navigateByUrl('quiz/view');
           }
           );
         });
+        this.router.navigateByUrl('quiz/view');
   }
 
   postFc(q: Question) {
@@ -98,7 +98,6 @@ export class QuizUpdateComponent implements OnInit {
   }
 
   deleteFc(qId: number) {
-    // this.setTracker.setId = this.set.fcSetId;
     if (this.userId !== this.authorId) {
       return;
     } else {
@@ -123,7 +122,7 @@ export class QuizUpdateComponent implements OnInit {
 
           },
           (err: any) => {
-            alert('failed to delete');
+            // alert('failed to delete');
           }
         );
       this.questions.forEach(q => {
@@ -133,7 +132,7 @@ export class QuizUpdateComponent implements OnInit {
 
             },
             (err: any) => {
-              alert('failed to delete fcs');
+              // alert('failed to delete fcs');
             }
           );
       });
