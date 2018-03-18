@@ -1,9 +1,25 @@
-<input type="text" [(ngModel)]="titleFilter" placeholder="title">
-<input type="text" [(ngModel)]="authorFilter" placeholder="author">
-<input type="text" [(ngModel)]="subjectFilter" placeholder="subject">
-<button class="btn" (click)="getUserSets()">Report</button>
+<div class="container">
+  <div class="row" id="create">
+    <div class="col"></div>
+    <div class="col" id="title">
+      <h3>View Sets</h3>
+    </div>
+    <div class="col"></div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <input type="text" [(ngModel)]="titleFilter" placeholder="title">
+    </div>
+    <div class="col">
+      <input type="text" [(ngModel)]="authorFilter" placeholder="author">
+    </div>
+    <div class="col">
+      <input type="text" [(ngModel)]="subjectFilter" placeholder="subject">
+    </div>
+  </div>
+</div>
 
-<table class="table">
+<table class="table table-responsive table-striped table-hover">
   <thead>
     <tr>
       <th scope="cole">
@@ -34,7 +50,9 @@
       <td>{{ s.subject.subjectName }}</td>
       <td>{{ s.author.username }}</td>
       <td>{{ s.likes }}</td>
-      <td><button class="btn" (click)="like(s)" appClickStopPropagation>Like</button></td>
+      <td>
+        <button class="btn" (click)="like(s)" appClickStopPropagation>Like</button>
+      </td>
     </tr>
   </tbody>
 </table>
