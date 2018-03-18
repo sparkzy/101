@@ -78,7 +78,17 @@ export class FlashcardSetViewComponent implements OnInit {
 
   view(set: FlashcardSet) {
     this.setTracker.setId = set.fcSetId;
-    this.router.navigateByUrl('flashcards/set');
+    this.router.navigateByUrl(`flashcards/set/${set.fcSetId}`);
+  }
+
+  like(set: FlashcardSet) {
+    set.likes++;
+    this.client.put(`${environment.context}sets`, set)
+      .subscribe(
+        (succ: any) => { this.router.navigateByUrl('flashcards/view'); },
+        (err: any) => {
+        }
+      );
   }
 
 }

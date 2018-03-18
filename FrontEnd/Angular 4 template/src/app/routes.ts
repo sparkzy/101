@@ -66,6 +66,13 @@ export const appRoutes: Routes = [
         ]
       },
       {
+        path: 'set/:id',
+        component: FlashcardsViewComponent,
+        canActivate: [
+          LoggedInGuard
+        ]
+      },
+      {
         path: 'edit',
         component: FlashcardSetEditComponent,
         canActivate: [

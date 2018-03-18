@@ -26,6 +26,7 @@ export class FlashcardsViewComponent implements OnInit {
     private cookie: CookieService, private router: Router) { }
 
   ngOnInit() {
+    this.setTracker.setId = parseInt(this.router.url.substring(this.router.url.lastIndexOf('/') + 1), 10);
     this.client.get(`${environment.context}sets/id/${this.setTracker.setId}`)
       .subscribe(
         (succ: any) => {
@@ -33,7 +34,7 @@ export class FlashcardsViewComponent implements OnInit {
           this.authorId = this.set.author.userId;
         },
         (err: any) => {
-          alert('failed to get set');
+          this.router.navigateByUrl('flashcards/view');
         }
       );
     this.client.get(`${environment.context}flashcards/set/${this.setTracker.setId}`)
@@ -43,7 +44,7 @@ export class FlashcardsViewComponent implements OnInit {
           this.sorter.arraySort(this.flashcards, 'flashcardId');
         },
         (err: any) => {
-          alert('failed to get flashcards');
+          // alert('failed to get flashcards');
         }
       );
   }
@@ -73,25 +74,8 @@ export class FlashcardsViewComponent implements OnInit {
   }
 
   like() {
-    let newSet = new FlashcardSet;
-    this.client.get(`${environment.context}sets/id/${this.setTracker.setId}`)
-      .subscribe(
-        (succ: any) => {
-          newSet = succ;
-        },
-        (err: any) => {
-          alert('failed to like set 1');
-        }
-      );
-    newSet.likes++;
-    this.client.put(`${environment.context}sets`, newSet.author)
-      .subscribe(
-        (succ: any) => { },
-        (err: any) => {
-          alert('fialed to like set 2');
-        }
-      );
-    this.client.put(`${environment.context}sets`, newSet)
+    this.set.likes++;
+    this.client.put(`${environment.context}sets`, this.set)
       .subscribe(
         (succ: any) => { },
         (err: any) => {

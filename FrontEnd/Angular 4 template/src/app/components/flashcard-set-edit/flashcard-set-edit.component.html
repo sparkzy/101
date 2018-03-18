@@ -24,7 +24,7 @@
         <td>{{ f.question }}</td>
         <td>{{ f.answer }}</td>
         <td>
-          <button class="btn btn-warning" *ngIf="userId === authorId" (click)="deleteFc(f.flashcardId)">Delete</button>
+          <button class="btn btn-warning" *ngIf="userId === authorId" (click)="deleteFc(f.flashcardId)" appClickStopPropagation>Delete</button>
         </td>
       </tr>
     </tbody>
