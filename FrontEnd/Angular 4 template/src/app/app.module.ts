@@ -28,6 +28,10 @@ import { SetTrackerService } from './services/set-tracker.service';
 import { HasSetGuard } from './guards/has-set.guard';
 import { FlashcardSetEditComponent } from './components/flashcard-set-edit/flashcard-set-edit.component';
 import { ClickStopPropagationDirective } from './directives/click-stop-propagation.directive';
+import { QuizComponent } from './components/quiz/quiz.component';
+import { QuizCreateComponent } from './components/quiz-create/quiz-create.component';
+import { QuizUpdateComponent } from './components/quiz-update/quiz-update.component';
+import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
 
 @NgModule({
   imports: [
@@ -53,7 +57,11 @@ import { ClickStopPropagationDirective } from './directives/click-stop-propagati
     FilterPipe,
     FlashcardsViewComponent,
     FlashcardSetEditComponent,
-    ClickStopPropagationDirective
+    ClickStopPropagationDirective,
+    QuizComponent,
+    QuizCreateComponent,
+    QuizUpdateComponent,
+    QuizViewComponent
   ],
   providers: [
     LoggedInGuard,

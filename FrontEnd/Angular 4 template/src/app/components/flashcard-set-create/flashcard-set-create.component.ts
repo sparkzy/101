@@ -57,8 +57,6 @@ export class FlashcardSetCreateComponent implements OnInit {
   postFc(fc: Flashcard) {
     this.client.post(`${environment.context}/flashcards`, fc)
       .subscribe(
-        (succ: any) => {
-        },
         (err) => {
           alert('Failed to add flashcard');
         }

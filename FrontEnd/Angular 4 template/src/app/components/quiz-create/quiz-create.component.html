@@ -1,0 +1,17 @@
+<form (ngSubmit)="addNewQuiz(newQuiz)">
+  <input type="text" name="title" [(ngModel)]="newQuiz.title" placeholder="Title">
+  <select [(ngModel)]="newQuiz.subject" name="subjectId" class="form-control">
+    <option *ngFor="let s of (subjects)" [ngValue]="s">{{ s.subjectName }}</option>
+  </select>
+  <br>
+  <label for="question">Add questions</label>
+  <button class="btn btn" (click)="addNewQuestion()" type="button">+ New Question</button>
+  <div name="questions" *ngFor="let q of newQuestions">
+    <input type="text" name="question" [(ngModel)]="q.question" [(value)]="q.question" placeholder="Question">
+    <input type="text" name="correctAnswer" [(ngModel)]="q.correctAnswer" [(value)]="q.correctAnswer" placeholder="Correct Answer">
+    <input type="text" name="wrongAnswer1" [(ngModel)]="q.wrongAnswer1" [(value)]="q.wrongAnswer1" placeholder="Wrong Answer 1">
+    <input type="text" name="wrongAnswer2" [(ngModel)]="q.wrongAnswer2" [(value)]="q.wrongAnswer2" placeholder="Wrong Answer 2">
+    <input type="text" name="wrongAnswer3" [(ngModel)]="q.wrongAnswer3" [(value)]="q.wrongAnswer3" placeholder="Wrong Answer 3">
+  </div>
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>

@@ -15,15 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Flashcard;
 import com.revature.services.FlashcardService;
-import com.revature.services.ServiceInterface;
 
 /**
-* Flashcard Controller for 101
-* Parses requests for 101 Flashcards
-* 
-* @author Bobby McGetrick
-*
-*/
+ * Flashcard Controller for 101 Parses requests for 101 Flashcards
+ * 
+ * @author Bobby McGetrick
+ *
+ */
 @RestController
 @RequestMapping("flashcards")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -34,7 +32,6 @@ public class FlashcardController {
 	 ************************************************************************************/
 	@Autowired
 	private FlashcardService fcService;
-	
 	/************************************************************************************
 	 * Constructors
 	 ************************************************************************************/
@@ -44,7 +41,7 @@ public class FlashcardController {
 	public FlashcardController() {
 		super();
 	}
-	
+
 	/**
 	 * Create new FlashcardController with a pre-defined FlashcardService
 	 * 
@@ -54,7 +51,7 @@ public class FlashcardController {
 		super();
 		this.fcService = fcService;
 	}
-	 
+
 	/************************************************************************************
 	 * hashCode() and equals()
 	 ************************************************************************************/
@@ -72,7 +69,8 @@ public class FlashcardController {
 	/**
 	 * Check if FlashcardController is equivalent to another Object
 	 *
-	 * @param Object obj
+	 * @param Object
+	 *            obj
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -90,7 +88,7 @@ public class FlashcardController {
 			return false;
 		return true;
 	}
-	
+
 	/************************************************************************************
 	 * Getters and Setters
 	 ************************************************************************************/
@@ -111,22 +109,23 @@ public class FlashcardController {
 	public void setFcService(FlashcardService fcService) {
 		this.fcService = fcService;
 	}
-	
+
 	/************************************************************************************
-	* toString()
-	************************************************************************************/
+	 * toString()
+	 ************************************************************************************/
 	public String toString() {
 		return "FlashcardController [fcService=" + this.fcService + "]";
 	}
-	
+
 	/************************************************************************************
-	* Create
-	************************************************************************************/
+	 * Create
+	 ************************************************************************************/
 	/**
-	 * Call FlashcardService's save() method and insert the given Flashcard into the 101
-	 * database as a new Flascard
+	 * Call FlashcardService's save() method and insert the given Flashcard into the
+	 * 101 database as a new Flascard
 	 * 
-	 * @param Flashcard newFc
+	 * @param Flashcard
+	 *            newFc
 	 * 
 	 * @return Flashcard
 	 */
@@ -134,15 +133,16 @@ public class FlashcardController {
 	public Flashcard save(@RequestBody Flashcard newFc) {
 		return fcService.save(newFc);
 	}
-	
+
 	/************************************************************************************
-	* Read
-	************************************************************************************/
+	 * Read
+	 ************************************************************************************/
 	/**
 	 * Call FlashcardService's findById() method and return a Flashcard from the 101
 	 * database with the corresponding flashcard_id
 	 * 
-	 * @param int id
+	 * @param int
+	 *            id
 	 * 
 	 * @return Flashcard
 	 */
@@ -150,7 +150,7 @@ public class FlashcardController {
 	public Flashcard findById(@PathVariable int id) {
 		return fcService.findById(id);
 	}
-	
+
 	/**
 	 * Call FlashcardService's findBySetId() method and return all Flashcards from the 101
 	 * database with the corresponding fc_set_id
@@ -174,34 +174,36 @@ public class FlashcardController {
 	public List<Flashcard> findAll() {
 		return fcService.findAll();
 	}
-	
+
 	/************************************************************************************
-	* Update
-	************************************************************************************/
+	 * Update
+	 ************************************************************************************/
 	/**
 	 * Call FlashcardService's update() method and update a Flashcard from the 101
 	 * database with the corresponding flashcard_id with the data from the given
 	 * Flashcard
 	 * 
-	 * @param Flashcard updatedFc
+	 * @param Flashcard
+	 *            updatedFc
 	 */
 	@PutMapping
 	public void update(@RequestBody Flashcard updatedFc) {
 		fcService.update(updatedFc);
 	}
-	
+
 	/************************************************************************************
-	* Delete
-	************************************************************************************/
+	 * Delete
+	 ************************************************************************************/
 	/**
 	 * Call FlashcardService's delete() method and delete a Flashcard from the 101
 	 * database with the corresponding flashcard_id
 	 * 
-	 * @param int id
+	 * @param int
+	 *            id
 	 */
 	@DeleteMapping("id/{id}")
 	public void delete(@PathVariable int id) {
 		fcService.delete(id);
 	}
-	
+
 }
