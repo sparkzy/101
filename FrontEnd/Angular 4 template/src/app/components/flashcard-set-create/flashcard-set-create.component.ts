@@ -48,10 +48,10 @@ export class FlashcardSetCreateComponent implements OnInit {
             element.fcSet = this.newSet;
             element.author = this.newSet.author;
             this.postFc(element);
+            this.router.navigateByUrl('flashcards/view');
           }
           );
         });
-    this.router.navigateByUrl('flashcards/view');
   }
 
   postFc(fc: Flashcard) {
