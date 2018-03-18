@@ -1,3 +1,58 @@
-<p>
-  quiz-view works!
-</p>
+<div class="container">
+    <div class="row" id="create">
+      <div class="col"></div>
+      <div class="col" id="title">
+        <h3>View Quizes</h3>
+      </div>
+      <div class="col"></div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <input type="text" [(ngModel)]="titleFilter" placeholder="title">
+      </div>
+      <div class="col">
+        <input type="text" [(ngModel)]="authorFilter" placeholder="author">
+      </div>
+      <div class="col">
+        <input type="text" [(ngModel)]="subjectFilter" placeholder="subject">
+      </div>
+    </div>
+  </div>
+  
+  <table class="table table-responsive table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="cole">
+          Title
+          <button class="btn" (click)="sort('title')">Asc</button>
+          <button class="btn" (click)="sort('-title')">Desc</button>
+        </th>
+        <th scope="cole">
+          Subject
+          <button class="btn" (click)="sortArray(sortBySubject, 'subjectName')">Asc</button>
+          <button class="btn" (click)="sortArray(sortBySubject, '-subjectName')">Desc</button>
+        </th>
+        <th scope="cole">
+          Author
+          <button class="btn" (click)="sortArray(sortByAuthor, 'username')">Asc</button>
+          <button class="btn" (click)="sortArray(sortByAuthor, '-username')">Desc</button>
+        </th>
+        <th scope="cole">
+          Likes
+          <button class="btn" (click)="sort('likes')">Asc</button>
+          <button class="btn" (click)="sort('-likes')">Desc</button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let q of (quizez | filter:'title':titleFilter | setAuthor:authorFilter | setSubject:subjectFilter)" (click)="view(s)">
+        <td>{{ s.title }}</td>
+        <td>{{ s.subject.subjectName }}</td>
+        <td>{{ s.author.username }}</td>
+        <td>{{ s.likes }}</td>
+        <td>
+          <button class="btn" (click)="like(s)" appClickStopPropagation>Like</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
