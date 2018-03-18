@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Flashcard;
 import com.revature.services.FlashcardService;
-import com.revature.services.ServiceInterface;
 
 /**
  * Flashcard Controller for 101 Parses requests for 101 Flashcards

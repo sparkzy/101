@@ -30,7 +30,7 @@ import { FlashcardSetEditComponent } from './components/flashcard-set-edit/flash
 import { QuizComponent } from './components/quiz/quiz.component';
 import { QuizCreateComponent } from './components/quiz-create/quiz-create.component';
 import { QuizUpdateComponent } from './components/quiz-update/quiz-update.component';
-import { QuizDeleteComponent } from './components/quiz-delete/quiz-delete.component';
+import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
 
 @NgModule({
   imports: [
@@ -59,7 +59,7 @@ import { QuizDeleteComponent } from './components/quiz-delete/quiz-delete.compon
     QuizComponent,
     QuizCreateComponent,
     QuizUpdateComponent,
-    QuizDeleteComponent
+    QuizViewComponent
   ],
   providers: [
     LoggedInGuard,

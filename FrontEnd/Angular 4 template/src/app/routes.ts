@@ -14,7 +14,7 @@ import { FlashcardSetEditComponent } from './components/flashcard-set-edit/flash
 import { QuizComponent } from './components/quiz/quiz.component';
 import { QuizCreateComponent } from './components/quiz-create/quiz-create.component';
 import { QuizUpdateComponent } from './components/quiz-update/quiz-update.component';
-import { QuizDeleteComponent } from './components/quiz-delete/quiz-delete.component';
+import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
 
 export const appRoutes: Routes = [
   {
@@ -97,8 +97,8 @@ export const appRoutes: Routes = [
         ]
       },
       {
-        path: 'delete',
-        component: QuizDeleteComponent,
+        path: 'view',
+        component: QuizViewComponent,
         canActivate: [
           LoggedInGuard
         ]
