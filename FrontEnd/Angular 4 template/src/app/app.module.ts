@@ -27,6 +27,7 @@ import { FlashcardsViewComponent } from './components/flashcards-view/flashcards
 import { SetTrackerService } from './services/set-tracker.service';
 import { HasSetGuard } from './guards/has-set.guard';
 import { FlashcardSetEditComponent } from './components/flashcard-set-edit/flashcard-set-edit.component';
+import { ClickStopPropagationDirective } from './directives/click-stop-propagation.directive';
 
 @NgModule({
   imports: [
@@ -51,7 +52,8 @@ import { FlashcardSetEditComponent } from './components/flashcard-set-edit/flash
     SetSubjectPipe,
     FilterPipe,
     FlashcardsViewComponent,
-    FlashcardSetEditComponent
+    FlashcardSetEditComponent,
+    ClickStopPropagationDirective
   ],
   providers: [
     LoggedInGuard,

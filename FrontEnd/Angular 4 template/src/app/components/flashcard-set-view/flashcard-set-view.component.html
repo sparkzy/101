@@ -34,6 +34,7 @@
       <td>{{ s.subject.subjectName }}</td>
       <td>{{ s.author.username }}</td>
       <td>{{ s.likes }}</td>
+      <td><button class="btn" (click)="like(s)" appClickStopPropagation>Like</button></td>
     </tr>
   </tbody>
 </table>
