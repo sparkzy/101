@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 
 import { User } from '../../beans/user';
 import { environment } from '../../../environments/environment.prod';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ import { environment } from '../../../environments/environment.prod';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private client: HttpClient, private cookie: CookieService) { }
+  constructor(private client: HttpClient, private cookie: CookieService, private router: Router) { }
 
   newUser = {
     username: '',
@@ -36,5 +37,9 @@ export class RegisterComponent implements OnInit {
           alert('Failed to add user.');
         }
       );
+  }
+
+  login() {
+    this.router.navigateByUrl('login');
   }
 }

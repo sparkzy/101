@@ -105,7 +105,8 @@ CREATE TABLE fc_set
     title VARCHAR2(30) NOT NULL,
     subject_id NUMBER NOT NULL,
     author_id NUMBER NOT NULL,
-    likes NUMBER
+    likes NUMBER,
+    status_id NUMBER
 );
 
 CREATE TABLE flashcard
@@ -117,33 +118,13 @@ CREATE TABLE flashcard
     author_id NUMBER NOT NULL
 );
 
---CREATE TABLE comment
---(
---    
---);
-
 /*******************************************************************************
    Create Junction Tables
 ********************************************************************************/
---CREATE TABLE post_to_subject
---(
---    post_id NUMBER,
---    subject_id NUMBER,
---    CONSTRAINT pk_composite_p2s_key PRIMARY KEY (post_id, subject_id)
---);
-
---CREATE TABLE fc_to_set
---(
---    flashcard_id NUMBER,
---    fc_set_id NUMBER,
---    CONSTRAINT pk_composite_fc2s_key PRIMARY KEY (flashcard_id, fc_set_id)
---);
-
 
 /*******************************************************************************
    Create Primary Key Unique Indexes
 ********************************************************************************/
-
 
 /*******************************************************************************
    Create Foreign Keys
@@ -183,12 +164,15 @@ ALTER TABLE fc_set ADD CONSTRAINT subject_id_fk_auth
     
 ALTER TABLE fc_set ADD CONSTRAINT set_author_id_fk_auth
     FOREIGN KEY (author_id) REFERENCES users (user_id) ON DELETE CASCADE;
+    
+ALTER TABLE fc_set ADD CONSTRAINT set_status_id_fk_auth
+    FOREIGN KEY (status_id) REFERENCES status (status_id) ON DELETE CASCADE;
 
 /**
 * flashcard
 **/
 ALTER TABLE flashcard ADD CONSTRAINT fc_set_id_fk_auth
-    FOREIGN KEY (fc_set_id) REFERENCES subject (subject_id) ON DELETE CASCADE;
+    FOREIGN KEY (fc_set_id) REFERENCES fc_set (fc_set_id) ON DELETE CASCADE;
 
 ALTER TABLE flashcard ADD CONSTRAINT fc_author_id_fk_auth
     FOREIGN KEY (author_id) REFERENCES users (user_id) ON DELETE CASCADE;
@@ -214,133 +198,9 @@ CREATE SEQUENCE fc_set_id_seq;
 
 CREATE SEQUENCE flashcard_id_seq;
 
---CREATE SEQUENCE comment_id_seq;
-
 /*******************************************************************************
    Create Triggers
 ********************************************************************************/
---CREATE OR REPLACE TRIGGER user_id_trig
---    BEFORE INSERT OR UPDATE ON users
---    FOR EACH ROW
---    BEGIN
---        IF INSERTING THEN
---            SELECT user_id_seq.nextVal INTO :new.user_id FROM DUAL;
---        ELSIF UPDATING THEN
---            SELECT :old.user_id INTO :new.user_id FROM DUAL;
---        END IF;
---    END;
---    /
---    
---CREATE OR REPLACE TRIGGER role_id_trig
---    BEFORE INSERT OR UPDATE ON role
---    FOR EACH ROW
---    BEGIN
---        IF INSERTING THEN
---            SELECT role_id_seq.nextVal INTO :new.role_id FROM DUAL;
---        ELSIF UPDATING THEN
---            SELECT :old.role_id INTO :new.role_id FROM DUAL;
---        END IF;
---    END;
---    /
---
---CREATE OR REPLACE TRIGGER post_id_trig
---    BEFORE INSERT OR UPDATE ON post
---    FOR EACH ROW
---    BEGIN
---        IF INSERTING THEN
---            SELECT post_id_seq.nextVal INTO :new.post_id FROM DUAL;
---            SELECT 0 INTO :new.likes FROM DUAL;
---        ELSIF UPDATING THEN
---            SELECT :old.post_id INTO :new.post_id FROM DUAL;
---        END IF;
---    END;
---    /
---
---CREATE OR REPLACE TRIGGER subject_id_trig
---    BEFORE INSERT OR UPDATE ON subject
---    FOR EACH ROW
---    BEGIN
---        IF INSERTING THEN
---            SELECT subject_id_seq.nextVal INTO :new.subject_id FROM DUAL;
---        ELSIF UPDATING THEN
---            SELECT :old.subject_id INTO :new.subject_id FROM DUAL;
---        END IF;
---    END;
---    /
---    
---CREATE OR REPLACE TRIGGER status_id_trig
---    BEFORE INSERT OR UPDATE ON status
---    FOR EACH ROW
---    BEGIN
---        IF INSERTING THEN
---            SELECT status_id_seq.nextVal INTO :new.status_id FROM DUAL;
---        ELSIF UPDATING THEN
---            SELECT :old.status_id INTO :new.status_id FROM DUAL;
---        END IF;
---    END;
---    /
---    
---CREATE OR REPLACE TRIGGER quiz_id_trig
---    BEFORE INSERT OR UPDATE ON quiz
---    FOR EACH ROW
---    BEGIN
---        IF INSERTING THEN
---            SELECT quiz_id_seq.nextVal INTO :new.quiz_id FROM DUAL;
---            SELECT 0 INTO :new.likes FROM DUAL;
---        ELSIF UPDATING THEN
---            SELECT :old.quiz_id INTO :new.quiz_id FROM DUAL;
---        END IF;
---    END;
---    /
---    
---CREATE OR REPLACE TRIGGER question_id_trig
---    BEFORE INSERT OR UPDATE ON question
---    FOR EACH ROW
---    BEGIN
---        IF INSERTING THEN
---            SELECT question_id_seq.nextVal INTO :new.question_id FROM DUAL;
---        ELSIF UPDATING THEN
---            SELECT :old.question_id INTO :new.question_id FROM DUAL;
---        END IF;
---    END;
---    /
---    
---CREATE OR REPLACE TRIGGER fc_set_id_trig
---    BEFORE INSERT OR UPDATE ON fc_set
---    FOR EACH ROW
---    BEGIN
---        IF INSERTING THEN
---            SELECT fc_set_id_seq.nextVal INTO :new.fc_set_id FROM DUAL;
---            SELECT 0 INTO :new.likes FROM DUAL;
---        ELSIF UPDATING THEN
---            SELECT :old.fc_set_id INTO :new.fc_set_id FROM DUAL;
---        END IF;
---    END;
---    /
---    
---CREATE OR REPLACE TRIGGER flashcard_id_trig
---    BEFORE INSERT OR UPDATE ON flashcard
---    FOR EACH ROW
---    BEGIN
---        IF INSERTING THEN
---            SELECT flashcard_id_seq.nextVal INTO :new.flashcard_id FROM DUAL;
---        ELSIF UPDATING THEN
---            SELECT :old.flashcard_id INTO :new.flashcard_id FROM DUAL;
---        END IF;
---    END;
---    /
-    
---CREATE OR REPLACE TRIGGER comment_id_trig
---    BEFORE INSERT OR UPDATE ON comment
---    FOR EACH ROW
---    BEGIN
---        IF INSERTING THEN
---            SELECT comment_id_seq.nextVal INTO :new.comment_id FROM DUAL;
---        ELSIF UPDATING THEN
---            SELECT :old.comment_id INTO :new.comment_id FROM DUAL;
---        END IF;
---    END;
---    /
 
 /*******************************************************************************
    Create Stored Procedures

@@ -1,0 +1,21 @@
+<form class="form-inline"(ngSubmit)="addPost()" >
+  <div class="form-group"  id="area">
+    <label for="exampleTextarea">Example posta</label>
+    <input type="text"  name="title" [(ngModel)]="newPost.title"  class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Title">
+    <textarea class="form-control" id="exampleTextarea" name="body" [(ngModel)]="newPost.body"rows="3"></textarea>
+  </div>
+  
+   <select [(ngModel)]= "newPost.subject" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" name = "type">
+    <option *ngFor = "let s of (subject)" [ngValue]= "s">{{s.subjectName}}</option>
+  </select> 
+  <button type="submit" value="Append" class="btn btn-primary">Submit</button>
+
+
+
+<div *ngFor="let p of post">
+  {{p?.postId}} <br> {{p?.title}} <br> {{p?.body}} 
+  <form (ngSubmit)="delete(newPost)">
+  <button class="btn btn-primary" type="submit">delete</button>
+  </form>
+</div>
+</form>

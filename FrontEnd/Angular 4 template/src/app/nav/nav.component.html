@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">101</a>
+  <a class="navbar-brand" routerLink="home">101</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,15 +7,13 @@
 
   <div class="collapse navbar-collapse" id="navbarsExample04">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/home">Home</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/login">Login</a>
-      </li>
+        <li class="nav-item active">
+            <a class="nav-link" routerLink="home">Home</a>
+          </li>
       <li class="nav-item active">
         <a class="nav-link" routerLink="/register">Register</a>
       </li>
+<<<<<<< HEAD
       <li class="nav-item active">
         <a class="nav-link" routerLink="/searchusers">Search</a>
       </li>
@@ -28,12 +26,28 @@
       <li class="nav-item active">
         <a class="nav-link" routerLink="/subject">Create a new Subject</a>
       </li>
+=======
+>>>>>>> d44c9711713cf5ae8fc2c25491c9c06fa943bf08
       <li ngbDropdown class="d-inline-block">
         <a class="nav-link dropdown" id="dropdownBasic1" ngbDropdownToggle>Flashcards</a>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button class="dropdown-item" routerLink="/flashcards/create">Create new Set</button>
-          <button class="dropdown-item" routerLink="/flashcards/search">Search for a Set</button>
-          <button class="dropdown-item" routerLink="/flashcards/view/all">View Your Sets</button>
+          <button class="dropdown-item" routerLink="/flashcards/view">View Sets</button>
+        </div>
+      </li>
+      <li ngbDropdown class="d-inline-block">
+        <a class="nav-link dropdown" id="dropdownBasic1" ngbDropdownToggle>Quizzes</a>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button class="dropdown-item" routerLink="/quiz/create">Create new Quiz</button>
+          <button class="dropdown-item" routerLink="/quiz/update">Update a Quiz</button>
+          <button class="dropdown-item" routerLink="/quiz/view">View a Quiz</button>
+        </div>
+      </li>
+      <li ngbDropdown class="d-inline-block">
+        <a class="nav-link dropdown" id="dropdownBasic1" ngbDropdownToggle>Post</a>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <!-- <button class="dropdown-item" routerLink="/flashcards/create">Create new Set</button>
+          <button class="dropdown-item" routerLink="/flashcards/view">View Sets</button> -->
         </div>
       </li>
     </ul>

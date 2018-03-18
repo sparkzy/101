@@ -1,0 +1,12 @@
+<button (click)="prev()">&lt;</button>
+<div *ngFor="let f of flashcards; let i = index;">
+  <h3 *ngIf="!flipped && i === idx">{{ flashcards[i].question }}</h3>
+  <h3 *ngIf="flipped && i === idx">{{ flashcards[i].answer }}</h3>
+</div>
+<button (click)="next()">&gt;</button>
+<button (click)="flip()">Flip</button>
+<button (click)="like()">Like</button>
+<button (click)="share()">Share</button>
+<button *ngIf="userId !== authorId" (click)="report()">Report</button>
+<button *ngIf="userId === authorId" (click)="edit()">Edit</button>
+<button *ngIf="userId === authorId" (click)="delete()">Delete</button>

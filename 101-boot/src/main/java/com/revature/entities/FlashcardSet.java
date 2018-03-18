@@ -1,5 +1,6 @@
 package com.revature.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,18 +20,22 @@ public class FlashcardSet {
 	@Column(name = "fc_set_id")
 	@SequenceGenerator(name = "fc_set_id_seq", sequenceName = "fc_set_id_seq", allocationSize = 1)
 	@GeneratedValue(generator = "fc_set_id_seq", strategy = GenerationType.AUTO)
-	private int fcSetId;
+	public int fcSetId;
 
 	@Column(name = "title")
 	private String title;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "subject_id")
 	private Subject subject;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "author_id")
 	private User author;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "status_id")
+	private Status status;
 
 	private int likes = 0;
 
@@ -38,12 +43,13 @@ public class FlashcardSet {
 		super();
 	}
 
-	public FlashcardSet(int fcSetId, String title, Subject subject, User author, int likes) {
+	public FlashcardSet(int fcSetId, String title, Subject subject, User author, Status status, int likes) {
 		super();
 		this.fcSetId = fcSetId;
 		this.title = title;
 		this.subject = subject;
 		this.author = author;
+		this.status = status;
 		this.likes = likes;
 	}
 
@@ -54,6 +60,7 @@ public class FlashcardSet {
 		result = prime * result + ((author == null) ? 0 : author.hashCode());
 		result = prime * result + fcSetId;
 		result = prime * result + likes;
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
@@ -76,6 +83,11 @@ public class FlashcardSet {
 		if (fcSetId != other.fcSetId)
 			return false;
 		if (likes != other.likes)
+			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
 			return false;
 		if (subject == null) {
 			if (other.subject != null)
@@ -122,6 +134,14 @@ public class FlashcardSet {
 		this.author = author;
 	}
 
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
 	public int getLikes() {
 		return likes;
 	}
@@ -133,6 +153,6 @@ public class FlashcardSet {
 	@Override
 	public String toString() {
 		return "FlashcardSet [fcSetId=" + fcSetId + ", title=" + title + ", subject=" + subject + ", author="
-				+ author + ", likes=" + likes + "]";
+				+ author + ", status=" + status + ", likes=" + likes + "]";
 	}
 }

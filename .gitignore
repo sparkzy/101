@@ -1,2 +1,3 @@
 node_modules/
-application.properties 
+101-boot/src/main/resources/application.properties 
+

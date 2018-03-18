@@ -18,14 +18,28 @@ import { SearchUserComponent } from './components/search-user/search-user.compon
 import { FlashcardSetComponent } from './components/flashcard-set/flashcard-set.component';
 import { CookieService } from 'ngx-cookie-service';
 import { FlashcardSetCreateComponent } from './components/flashcard-set-create/flashcard-set-create.component';
-import { FlashcardSetSearchComponent } from './components/flashcard-set-search/flashcard-set-search.component';
-import { FlashcardSetViewAllComponent } from './components/flashcard-set-view-all/flashcard-set-view-all.component';
 import { FlashcardSetViewComponent } from './components/flashcard-set-view/flashcard-set-view.component';
+<<<<<<< HEAD
 import { PostComponent } from './compoment/post/post.component';
 import { SubjectsComponent } from './components/subjects/subjects.component';
 import { SearchpostComponent } from './components/searchpost/searchpost.component';
 
 
+=======
+import { DynamicSortService } from './services/dynamic-sort.service';
+import { SetAuthorPipe } from './pipes/set-author.pipe';
+import { SetSubjectPipe } from './pipes/set-subject.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
+import { FlashcardsViewComponent } from './components/flashcards-view/flashcards-view.component';
+import { SetTrackerService } from './services/set-tracker.service';
+import { HasSetGuard } from './guards/has-set.guard';
+import { FlashcardSetEditComponent } from './components/flashcard-set-edit/flashcard-set-edit.component';
+import { ClickStopPropagationDirective } from './directives/click-stop-propagation.directive';
+import { QuizComponent } from './components/quiz/quiz.component';
+import { QuizCreateComponent } from './components/quiz-create/quiz-create.component';
+import { QuizUpdateComponent } from './components/quiz-update/quiz-update.component';
+import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
+>>>>>>> d44c9711713cf5ae8fc2c25491c9c06fa943bf08
 
 @NgModule({
   imports: [
@@ -45,17 +59,34 @@ import { SearchpostComponent } from './components/searchpost/searchpost.componen
     SearchUserComponent,
     FlashcardSetComponent,
     FlashcardSetCreateComponent,
+<<<<<<< HEAD
     FlashcardSetSearchComponent,
     FlashcardSetViewAllComponent,
     FlashcardSetViewComponent,
     PostComponent,
     SubjectsComponent,
     SearchpostComponent
+=======
+    FlashcardSetViewComponent,
+    SetAuthorPipe,
+    SetSubjectPipe,
+    FilterPipe,
+    FlashcardsViewComponent,
+    FlashcardSetEditComponent,
+    ClickStopPropagationDirective,
+    QuizComponent,
+    QuizCreateComponent,
+    QuizUpdateComponent,
+    QuizViewComponent
+>>>>>>> d44c9711713cf5ae8fc2c25491c9c06fa943bf08
   ],
   providers: [
     LoggedInGuard,
     CookieService,
-    NgbDropdown
+    NgbDropdown,
+    DynamicSortService,
+    SetTrackerService,
+    HasSetGuard
   ],
   bootstrap: [AppComponent]
 })

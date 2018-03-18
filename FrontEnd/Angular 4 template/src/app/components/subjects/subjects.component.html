@@ -1,0 +1,7 @@
+<form class="form-inline"(ngSubmit)="addSubject()" >
+  <div class="form-group"  id="area">
+    <label for="exampleTextarea">Enter the name of a subject</label>
+    <input type="text"  name="subject" [(ngModel)]="newSub.subjectName"  class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Subject">
+  </div>
+  <button type="submit" value="Append" class="btn btn-primary">Submit</button>
+</form>
