@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Flashcard;
+import com.revature.services.FlashcardService;
 import com.revature.services.ServiceInterface;
 
 /**
@@ -31,8 +32,7 @@ public class FlashcardController {
 	 * Private fields
 	 ************************************************************************************/
 	@Autowired
-	private ServiceInterface<Flashcard> fcService;
-
+	private FlashcardService fcService;
 	/************************************************************************************
 	 * Constructors
 	 ************************************************************************************/
@@ -44,12 +44,11 @@ public class FlashcardController {
 	}
 
 	/**
-	 * Create new FlashcardController with a pre-defined ServiceInterface<Flashcard>
+	 * Create new FlashcardController with a pre-defined FlashcardService
 	 * 
-	 * @param ServiceInterface<Flashcard>
-	 *            fcService
+	 * @param FlashcardService fcService
 	 */
-	public FlashcardController(ServiceInterface<Flashcard> fcService) {
+	public FlashcardController(FlashcardService fcService) {
 		super();
 		this.fcService = fcService;
 	}
@@ -97,19 +96,18 @@ public class FlashcardController {
 	/**
 	 * Retrieve FlashcardController.fcService
 	 * 
-	 * @return ServiceInterface<Flashcard> fcService
+	 * @return FlashcardService fcService
 	 */
-	public ServiceInterface<Flashcard> getFcService() {
+	public FlashcardService getFcService() {
 		return fcService;
 	}
 
 	/**
 	 * Set FlashcardController.fcService to a given FlashcardService
 	 * 
-	 * @param ServiceInterface<Flashcard>
-	 *            fcService
+	 * @param FlashcardService fcService
 	 */
-	public void setFcService(ServiceInterface<Flashcard> fcService) {
+	public void setFcService(FlashcardService fcService) {
 		this.fcService = fcService;
 	}
 
@@ -155,8 +153,21 @@ public class FlashcardController {
 	}
 
 	/**
-	 * Call FlashcardService's findAll() method and return a List of all Flashcards
-	 * in the 101 database
+	 * Call FlashcardService's findBySetId() method and return all Flashcards from the 101
+	 * database with the corresponding fc_set_id
+	 * 
+	 * @param int id
+	 * 
+	 * @return List<Flashcard>
+	 */
+	@GetMapping("set/{id}")
+	public List<Flashcard> findBySetId(@PathVariable int id) {
+		return fcService.findBySetId(id);
+	}
+	
+	/**
+	 * Call FlashcardService's findAll() method and return a List of all Flashcards in
+	 * the 101 database
 	 * 
 	 * @return List<Flashcard>
 	 */

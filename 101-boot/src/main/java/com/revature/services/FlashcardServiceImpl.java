@@ -20,7 +20,7 @@ import com.revature.repos.FlashcardRepo;
 *
 */
 @Service
-public class FlashcardServiceImpl implements ServiceInterface<Flashcard> {
+public class FlashcardServiceImpl implements FlashcardService {
 	
 	/************************************************************************************
 	 * Private fields
@@ -130,6 +130,8 @@ public class FlashcardServiceImpl implements ServiceInterface<Flashcard> {
 		return fcRepo.save(newFc);
 	}
 	
+	
+	
 	/**
 	 * Call FlashcardRepo's findById() method and return a Flashcard in the 101 database
 	 * with the corresponding id
@@ -142,6 +144,20 @@ public class FlashcardServiceImpl implements ServiceInterface<Flashcard> {
 	@Transactional
 	public Flashcard findById(int id) {
 		return fcRepo.findByFlashcardId(id);
+	}
+	
+	/**
+	 * Call FlashcardRepo's findBySetId() method and return all Flashcards in the 101 database
+	 * with the corresponding fc_set_id
+	 * 
+	 * @param int setId
+	 * 
+	 * @return List<Flashcard>
+	 */
+	@Override
+	@Transactional
+	public List<Flashcard> findBySetId(int setId) {
+		return fcRepo.findByFcSetFcSetId(setId);
 	}
 	
 	/**

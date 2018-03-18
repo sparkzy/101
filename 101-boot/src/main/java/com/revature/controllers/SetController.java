@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.FlashcardSet;
-import com.revature.services.ServiceInterface;
+import com.revature.services.SetService;
 import com.revature.services.SetServiceImpl;
 
 /**
@@ -33,7 +33,7 @@ public class SetController {
 	 * Private fields
 	 ************************************************************************************/
 	@Autowired
-	private ServiceInterface<FlashcardSet> setService;
+	private SetService setService;
 	@Autowired
 	private SetServiceImpl ssi = new SetServiceImpl();
 	
@@ -52,7 +52,7 @@ public class SetController {
 	 * 
 	 * @param ServiceInterface<FlashcardSet> setService
 	 */
-	public SetController(ServiceInterface<FlashcardSet> setService) {
+	public SetController(SetService setService) {
 		super();
 		this.setService = setService;
 	}
@@ -99,18 +99,18 @@ public class SetController {
 	/**
 	 * Retrieve SetController.setService
 	 * 
-	 * @return ServiceInterface<FlashcardSet> setService
+	 * @return SetService setService
 	 */
-	public ServiceInterface<FlashcardSet> getSetService() {
+	public SetService getSetService() {
 		return setService;
 	}
 
 	/**
 	 * Set SetController.setService to a given ServiceInterface<FlashcardSet>
 	 * 
-	 * @param ServiceInterface<FlashcardSet> setService
+	 * @param SetService setService
 	 */
-	public void setSetService(ServiceInterface<FlashcardSet> setService) {
+	public void setSetService(SetService setService) {
 		this.setService = setService;
 	}
 	
@@ -134,7 +134,6 @@ public class SetController {
 	 */
 	@PostMapping
 	public FlashcardSet save(@RequestBody FlashcardSet newSet) {
-		System.out.println("#######  + " + newSet.getAuthor() + " #######");
 		return setService.save(newSet);
 	}
 	
@@ -152,6 +151,19 @@ public class SetController {
 	@GetMapping("id/{id}")
 	public FlashcardSet findById(@PathVariable int id) {
 		return setService.findById(id);
+	}
+	
+	/**
+	 * Call SetService's findByNotStatus() method and return a Set from the 101
+	 * database with the corresponding set_id
+	 * 
+	 * @param String status
+	 * 
+	 * @return List<FlashcardSet>
+	 */
+	@GetMapping("status/{status}")
+	public List<FlashcardSet> findById(@PathVariable String status) {
+		return setService.findByNotStatus(status);
 	}
 	
 	/**

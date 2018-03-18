@@ -18,8 +18,15 @@ import { SearchUserComponent } from './components/search-user/search-user.compon
 import { FlashcardSetComponent } from './components/flashcard-set/flashcard-set.component';
 import { CookieService } from 'ngx-cookie-service';
 import { FlashcardSetCreateComponent } from './components/flashcard-set-create/flashcard-set-create.component';
-import { FlashcardSetSearchComponent } from './components/flashcard-set-search/flashcard-set-search.component';
 import { FlashcardSetViewComponent } from './components/flashcard-set-view/flashcard-set-view.component';
+import { DynamicSortService } from './services/dynamic-sort.service';
+import { SetAuthorPipe } from './pipes/set-author.pipe';
+import { SetSubjectPipe } from './pipes/set-subject.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
+import { FlashcardsViewComponent } from './components/flashcards-view/flashcards-view.component';
+import { SetTrackerService } from './services/set-tracker.service';
+import { HasSetGuard } from './guards/has-set.guard';
+import { FlashcardSetEditComponent } from './components/flashcard-set-edit/flashcard-set-edit.component';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { QuizCreateComponent } from './components/quiz-create/quiz-create.component';
 import { QuizUpdateComponent } from './components/quiz-update/quiz-update.component';
@@ -43,18 +50,24 @@ import { QuizDeleteComponent } from './components/quiz-delete/quiz-delete.compon
     SearchUserComponent,
     FlashcardSetComponent,
     FlashcardSetCreateComponent,
-    FlashcardSetSearchComponent,
     FlashcardSetViewComponent,
+    SetAuthorPipe,
+    SetSubjectPipe,
+    FilterPipe,
+    FlashcardsViewComponent,
+    FlashcardSetEditComponent,
     QuizComponent,
     QuizCreateComponent,
     QuizUpdateComponent,
-    QuizDeleteComponent,
-    FlashcardSetViewComponent
+    QuizDeleteComponent
   ],
   providers: [
     LoggedInGuard,
     CookieService,
-    NgbDropdown
+    NgbDropdown,
+    DynamicSortService,
+    SetTrackerService,
+    HasSetGuard
   ],
   bootstrap: [AppComponent]
 })

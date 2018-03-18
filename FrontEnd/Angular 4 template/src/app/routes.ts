@@ -1,14 +1,16 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { LoggedInGuard } from './guards/logged-in.guard';
+import { HasSetGuard } from './guards/has-set.guard';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SearchUserComponent } from './components/search-user/search-user.component';
 import { FlashcardSet } from './beans/flashcardSet';
 import { FlashcardSetComponent } from './components/flashcard-set/flashcard-set.component';
 import { FlashcardSetCreateComponent } from './components/flashcard-set-create/flashcard-set-create.component';
-import { FlashcardSetSearchComponent } from './components/flashcard-set-search/flashcard-set-search.component';
 import { FlashcardSetViewComponent } from './components/flashcard-set-view/flashcard-set-view.component';
+import { FlashcardsViewComponent } from './components/flashcards-view/flashcards-view.component';
+import { FlashcardSetEditComponent } from './components/flashcard-set-edit/flashcard-set-edit.component';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { QuizCreateComponent } from './components/quiz-create/quiz-create.component';
 import { QuizUpdateComponent } from './components/quiz-update/quiz-update.component';
@@ -56,12 +58,22 @@ export const appRoutes: Routes = [
         ]
       },
       {
-        path: 'search',
-        component: FlashcardSetSearchComponent,
+        path: 'set',
+        component: FlashcardsViewComponent,
         canActivate: [
-          LoggedInGuard
+          LoggedInGuard,
+          HasSetGuard
         ]
-      }],
+      },
+      {
+        path: 'edit',
+        component: FlashcardSetEditComponent,
+        canActivate: [
+          LoggedInGuard,
+          HasSetGuard
+        ]
+      }
+    ],
     canActivate: [
       LoggedInGuard
     ]

@@ -39,6 +39,7 @@ export class FlashcardSetCreateComponent implements OnInit {
 
   addNewSet() {
     this.newSet.author = JSON.parse(this.cookie.get('user'));
+    this.newSet.status.statusId = 1;
     this.client.post(`${environment.context}/sets`, this.newSet)
       .subscribe(
         (succ: any) => {
@@ -50,16 +51,12 @@ export class FlashcardSetCreateComponent implements OnInit {
           }
           );
         });
-        this.router.navigateByUrl('flashcards/view');
+    this.router.navigateByUrl('flashcards/view');
   }
 
   postFc(fc: Flashcard) {
     this.client.post(`${environment.context}/flashcards`, fc)
       .subscribe(
-        (succ: any) => {
-          console.log('added fc');
-
-        },
         (err) => {
           alert('Failed to add flashcard');
         }
@@ -68,7 +65,7 @@ export class FlashcardSetCreateComponent implements OnInit {
 
   checkSubmit() {
     let bool = false;
-    if (this.newSet.title === '' || this.newSet.subject.id === 0 ) {
+    if (this.newSet.title === '' || this.newSet.subject.id === 0) {
       bool = true;
     } else {
       this.newFlashcards.forEach(element => {

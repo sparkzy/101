@@ -19,7 +19,7 @@ import com.revature.repos.SetRepo;
 *
 */
 @Service
-public class SetServiceImpl implements ServiceInterface<FlashcardSet> {
+public class SetServiceImpl implements SetService {
 	
 	/************************************************************************************
 	 * Private fields
@@ -142,6 +142,32 @@ public class SetServiceImpl implements ServiceInterface<FlashcardSet> {
 	}
 	
 	/**
+	 * Call SetRepo's findByTitle() method and return a Set wit the corresponding title
+	 * in the 101 database
+	 * 
+	 * @return FlashcardSet
+	 */
+	@Override
+	@Transactional
+	public FlashcardSet findByTitle(String title) {
+		return setRepo.findByTitle(title);
+	}
+	
+	/**
+	 * Call SetRepo's findByStatusStatusName() method and return a Set in the 101 database
+	 * with the corresponding id
+	 * 
+	 * @param String status
+	 * 
+	 * @return List<FlashcardSet>
+	 */
+	@Override
+	@Transactional
+	public List<FlashcardSet> findByNotStatus(String status) {
+		return setRepo.findByStatusStatusNameNotLike(status);
+	}
+	
+	/**
 	 * Call SetRepo's findAll() method and return a List of all Sets in
 	 * the 101 database
 	 * 
@@ -183,15 +209,6 @@ public class SetServiceImpl implements ServiceInterface<FlashcardSet> {
 	/************************************************************************************
 	* Methods
 	************************************************************************************/
-	/**
-	 * Call SetRepo's findByTitle() method and return a Set wit the corresponding title
-	 * in the 101 database
-	 * 
-	 * @return FlashcardSet
-	 */
-	@Transactional
-	public FlashcardSet findByTitle(String title) {
-		return setRepo.findByTitle(title);
-	}
+	
 
 }
