@@ -1,6 +1,7 @@
 <input type="text" [(ngModel)]="titleFilter" placeholder="title">
 <input type="text" [(ngModel)]="authorFilter" placeholder="author">
 <input type="text" [(ngModel)]="subjectFilter" placeholder="subject">
+<button class="btn" (click)="getUserSets()">Report</button>
 
 <table class="table">
   <thead>
@@ -12,13 +13,13 @@
       </th>
       <th scope="cole">
         Subject
-        <!-- <button class="btn" (click)="sort('subject.subjectName')">Asc</button>
-        <button class="btn" (click)="sort('-subject.subjectName')">Desc</button> -->
+        <button class="btn" (click)="sortArray(sortBySubject, 'subjectName')">Asc</button>
+        <button class="btn" (click)="sortArray(sortBySubject, '-subjectName')">Desc</button>
       </th>
       <th scope="cole">
         Author
-        <!-- <button class="btn" (click)="sort('author.username')">Asc</button>
-        <button class="btn" (click)="sort('-author.username')">Desc</button> -->
+        <button class="btn" (click)="sortArray(sortByAuthor, 'username')">Asc</button>
+        <button class="btn" (click)="sortArray(sortByAuthor, '-username')">Desc</button>
       </th>
       <th scope="cole">
         Likes

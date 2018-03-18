@@ -18,7 +18,7 @@ public class Status {
 	private int statusId;
 	
 	@Column(name = "status_name")
-	private String statusName;
+	private String statusName = "not banned";
 
 	public Status() {
 		super();

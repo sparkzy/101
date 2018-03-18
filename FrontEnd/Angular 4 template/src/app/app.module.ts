@@ -18,13 +18,15 @@ import { SearchUserComponent } from './components/search-user/search-user.compon
 import { FlashcardSetComponent } from './components/flashcard-set/flashcard-set.component';
 import { CookieService } from 'ngx-cookie-service';
 import { FlashcardSetCreateComponent } from './components/flashcard-set-create/flashcard-set-create.component';
-import { FlashcardSetSearchComponent } from './components/flashcard-set-search/flashcard-set-search.component';
 import { FlashcardSetViewComponent } from './components/flashcard-set-view/flashcard-set-view.component';
 import { DynamicSortService } from './services/dynamic-sort.service';
-import { SetTitlePipe } from './pipes/set-title.pipe';
 import { SetAuthorPipe } from './pipes/set-author.pipe';
 import { SetSubjectPipe } from './pipes/set-subject.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
+import { FlashcardsViewComponent } from './components/flashcards-view/flashcards-view.component';
+import { SetTrackerService } from './services/set-tracker.service';
+import { HasSetGuard } from './guards/has-set.guard';
+import { FlashcardSetEditComponent } from './components/flashcard-set-edit/flashcard-set-edit.component';
 
 @NgModule({
   imports: [
@@ -44,18 +46,20 @@ import { FilterPipe } from './pipes/filter.pipe';
     SearchUserComponent,
     FlashcardSetComponent,
     FlashcardSetCreateComponent,
-    FlashcardSetSearchComponent,
     FlashcardSetViewComponent,
-    SetTitlePipe,
     SetAuthorPipe,
     SetSubjectPipe,
-    FilterPipe
+    FilterPipe,
+    FlashcardsViewComponent,
+    FlashcardSetEditComponent
   ],
   providers: [
     LoggedInGuard,
     CookieService,
     NgbDropdown,
-    DynamicSortService
+    DynamicSortService,
+    SetTrackerService,
+    HasSetGuard
   ],
   bootstrap: [AppComponent]
 })

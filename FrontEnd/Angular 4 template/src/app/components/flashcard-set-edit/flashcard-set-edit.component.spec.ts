@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FlashcardSetSearchComponent } from './flashcard-set-search.component';
+import { FlashcardSetEditComponent } from './flashcard-set-edit.component';
 
-describe('FlashcardSetSearchComponent', () => {
-  let component: FlashcardSetSearchComponent;
-  let fixture: ComponentFixture<FlashcardSetSearchComponent>;
+describe('FlashcardSetEditComponent', () => {
+  let component: FlashcardSetEditComponent;
+  let fixture: ComponentFixture<FlashcardSetEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FlashcardSetSearchComponent ]
+      declarations: [ FlashcardSetEditComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FlashcardSetSearchComponent);
+    fixture = TestBed.createComponent(FlashcardSetEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
