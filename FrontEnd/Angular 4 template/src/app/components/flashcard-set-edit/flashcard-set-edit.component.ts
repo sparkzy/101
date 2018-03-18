@@ -133,8 +133,8 @@ export class FlashcardSetEditComponent implements OnInit {
             }
           );
       });
-      this.router.navigateByUrl('flashcards/view');
     }
+    this.router.navigateByUrl('flashcards/view');
   }
 
 }
