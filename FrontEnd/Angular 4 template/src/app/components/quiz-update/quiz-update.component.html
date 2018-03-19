@@ -1,4 +1,4 @@
-<form (ngSubmit)="updateQuiz(quiz)">
+<form (ngSubmit)="updateQuiz()">
     <input type="text" name="title" [(ngModel)]="quiz.title" placeholder="Quiz Title">
     <button class="btn btn-primary" type="submit" [disabled]="checkSubmit()">Submit</button>
     <button class="btn btn-danger" *ngIf="userId === authorId" (click)="delete()">Delete Quiz</button>

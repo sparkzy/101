@@ -1,4 +1,4 @@
-<form (ngSubmit)="updateSet(set)">
+<form (ngSubmit)="updateSet()">
   <input type="text" name="title" [(ngModel)]="set.title" placeholder="Set Title">
   <button class="btn btn-primary" type="submit" [disabled]="checkSubmit()">Submit</button>
   <button class="btn btn-danger" *ngIf="userId === authorId" (click)="delete()">Delete Set</button>

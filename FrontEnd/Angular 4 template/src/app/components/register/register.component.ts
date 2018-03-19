@@ -16,13 +16,16 @@ export class RegisterComponent implements OnInit {
 
   constructor(private client: HttpClient, private cookie: CookieService, private router: Router) { }
 
-  newUser = {
-    username: '',
-    password: '',
-    email: '',
-    firstname: '',
-    lastname: ''
-  };
+  // newUser = {
+  //   userId: 0,
+  //   username: '',
+  //   password: '',
+  //   email: '',
+  //   firstname: '',
+  //   lastname: ''
+  // };
+
+  newUser = new User;
 
   ngOnInit() {
   }
