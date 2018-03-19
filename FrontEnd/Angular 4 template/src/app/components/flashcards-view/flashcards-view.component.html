@@ -1,12 +1,21 @@
-<button (click)="prev()">&lt;</button>
-<div *ngFor="let f of flashcards; let i = index;">
-  <h3 *ngIf="!flipped && i === idx">{{ flashcards[i].question }}</h3>
-  <h3 *ngIf="flipped && i === idx">{{ flashcards[i].answer }}</h3>
+<div class="col-sm">
+  <h2 id="create">{{ set.title }}</h2>
 </div>
-<button (click)="next()">&gt;</button>
-<button (click)="flip()">Flip</button>
-<button (click)="like()">Like</button>
-<button (click)="share()">Share</button>
-<button *ngIf="userId !== authorId" (click)="report()">Report</button>
-<button *ngIf="userId === authorId" (click)="edit()">Edit</button>
-<button *ngIf="userId === authorId" (click)="delete()">Delete</button>
+
+<div class="col-sm">
+  <button (click)="prev()">&lt;</button>
+</div>
+<div class="col-sm" *ngFor="let f of flashcards; let i = index;">
+  <h3 *ngIf="!flipped && i === idx" id="create">{{ flashcards[i].question }}</h3>
+  <h3 *ngIf="flipped && i === idx" id="create">{{ flashcards[i].answer }}</h3>
+</div>
+<div class="col-sm">
+  <button (click)="next()">&gt;</button>
+</div>
+<div id="create">
+  <button (click)="flip()">Flip</button>
+  <button (click)="like()">Like</button>
+  <button *ngIf="userId !== authorId" (click)="report()">Report</button>
+  <button *ngIf="userId === authorId" (click)="edit()">Edit</button>
+  <button *ngIf="userId === authorId" (click)="delete()">Delete</button>
+</div>

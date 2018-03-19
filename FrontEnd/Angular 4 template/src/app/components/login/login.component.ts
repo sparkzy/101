@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 
 
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
     password: ''
   };
 
-  constructor(private client: HttpClient, private cookie: CookieService) { }
+  constructor(private client: HttpClient, private cookie: CookieService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
           alert('Failed to log in.');
         }
       );
+      this.router.navigateByUrl('home');
   }
 
 }

@@ -86,7 +86,8 @@ import { HasQuizGuard } from './guards/has-quiz.guard';
     SetTrackerService,
     HasSetGuard,
     QuizTrackerService,
-    HasQuizGuard
+    HasQuizGuard,
+    Image
   ],
   bootstrap: [AppComponent]
 })

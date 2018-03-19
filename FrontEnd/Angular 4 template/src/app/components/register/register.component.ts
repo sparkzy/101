@@ -31,12 +31,12 @@ export class RegisterComponent implements OnInit {
     this.client.post(`${environment.context}users`, this.newUser)
       .subscribe(
         (succ: any) => {
-          alert('You have successfully added a user.');
         },
         (err) => {
           alert('Failed to add user.');
         }
       );
+      this.login();
   }
 
   login() {
