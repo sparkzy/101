@@ -6,7 +6,9 @@ import { environment } from '../../../environments/environment.prod';
 import { User } from '../../beans/user';
 import { Status } from '../../beans/status';
 import { CookieService } from 'ngx-cookie-service';
-// import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { SetTrackerService } from '../../services/set-tracker.service';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -15,47 +17,33 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-   // newPost: Post = new Post;
-   newPost = {
-    postId: 0,
-    title: '',
-    author: '',
-    body: '',
-    subject: ''
-
-   };
-   post: any = [];
+  newPost: Post = new Post;
+  post: any = [];
   subject: Array<Subject> = [];
   newStatus: Status = new Status;
   postId: number;
+  userId: number = JSON.parse(this.cookie.get('user')).userId;
+  authorId: number;
 
-
-
-  constructor(private client: HttpClient, private cookie: CookieService) { }
+  constructor(private client: HttpClient, private cookie: CookieService, private router: Router ) { }
 
   ngOnInit() {
     this.client.get(`${environment.context}/posts`)
     .subscribe(
       (succ: any) => {
         this.post = succ;
-        console.log('hey');
-        console.log(this.newPost);
-        console.log(this.newStatus);
       },
       (err) => {
         console.log(this.newStatus);
-        alert('failed to get any subjects');
       }
     );
     this.client.get(`${environment.context}/status`)
     .subscribe(
       (succ: any) => {
         this.newStatus = succ;
-        console.log(this.newStatus);
       },
       (err) => {
         console.log(this.newStatus);
-        alert('failed to get any subjects');
       }
     );
     this.client.get(`${environment.context}/subjects`)
@@ -75,37 +63,39 @@ export class PostComponent implements OnInit {
     this.client.post(`${environment.context}posts`, this.newPost)
     .subscribe(
       (succ: Array<Subject>) => {
-         this.subject = succ;
-         console.log(this.newStatus);
-         console.log(this.newPost);
-        alert('new post added');
+
+         this.ngOnInit();
       },
       (err) => {
-        console.log(this.newStatus);
-        console.log(this.newPost );
-        alert('failed');
+
+
       }
     );
   }
-  delete(post: Post): void {
-    // this.newPost = newPost;
-    // console.log(newPost);
-    // console.log(this.newPost.postId);
-    // console.log(this.post.postId);
-    this.client.delete(`${environment.context}/posts/id/${this.newPost.postId}`)
+  delete(postid: number) {
+
+   this.client.delete(`${environment.context}/posts/id/${postid}`)
     .subscribe(
       (succ: any) => {
-        this.post = succ;
-        alert('deleted');
+
+        this.ngOnInit();
 
       },
       (err) => {
-        alert('deleted not');
-        console.log(this.post.postId);
-        console.log(this.newPost.postId);
+        this.ngOnInit();
 
       }
     );
+
+  }
+  like(posts: Post) {
+    posts.likes++;
+    this.client.put(`${environment.context}posts`, posts)
+      .subscribe(
+        (succ: any) => { },
+        (err: any) => {
+        }
+      );
   }
 }
 

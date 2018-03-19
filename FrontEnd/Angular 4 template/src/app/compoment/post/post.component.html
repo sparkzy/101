@@ -1,21 +1,53 @@
-<form class="form-inline"(ngSubmit)="addPost()" >
-  <div class="form-group"  id="area">
-    <label for="exampleTextarea">Example posta</label>
-    <input type="text"  name="title" [(ngModel)]="newPost.title"  class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Title">
-    <textarea class="form-control" id="exampleTextarea" name="body" [(ngModel)]="newPost.body"rows="3"></textarea>
+<div id="container">
+    <div class="row" id="create">
+        <div class="col"></div>
+        <div class="col" id="title">
+          <h3>Add A New Post</h3>
+        </div>
+        <div class="col"></div>
+      </div>
+      <div class="col"></div>
   </div>
-  
-   <select [(ngModel)]= "newPost.subject" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" name = "type">
+     
+  <form class="form-inline"(ngSubmit)="addPost()" >
+    <div class="col ">
+    <input type="text"  name="title" [(ngModel)]="newPost.title"  class="form-control mb-2 mr-sm-2 mb-sm-0 inputs" id="inlineFormInput" placeholder="Title">
+    </div>
+    <div class="col ">
+    <textarea class="form-control inputs" id="exampleTextarea" name="body" [(ngModel)]="newPost.body"rows="3" placeholder="Write a new Post"></textarea>
+    </div>
+   
+    <select [(ngModel)]= "newPost.subject" class="custom-select mb-2 mr-sm-2 mb-sm-0 " id="inlineFormCustomSelect" name = "type" placeholder="Subjects">
     <option *ngFor = "let s of (subject)" [ngValue]= "s">{{s.subjectName}}</option>
-  </select> 
+    </select> 
+    
   <button type="submit" value="Append" class="btn btn-primary">Submit</button>
+  
+  <table class="table">
+    <tbody>
+      <tr *ngFor="let p of post">
 
-
-
-<div *ngFor="let p of post">
-  {{p?.postId}} <br> {{p?.title}} <br> {{p?.body}} 
-  <form (ngSubmit)="delete(newPost)">
-  <button class="btn btn-primary" type="submit">delete</button>
+        <td>
+          <div id="post">
+          {{p.author.username}}
+          <br> 
+          Subject: {{p.subject.subjectName}}
+          <h4>{{p.title}}</h4>
+         
+          <br>
+          {{p.body}}
+          <br>
+          <p id ="likes">Likes: {{p.likes}}</p>
+        </div>
+        </td>
+        
+        <td>
+            <button class="btn btn-primary"  (click)="like(p)" appClickStopPropagation>Like</button>
+          <button class="btn btn-warning" (click)="delete(p.postId)" appClickStopPropagation>Delete</button>
+          
+        </td>
+      </tr>
+     </tbody>
+    </table>
   </form>
-</div>
-</form>
+

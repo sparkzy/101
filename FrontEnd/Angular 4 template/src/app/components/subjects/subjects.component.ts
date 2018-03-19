@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../../environments/environment.prod';
 import { Subject } from '../../beans/subject';
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-subjects',
@@ -13,7 +14,7 @@ export class SubjectsComponent implements OnInit {
   newSub: Subject = new Subject;
 
 
-  constructor(private client: HttpClient, private cookie: CookieService) { }
+  constructor(private client: HttpClient, private cookie: CookieService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -23,11 +24,11 @@ addSubject() {
     .subscribe(
       (succ) => {
         console.log(this.newSub);
-        alert('new post added');
+       this.ngOnInit();
+       this.router.navigateByUrl('post/create');
       },
       (err) => {
-        console.log(this.newSub);
-        alert('failed');
+
       }
     );
   }

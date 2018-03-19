@@ -3,6 +3,7 @@ package com.revature.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Post;
+import com.revature.services.PostServiceInterface;
 import com.revature.services.ServiceInterface;
 
 /**
@@ -24,13 +26,14 @@ import com.revature.services.ServiceInterface;
 */
 @RestController
 @RequestMapping("posts")
+@CrossOrigin(origins = "http://localhost:4200")
 public class PostController {
 	
 	/************************************************************************************
 	 * Private fields
 	 ************************************************************************************/
 	@Autowired
-	private ServiceInterface<Post> postService;
+	private PostServiceInterface postService;
 	
 	/************************************************************************************
 	 * Constructors
@@ -47,7 +50,7 @@ public class PostController {
 	 * 
 	 * @param PostService postService
 	 */
-	public PostController(ServiceInterface<Post> postService) {
+	public PostController(PostServiceInterface postService) {
 		super();
 		this.postService = postService;
 	}
@@ -105,7 +108,7 @@ public class PostController {
 	 * 
 	 * @param ServiceInterface<Post> postService
 	 */
-	public void setPostService(ServiceInterface<Post> postService) {
+	public void setPostService(PostServiceInterface postService) {
 		this.postService = postService;
 	}
 	
@@ -158,6 +161,11 @@ public class PostController {
 	public List<Post> findAll() {
 		return postService.findAll();
 	}
+	@GetMapping("author/{author}")
+	public Post findByAuthor(@PathVariable String author) {
+		return postService.findByAuthor(author);
+	}
+	
 	
 	/************************************************************************************
 	* Update

@@ -6,4 +6,5 @@ import com.revature.entities.Post;
 
 public interface PostRepo extends JpaRepository<Post, Integer> {
 	Post findByPostId(int id);
+	Post findByAuthor(String author);
 }
