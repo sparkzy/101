@@ -1,0 +1,33 @@
+<div class="col-sm">
+  <h2 id="create">{{ quiz.title }}</h2>
+</div>
+
+<div class="col-sm">
+  <button (click)="prev()">&lt;</button>
+</div>
+<div class="col-sm" *ngFor="let q of questions; let i = index;">
+  <div *ngIf="i === idx">
+    <div id="create">
+      <h3>{{ q.question }}</h3>
+      <button (click)="answer(q.correctAnswer)">{{ q.correctAnswer }}</button>
+      <button (click)="answer(q.wrongAnswer1)">{{ q.wrongAnswer1 }}</button>
+      <button (click)="answer(q.wrongAnswer2)" *ngIf="q.wrongAnswer2">{{ q.wrongAnswer2 }}</button>
+      <button (click)="answer(q.wrongAnswer3)" *ngIf="q.wrongAnswer3">{{ q.wrongAnswer3 }}</button>
+      <div *ngIf="ans === q.correctAnswer && ans">
+        <p>Correct!</p>
+      </div>
+      <div *ngIf="ans !== q.correctAnswer && ans">
+        <p>Incorrect!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm">
+  <button (click)="next()">&gt;</button>
+</div>
+<div id="create">
+  <button (click)="like()">Like</button>
+  <button (click)="share()">Share</button>
+  <button *ngIf="userId === authorId" (click)="edit()">Edit</button>
+  <button *ngIf="userId === authorId" (click)="delete()">Delete</button>
+</div>

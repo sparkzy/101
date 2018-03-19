@@ -38,7 +38,11 @@ import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
 import { AuthorPostPipe } from './pipes/author-post.pipe';
 import { PostsComponent } from './components/posts/posts.component';
 import { SubjectPostPipe } from './pipes/subject-post.pipe';
-
+import { QuizAuthorPipe } from './pipes/quiz-author.pipe';
+import { QuizSubjectPipe } from './pipes/quiz-subject.pipe';
+import { QuizTakeComponent } from './components/quiz-take/quiz-take.component';
+import { QuizTrackerService } from './services/quiz-tracker.service';
+import { HasQuizGuard } from './guards/has-quiz.guard';
 @NgModule({
   imports: [
     BrowserModule,
@@ -75,6 +79,9 @@ import { SubjectPostPipe } from './pipes/subject-post.pipe';
     AuthorPostPipe,
     PostsComponent,
     SubjectPostPipe
+    QuizAuthorPipe,
+    QuizSubjectPipe,
+    QuizTakeComponent
   ],
   providers: [
     LoggedInGuard,
@@ -82,7 +89,9 @@ import { SubjectPostPipe } from './pipes/subject-post.pipe';
     NgbDropdown,
     DynamicSortService,
     SetTrackerService,
-    HasSetGuard
+    HasSetGuard,
+    QuizTrackerService,
+    HasQuizGuard
   ],
   bootstrap: [AppComponent]
 })

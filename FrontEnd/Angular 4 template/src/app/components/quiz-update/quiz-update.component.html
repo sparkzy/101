@@ -1,3 +1,53 @@
-<p>
-  quiz-update works!
-</p>
+<form (ngSubmit)="updateQuiz()">
+  <input type="text" name="title" [(ngModel)]="quiz.title" placeholder="Quiz Title">
+  <button class="btn btn-primary" type="submit" [disabled]="checkSubmit()">Submit</button>
+  <button class="btn btn-danger" *ngIf="userId === authorId" (click)="delete()">Delete Quiz</button>
+  <p>Current subject: {{ quiz.subject.subjectName }}</p>
+  <select [(ngModel)]="quiz.subject" name="subjectId" class="form-control">
+    <option *ngFor="let s of (subjects)" [ngValue]="s">{{ s.subjectName }}</option>
+  </select>
+  <h4>Current Questions</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="cole">
+          Question
+        </th>
+        <th scope="cole">
+          Answer 1
+        </th>
+        <th scope="cole">
+          Answer 2
+        </th>
+        <th scope="cole">
+          Answer 3
+        </th>
+        <th scope="cole">
+          Answer 4
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let q of questions">
+        <td>{{ q.question }}</td>
+        <td>{{ q.correctAnswer }}</td>
+        <td>{{ q.wrongAnswer1 }}</td>
+        <td>{{ q.wrongAnswer2 }}</td>
+        <td>{{ q.wrongAnswer3 }}</td>
+        <td>
+          <button class="btn btn-warning" (click)="deleteFc(q.questionId)" appClickStopPropagation>Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <button class="btn btn" (click)="addNewQuestion()" type="button">+ New Question</button>
+  <button class="btn btn" (click)="removeNewQuestion()" type="button">- Question</button>
+  <div name="newQuestion" *ngFor="let q of newQuestions">
+    <input type="text" name="question" [(ngModel)]="q.question" [(value)]="q.question">
+    <input type="text" name="answer1" [(ngModel)]="q.correctAnswer" [(value)]="q.correctAnswer">
+    <input type="text" name="answer2" [(ngModel)]="q.wrongAnswer1" [(value)]="q.wrongAnswer1">
+    <input type="text" name="answer3" [(ngModel)]="q.wrongAnswer2" [(value)]="q.wrongAnswer2">
+    <input type="text" name="answer4" [(ngModel)]="q.wrongAnswer3" [(value)]="q.wrongAnswer3">
+  </div>
+</form>

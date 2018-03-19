@@ -75,7 +75,7 @@ export class FlashcardsViewComponent implements OnInit {
 
   like() {
     this.set.likes++;
-    this.client.put(`${environment.context}sets`, this.set)
+    this.client.post(`${environment.context}sets`, this.set)
       .subscribe(
         (succ: any) => { },
         (err: any) => {

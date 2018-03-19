@@ -16,7 +16,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./searchpost.component.css']
 })
 export class SearchpostComponent implements OnInit {
-
   constructor(private client: HttpClient, private cookie: CookieService, private setTracker: SetTrackerService,
     private router: Router) { }
   posts: Post = new Post;

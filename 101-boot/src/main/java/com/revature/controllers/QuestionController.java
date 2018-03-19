@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Question;
-import com.revature.services.ServiceInterface;
+import com.revature.services.QuestionService;
 
 @RestController
 @RequestMapping("questions")
@@ -22,7 +22,7 @@ import com.revature.services.ServiceInterface;
 public class QuestionController {
 
 	@Autowired
-	private ServiceInterface<Question> si;
+	private QuestionService si;
 
 	@GetMapping
 	public List<Question> findAll() {
@@ -37,6 +37,11 @@ public class QuestionController {
 	@GetMapping("id/{id}")
 	public Question findByQuestionId(@PathVariable int id) {
 		return si.findById(id);
+	}
+	
+	@GetMapping("quiz/id/{id}")
+	public List<Question> findByQuestionQuizId(@PathVariable int id) {
+		return si.findByQuizId(id);
 	}
 
 	@PutMapping

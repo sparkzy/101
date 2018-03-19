@@ -16,13 +16,16 @@ export class RegisterComponent implements OnInit {
 
   constructor(private client: HttpClient, private cookie: CookieService, private router: Router) { }
 
-  newUser = {
-    username: '',
-    password: '',
-    email: '',
-    firstname: '',
-    lastname: ''
-  };
+  // newUser = {
+  //   userId: 0,
+  //   username: '',
+  //   password: '',
+  //   email: '',
+  //   firstname: '',
+  //   lastname: ''
+  // };
+
+  newUser = new User;
 
   ngOnInit() {
   }
@@ -31,12 +34,12 @@ export class RegisterComponent implements OnInit {
     this.client.post(`${environment.context}users`, this.newUser)
       .subscribe(
         (succ: any) => {
-          alert('You have successfully added a user.');
         },
         (err) => {
           alert('Failed to add user.');
         }
       );
+      this.login();
   }
 
   login() {
