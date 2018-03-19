@@ -78,7 +78,7 @@ import { HasQuizGuard } from './guards/has-quiz.guard';
     QuizViewComponent,
     AuthorPostPipe,
     PostsComponent,
-    SubjectPostPipe
+    SubjectPostPipe,
     QuizAuthorPipe,
     QuizSubjectPipe,
     QuizTakeComponent

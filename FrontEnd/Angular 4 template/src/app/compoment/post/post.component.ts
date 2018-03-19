@@ -60,6 +60,7 @@ export class PostComponent implements OnInit {
 
   addPost() {
    this.newPost.author = JSON.parse(this.cookie.get('user'));
+   this.newPost.status.statusId = 1;
     this.client.post(`${environment.context}posts`, this.newPost)
     .subscribe(
       (succ: Array<Subject>) => {
