@@ -1,8 +1,47 @@
-<form (ngSubmit)="searchPost(newPost)">
-  <input type="text" name="post" [(ngModel)]="newPost.author" placeholder="name">
-  <button class="btn btn-primary" type="submit">Submit</button>
-</form>
+ 
+  <div class="row" id="create">
+      <div class="col" id="title">
+        <h3>Search For A Post</h3>
+      </div>
+</div>
+  <div class="row">
+      <div class="col">
+        <input type="text" [(ngModel)]="subjectFilter" placeholder="subject">
+        <button class="btn btn-primary"(click)="searchPost()" type="submit">Submit</button>
+      </div>
 
-<p>
-  {{post?.title}}
-</p>
+      <div class="col"> 
+        
+        <input type="text" [(ngModel)]="authorFilter" placeholder="author">
+        <button class="btn btn-primary"(click)="searchPost()" type="submit">Submit</button>
+     
+      </div>
+      
+    </div>
+ 
+
+<table class="table">
+    <tbody>
+      <tr *ngFor="let p of (post | setSubject:subjectFilter | setAuthor:authorFilter)" >
+
+        <td>
+          <div id="post">
+          {{p.author.username}}
+          <br> 
+          Subject: {{p.subject.subjectName}}
+          <h4>{{p.title}}</h4>
+          <br>
+          {{p.body}}
+          <br>
+          Likes: {{p.likes}}
+        </div>
+        </td>
+        
+        <td>
+            <button class="btn btn-primary"  (click)="like(p)" appClickStopPropagation>Like</button>
+          <button class="btn btn-warning" (click)="delete(p.postId)" appClickStopPropagation>Delete</button>
+          
+        </td>
+      </tr>
+     </tbody>
+    </table>

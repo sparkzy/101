@@ -14,12 +14,6 @@
         <a class="nav-link" routerLink="/register">Register</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/post">Post</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/post-search">Search for a Post</a>
-      </li>
-      <li class="nav-item active">
         <a class="nav-link" routerLink="/subject">Create a new Subject</a>
       </li>
       <li ngbDropdown class="d-inline-block">
@@ -40,8 +34,8 @@
       <li ngbDropdown class="d-inline-block">
         <a class="nav-link dropdown" id="dropdownBasic1" ngbDropdownToggle>Post</a>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <!-- <button class="dropdown-item" routerLink="/flashcards/create">Create new Set</button>
-          <button class="dropdown-item" routerLink="/flashcards/view">View Sets</button> -->
+            <button class="dropdown-item" routerLink="/post/create">View/Create Post</button>
+            <button class="dropdown-item" routerLink="/post/update">Search for Post</button>
         </div>
       </li>
     </ul>

@@ -1,0 +1,27 @@
+.form-group {
+    margin: 20px;
+}
+#title {
+   
+    text-align: center;
+}
+#container {
+    margin-left: 80px;
+}
+#post {
+    width: 900px;
+    height: 250px;
+
+    border: 1px solid darkblue;
+    padding: 20px;
+}
+.inputs {
+    width: 100%;
+    margin-bottom: 30px;
+}
+h4 {
+    border-bottom:1px solid black;
+}
+#likes {
+    margin-top: 10px;
+}

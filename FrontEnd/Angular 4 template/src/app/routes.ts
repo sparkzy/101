@@ -18,20 +18,12 @@ import { QuizComponent } from './components/quiz/quiz.component';
 import { QuizCreateComponent } from './components/quiz-create/quiz-create.component';
 import { QuizUpdateComponent } from './components/quiz-update/quiz-update.component';
 import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
+import { PostsComponent } from './components/posts/posts.component';
 
 export const appRoutes: Routes = [
   {
-    path: 'post-search',
-    component: SearchpostComponent
-
-  },
-  {
     path: 'subject',
     component: SubjectsComponent
-  },
-  {
-    path: 'post',
-    component: PostComponent
   },
   {
     path: 'login',
@@ -131,6 +123,30 @@ export const appRoutes: Routes = [
       LoggedInGuard
     ]
   },
+  {
+    path: 'post',
+    component: PostsComponent,
+    children: [
+      {
+        path: 'create',
+        component: PostComponent,
+        canActivate: [
+          LoggedInGuard
+        ]
+      },
+      {
+        path: 'update',
+        component: SearchpostComponent,
+        canActivate: [
+          LoggedInGuard
+        ]
+      },
+    ],
+    canActivate: [
+      LoggedInGuard
+    ]
+  },
+
   {
     path: '**',
     pathMatch: 'full',

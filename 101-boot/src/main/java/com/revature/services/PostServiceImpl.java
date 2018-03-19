@@ -19,7 +19,7 @@ import com.revature.repos.PostRepo;
 *
 */
 @Service
-public class PostServiceImpl implements ServiceInterface<Post> {
+public class PostServiceImpl implements PostServiceInterface {
 
 	/************************************************************************************
 	 * Private fields
@@ -176,6 +176,15 @@ public class PostServiceImpl implements ServiceInterface<Post> {
 	@Transactional
 	public void delete(int id) {
 		postRepo.deleteById(id);
+	}
+
+	
+
+	@Override
+	@Transactional
+	public Post findByAuthor(String author) {
+		return postRepo.findByAuthor(author);
+		
 	}
 
 }

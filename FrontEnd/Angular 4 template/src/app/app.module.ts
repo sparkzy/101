@@ -35,6 +35,9 @@ import { QuizComponent } from './components/quiz/quiz.component';
 import { QuizCreateComponent } from './components/quiz-create/quiz-create.component';
 import { QuizUpdateComponent } from './components/quiz-update/quiz-update.component';
 import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
+import { AuthorPostPipe } from './pipes/author-post.pipe';
+import { PostsComponent } from './components/posts/posts.component';
+import { SubjectPostPipe } from './pipes/subject-post.pipe';
 
 @NgModule({
   imports: [
@@ -68,7 +71,10 @@ import { QuizViewComponent } from './components/quiz-view/quiz-view.component';
     QuizComponent,
     QuizCreateComponent,
     QuizUpdateComponent,
-    QuizViewComponent
+    QuizViewComponent,
+    AuthorPostPipe,
+    PostsComponent,
+    SubjectPostPipe
   ],
   providers: [
     LoggedInGuard,

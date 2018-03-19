@@ -1,0 +1,20 @@
+input {
+    width: 50%;
+    margin-left: 60px;
+    margin-top: 40px;
+}
+#title {
+   
+    text-align: center;
+    margin-right: 100px;
+}
+#post {
+    width: 900px;
+    height: 250px;
+
+    border: 1px solid darkblue;
+    padding: 20px;
+}
+h4 {
+    border-bottom:1px solid black;
+}
